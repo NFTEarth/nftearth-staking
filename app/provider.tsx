@@ -1,7 +1,7 @@
 "use client";
 
 import { WagmiConfig, createClient, configureChains } from "wagmi";
-import { mainnet, goerli, arbitrum } from "wagmi/chains";
+import { arbitrum } from "wagmi/chains";
 
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
 import { alchemyProvider } from "wagmi/providers/alchemy";

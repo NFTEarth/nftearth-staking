@@ -19,7 +19,7 @@ import { BigNumber } from "ethers";
 
 export default function Calculator() {
   const poolData = usePoolData();
-  const { nftePrice } = usePrice();
+  const { NftePrice } = usePrice();
   const { timeframe } = useTimeframe();
   const { earthlingPoolStakable, roboroverPoolStakable, nfw3cPoolStakable } =
     useBalances();
@@ -32,7 +32,7 @@ export default function Calculator() {
   // nftePrice comes back as a big number and nfte token has 8 decimal
   // places, so we need to turn it into a formatted string via ethers then
   // turn that into a number
-  const nftePriceNumber = nftePrice && +formatUnits(nftePrice, 8);
+  const nftePriceNumber = NftePrice && +formatUnits(NftePrice, 8);
 
   const [nfteOwnedCount, setNfteOwnedCount] = useState<number>(0);
   const [earthlingTokenOwnedCount, setEathlingTokenOwnedCount] = useState<number>(0);

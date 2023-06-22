@@ -17,8 +17,8 @@ import { Map } from "@/types/map";
 import { BigNumber } from "ethers";
 
 const stakingContractAddresses: Map = {
-  1: "0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9",
-  5: "0xeF37717B1807a253c6D140Aca0141404D23c26D4",
+  42161: "0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe",
+
 } as const;
 
 function ClaimAll({
@@ -39,7 +39,7 @@ function ClaimAll({
       nfteStakes &&
       nfteStakes.length !== 0 &&
       !nfteStakes[0].unclaimed.isZero(),
-    address: stakingContractAddresses[chain?.id || 1],
+    address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "claimSelfNfte",
   });
@@ -65,7 +65,7 @@ function ClaimAll({
 
   const earthlingPrepareContractWrite = usePrepareContractWrite({
     enabled: earthlingStakes && earthlingStakes.length > 0 && earthlingUnclaimed > 0,
-    address: stakingContractAddresses[chain?.id || 1],
+    address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "claimSelfEARTHLING",
     args: args && ([args] as any),
@@ -85,7 +85,7 @@ function ClaimAll({
 
   const roboroverPrepareContractWrite = usePrepareContractWrite({
     enabled: roboroverStakes && roboroverStakes.length > 0,
-    address: stakingContractAddresses[chain?.id || 1],
+    address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "claimSelfROBOROVER",
     args: [roboroverArgs as any],
@@ -98,14 +98,14 @@ function ClaimAll({
     nfw3cTokenId: BigNumber;
   }
 
-  let nfw3cBaycArgs: nfw3cData[] = [];
-  let nfw3cMaycArgs: nfw3cData[] = [];
+  let nfw3cEarthlingArgs: nfw3cData[] = [];
+  let nfw3cRoboroverArgs: nfw3cData[] = [];
 
   if (nfw3cStakes) {
     for (let i = 0; i < nfw3cStakes.length; i++) {
       const stake = nfw3cStakes[i];
       if (stake.unclaimed.gt(0) && stake.pair.mainTypePoolId.toNumber() === 1) {
-        nfw3cBaycArgs.push({
+        nfw3cEarthlingArgs.push({
           mainTokenId: stake.pair.mainTokenId,
           nfw3cTokenId: stake.tokenId,
         });
@@ -117,7 +117,7 @@ function ClaimAll({
     for (let i = 0; i < nfw3cStakes.length; i++) {
       const stake = nfw3cStakes[i];
       if (stake.unclaimed.gt(0) && stake.pair.mainTypePoolId.toNumber() === 2) {
-        nfw3cMaycArgs.push({
+        nfw3cRoboroverArgs.push({
           mainTokenId: stake.pair.mainTokenId,
           nfw3cTokenId: stake.tokenId,
         });
@@ -126,11 +126,11 @@ function ClaimAll({
   }
 
   const nfw3cPrepareContractWrite = usePrepareContractWrite({
-    enabled: nfw3cBaycArgs.length > 0 || nfw3cMaycArgs.length > 0,
-    address: stakingContractAddresses[chain?.id || 1],
+    enabled: nfw3cEarthlingArgs.length > 0 || nfw3cEarthlingArgs.length > 0,
+    address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "claimSelfNFW3C",
-    args: [nfw3cBaycArgs, nfw3cMaycArgs],
+    args: [nfw3cEarthlingArgs, nfw3cRoboroverArgs],
   });
 
   const nfw3cContractWrite = useContractWrite(nfw3cPrepareContractWrite.config);
@@ -168,7 +168,7 @@ function WithdrawAll({
 }) {
   const nfteWithdrawPrepareContractWrite = usePrepareContractWrite({
     enabled: !nfteStakes?.[0]?.deposited.isZero(),
-    address: stakingContractAddresses[chain?.id || 1],
+    address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "withdrawSelfNfte",
     args: nfteStakes?.[0]?.deposited && [nfteStakes[0].deposited],
@@ -242,14 +242,14 @@ function WithdrawAll({
     isUncommit: boolean;
   }
 
-  let nfw3cBaycArgs: nfw3cData[] = [];
-  let nfw3cMaycArgs: nfw3cData[] = [];
+  let nfw3cEarthlingArgs: nfw3cData[] = [];
+  let nfw3cRoboroverArgs: nfw3cData[] = [];
 
   if (nfw3cStakes) {
     for (let i = 0; i < nfw3cStakes.length; i++) {
       const stake = nfw3cStakes[i];
       if (stake.unclaimed.gt(0) && stake.pair.mainTypePoolId.toNumber() === 1) {
-        nfw3cBaycArgs.push({
+        nfw3cEarthlingArgs.push({
           mainTokenId: stake.pair.mainTokenId.toNumber(),
           nfw3cTokenId: stake.tokenId.toNumber(),
           amount: stake.deposited,
@@ -263,7 +263,7 @@ function WithdrawAll({
     for (let i = 0; i < nfw3cStakes.length; i++) {
       const stake = nfw3cStakes[i];
       if (stake.unclaimed.gt(0) && stake.pair.mainTypePoolId.toNumber() === 2) {
-        nfw3cMaycArgs.push({
+        nfw3cRoboroverArgs.push({
           mainTokenId: stake.pair.mainTokenId.toNumber(),
           nfw3cTokenId: stake.tokenId.toNumber(),
           amount: stake.deposited,
@@ -274,11 +274,11 @@ function WithdrawAll({
   }
 
   const nfw3cPrepareContractWrite = usePrepareContractWrite({
-    enabled: nfw3cBaycArgs.length > 0 || nfw3cMaycArgs.length > 0,
-    address: stakingContractAddresses[chain?.id || 1],
+    enabled: nfw3cEarthlingArgs.length > 0 || nfw3cRoboroverArgs.length > 0,
+    address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "withdrawNFW3C",
-    args: [nfw3cBaycArgs, nfw3cMaycArgs],
+    args: [nfw3cEarthlingArgs, nfw3cRoboroverArgs],
   });
 
   const nfw3cContractWrite = useContractWrite(nfw3cPrepareContractWrite.config);
@@ -304,7 +304,7 @@ function WithdrawAll({
 export default function UserStaking() {
   const { chain } = useNetwork();
   const { address } = useAccount();
-  const { nftePrice } = usePrice();
+  const { NftePrice } = usePrice();
   const [statsAddress, setStatsAddress] = useState<string>("");
   useEffect(() => {
     if (address) {
@@ -328,7 +328,7 @@ export default function UserStaking() {
     return sum + +formatUnits(stake.unclaimed);
   }, 0);
 
-  const nftePriceNumber = nftePrice && +formatUnits(nftePrice, 8);
+  const nftePriceNumber = NftePrice && +formatUnits(NftePrice, 8);
 
   return (
     <>

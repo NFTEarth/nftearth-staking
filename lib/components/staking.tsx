@@ -23,7 +23,7 @@ interface poolStakesData {
 
 export default function Staking() {
   const { address, isConnected } = useAccount();
-  const { nftePrice } = usePrice();
+  const { NftePrice } = usePrice();
   const autoConnecitng = useAutoConnecting();
   const allowance = useAllowance();
   const [statsAddress, setStatsAddress] = useState<string>("");
@@ -109,7 +109,7 @@ export default function Staking() {
       });
   };
 
-  const withdrawBakcArgs = (mainTypePoolId: number, asString: boolean) => {
+  const withdrawNfw3cArgs = (mainTypePoolId: number, asString: boolean) => {
     return allStakes.data
       ?.filter((stake) => {
         if (
@@ -177,7 +177,7 @@ export default function Staking() {
       });
   };
 
-  const claimBakcArgs = (mainTypePoolId: number, asString: boolean) => {
+  const claimNfw3cArgs = (mainTypePoolId: number, asString: boolean) => {
     return allStakes.data
       ?.filter((stake) => {
         if (
@@ -245,10 +245,10 @@ export default function Staking() {
 
         <h2 className="text-4xl font-extrabold">NFTE Staking Pool</h2>
         <NfteTable
-          poolStakes={nfteStakes}
+          nfteStakes={nfteStakes}
           withdrawArgs={withdrawArgs}
           claimArgs={claimArgs}
-          nftePrice={nftePrice}
+          nftePrice={NftePrice}
         />
 
         <h2 className="mt-10 text-4xl font-extrabold">
@@ -261,7 +261,7 @@ export default function Staking() {
           poolStakes={earthlingStakes}
           withdrawArgs={withdrawArgs}
           claimArgs={claimArgs}
-          nftePrice={nftePrice}
+          nftePrice={NftePrice}
           withdrawFunctionID="24"
           claimFunctionID="8"
           depositFunctionID="12"
@@ -277,7 +277,7 @@ export default function Staking() {
           poolStakes={roboroverStakes}
           withdrawArgs={withdrawArgs}
           claimArgs={claimArgs}
-          nftePrice={nftePrice}
+          nftePrice={NftePrice}
           withdrawFunctionID="25"
           claimFunctionID="9"
           depositFunctionID="13"
@@ -289,9 +289,9 @@ export default function Staking() {
 
         <Nfw3cTable
           poolStakes={nfw3cStakes}
-          withdrawArgs={withdrawArgs}
-          claimArgs={claimArgs}
-          nftePrice={nftePrice}
+          withdrawArgs={withdrawNfw3cArgs}
+          claimArgs={claimNfw3cArgs}
+          nftePrice={NftePrice}
           pairOptions={options}
         />
       </div>
