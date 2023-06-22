@@ -11,10 +11,10 @@ interface Map {
 }
 
 const poolIDs: Map = {
-  0: "ApeCoin",
-  1: "BAYC",
-  2: "MAYC",
-  3: "BAKC",
+  0: "NFTE",
+  1: "Earthling",
+  2: "RoboRover",
+  3: "Non-Fungible Web3 Citizen",
 };
 
 const DisplayStakeEvent: React.FC<{ event: EventData }> = ({ event }) => {
@@ -25,7 +25,7 @@ const DisplayStakeEvent: React.FC<{ event: EventData }> = ({ event }) => {
       target="_blank"
       rel="noreferrer"
       href={`https://${
-        chain?.id === 5 ? "goerli.etherscan.io" : "etherscan.io"
+        chain?.id === 42161 ? "arbiscan.io" : "etherscan.io"
       }/tx/${event.hash}`}
     >
       <span className="font-medium text-zinc-900 dark:text-white">
@@ -36,7 +36,7 @@ const DisplayStakeEvent: React.FC<{ event: EventData }> = ({ event }) => {
         {new Intl.NumberFormat("en-US", {
           maximumFractionDigits: 4,
         }).format(+formatUnits(event.amount))}{" "}
-        ApeCoin
+        NFTE
       </span>{" "}
       into the{" "}
       <span className="font-medium text-zinc-900 dark:text-white">
@@ -54,7 +54,7 @@ const DisplayWithdrawEvent: React.FC<{ event: EventData }> = ({ event }) => {
       target="_blank"
       rel="noreferrer"
       href={`https://${
-        chain?.id === 5 ? "goerli.etherscan.io" : "etherscan.io"
+        chain?.id === 42161 ? "arbiscan.io" : "etherscan.io"
       }/tx/${event.hash}`}
     >
       <span className="font-medium text-zinc-900 dark:text-white">
@@ -65,7 +65,7 @@ const DisplayWithdrawEvent: React.FC<{ event: EventData }> = ({ event }) => {
         {new Intl.NumberFormat("en-US", {
           maximumFractionDigits: 4,
         }).format(+formatUnits(event.amount))}{" "}
-        ApeCoin
+        NFTE
       </span>{" "}
       from the{" "}
       <span className="font-medium text-zinc-900 dark:text-white">
@@ -83,7 +83,7 @@ const DisplayClaimEvent: React.FC<{ event: EventData }> = ({ event }) => {
       target="_blank"
       rel="noreferrer"
       href={`https://${
-        chain?.id === 5 ? "goerli.etherscan.io" : "etherscan.io"
+        chain?.id === 42161 ? "arbiscan.io" : "etherscan.io"
       }/tx/${event.hash}`}
     >
       <span className="font-medium text-zinc-900 dark:text-white">
@@ -94,7 +94,7 @@ const DisplayClaimEvent: React.FC<{ event: EventData }> = ({ event }) => {
         {new Intl.NumberFormat("en-US", {
           maximumFractionDigits: 4,
         }).format(+formatUnits(event.amount))}{" "}
-        ApeCoin
+        NFTE
       </span>{" "}
       from the{" "}
       <span className="font-medium text-zinc-900 dark:text-white">
@@ -119,7 +119,7 @@ const DisplayEvent: React.FC<{ event: EventData }> = ({ event }) => {
       target="_blank"
       rel="noreferrer"
       href={`https://${
-        chain?.id === 5 ? "goerli.etherscan.io" : "etherscan.io"
+        chain?.id === 42161 ? "arbiscan.io" : "etherscan.io"
       }/tx/${event.hash}`}
     >
       <span className="font-medium text-zinc-900 dark:text-white">

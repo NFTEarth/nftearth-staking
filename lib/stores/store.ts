@@ -21,8 +21,8 @@ interface AppState {
   amount: Amount;
   setAmount: (amount: Amount) => void;
 
-  apeCoinBalance: BigNumber | undefined;
-  setApeCoinBalance: (balance: BigNumber | undefined) => void;
+  nfteBalance: BigNumber | undefined;
+  setnfteBalance: (balance: BigNumber | undefined) => void;
 }
 
 const useStore = create<AppState>()(
@@ -35,13 +35,13 @@ const useStore = create<AppState>()(
     setTimeframe: (newTimeframe) => {
       set(() => ({ timeframe: newTimeframe }));
     },
-    amount: Amount.PerApe,
+    amount: Amount.PerNfte,
     setAmount: (newAmount) => {
       set(() => ({ amount: newAmount }));
     },
-    apeCoinBalance: undefined,
-    setApeCoinBalance: (balance) => {
-      set(() => ({ apeCoinBalance: balance }));
+    nfteBalance: undefined,
+    setnfteBalance: (balance) => {
+      set(() => ({ nfteBalance: balance }));
     },
     events: [],
     addEvent: (newEvent) => {

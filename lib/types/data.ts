@@ -1,8 +1,8 @@
 export enum PoolType {
-  APE = 0,
-  BAYC = 1,
-  MAYC = 2,
-  BAKC = 3,
+  NFTE = 0,
+  EARTHLING = 1,
+  ROBOROVER = 2,
+  NFW3C = 3,
 }
 
 export type PoolData = {
@@ -18,6 +18,6 @@ export type PoolData = {
 };
 
 export enum Amount {
-  PerApe = "PerApe",
+  PerNfte = "PerNfte",
   Max = "Max",
 }

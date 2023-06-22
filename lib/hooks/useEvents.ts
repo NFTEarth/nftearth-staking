@@ -14,7 +14,7 @@ const useEvents = () => {
 
   async function connectToMetamask() {
     const contract = new Contract(
-      "0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9",
+      "0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe",
       StakingABI,
       provider
     );
@@ -46,7 +46,7 @@ const useEvents = () => {
   }, [alreadyAdded]);
 
   useContractEvent({
-    address: "0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9",
+    address: "0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe",
     abi: StakingABI,
     eventName: "Deposit",
     listener(...args) {
@@ -58,11 +58,11 @@ const useEvents = () => {
         hash: args[3].transactionHash,
       });
     },
-    chainId: 1,
+    chainId: 42161,
   });
 
   useContractEvent({
-    address: "0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9",
+    address: "0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe",
     abi: StakingABI,
     eventName: "DepositNft",
     listener(...args) {
@@ -74,11 +74,11 @@ const useEvents = () => {
         hash: args[4].transactionHash,
       });
     },
-    chainId: 1,
+    chainId: 42161,
   });
 
   useContractEvent({
-    address: "0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9",
+    address: "0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe",
     abi: StakingABI,
     eventName: "DepositPairNft",
     listener(...args) {
@@ -90,11 +90,11 @@ const useEvents = () => {
         hash: args[5].transactionHash,
       });
     },
-    chainId: 1,
+    chainId: 42161,
   });
 
   useContractEvent({
-    address: "0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9",
+    address: "0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe",
     abi: StakingABI,
     eventName: "Withdraw",
     listener(...args) {
@@ -106,7 +106,7 @@ const useEvents = () => {
         hash: args[3].transactionHash,
       });
     },
-    chainId: 1,
+    chainId: 42161,
   });
 
   useContractEvent({
@@ -122,11 +122,11 @@ const useEvents = () => {
         hash: args[5].transactionHash,
       });
     },
-    chainId: 1,
+    chainId: 42161,
   });
 
   useContractEvent({
-    address: "0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9",
+    address: "0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe",
     abi: StakingABI,
     eventName: "WithdrawPairNft",
     listener(...args) {
@@ -138,11 +138,11 @@ const useEvents = () => {
         hash: args[5].transactionHash,
       });
     },
-    chainId: 1,
+    chainId: 42161,
   });
 
   useContractEvent({
-    address: "0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9",
+    address: "0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe",
     abi: StakingABI,
     eventName: "ClaimRewards",
     listener(...args) {
@@ -154,11 +154,11 @@ const useEvents = () => {
         hash: args[3].transactionHash,
       });
     },
-    chainId: 1,
+    chainId: 42161,
   });
 
   useContractEvent({
-    address: "0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9",
+    address: "0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe",
     abi: StakingABI,
     eventName: "ClaimRewardsNft",
     listener(...args) {
@@ -170,11 +170,11 @@ const useEvents = () => {
         hash: args[4].transactionHash,
       });
     },
-    chainId: 1,
+    chainId:42161,
   });
 
   useContractEvent({
-    address: "0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9",
+    address: "0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe",
     abi: StakingABI,
     eventName: "ClaimRewardsPairNft",
     listener(...args) {
@@ -186,7 +186,7 @@ const useEvents = () => {
         hash: args[5].transactionHash,
       });
     },
-    chainId: 1,
+    chainId:42161 ,
   });
 
   return events;

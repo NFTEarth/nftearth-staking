@@ -23,32 +23,32 @@ const stakingContractAddresses: Map = {
 
 function ClaimAll({
   chain,
-  apeCoinStakes,
-  baycStakes,
-  maycStakes,
-  bakcStakes,
+  nfteStakes,
+  earthlingStakes,
+  roboroverStakes,
+  nfw3cStakes,
 }: {
   chain: (Chain & { unsupported?: boolean | undefined }) | undefined;
-  apeCoinStakes: poolStakesData[] | undefined;
-  baycStakes: poolStakesData[] | undefined;
-  maycStakes: poolStakesData[] | undefined;
-  bakcStakes: poolStakesData[] | undefined;
+  nfteStakes: poolStakesData[] | undefined;
+  earthlingStakes: poolStakesData[] | undefined;
+  roboroverStakes: poolStakesData[] | undefined;
+  nfw3cStakes: poolStakesData[] | undefined;
 }) {
-  const apeCoinClaimPrepareContractWrite = usePrepareContractWrite({
+  const nfteClaimPrepareContractWrite = usePrepareContractWrite({
     enabled:
-      apeCoinStakes &&
-      apeCoinStakes.length !== 0 &&
-      !apeCoinStakes[0].unclaimed.isZero(),
+      nfteStakes &&
+      nfteStakes.length !== 0 &&
+      !nfteStakes[0].unclaimed.isZero(),
     address: stakingContractAddresses[chain?.id || 1],
     abi: ABI,
-    functionName: "claimSelfApeCoin",
+    functionName: "claimSelfNfte",
   });
 
-  const apeCoinClaimContractWrite = useContractWrite(
-    apeCoinClaimPrepareContractWrite.config
+  const nfteClaimContractWrite = useContractWrite(
+    nfteClaimPrepareContractWrite.config
   );
 
-  const args = baycStakes
+  const args = earthlingStakes
     ?.map((token) => {
       if (token.unclaimed?.gt(0)) {
         return token.tokenId.toNumber();
@@ -58,22 +58,22 @@ function ClaimAll({
       return token !== undefined;
     });
 
-  const baycUnclaimed =
-    baycStakes?.reduce((sum, stake) => {
+  const earthlingUnclaimed =
+    earthlingStakes?.reduce((sum, stake) => {
       return sum + +formatUnits(stake.unclaimed);
     }, 0) || 0;
 
-  const baycPrepareContractWrite = usePrepareContractWrite({
-    enabled: baycStakes && baycStakes.length > 0 && baycUnclaimed > 0,
+  const earthlingPrepareContractWrite = usePrepareContractWrite({
+    enabled: earthlingStakes && earthlingStakes.length > 0 && earthlingUnclaimed > 0,
     address: stakingContractAddresses[chain?.id || 1],
     abi: ABI,
-    functionName: "claimSelfBAYC",
+    functionName: "claimSelfEARTHLING",
     args: args && ([args] as any),
   });
 
-  const baycContractWrite = useContractWrite(baycPrepareContractWrite.config);
+  const earthlingContractWrite = useContractWrite(earthlingPrepareContractWrite.config);
 
-  const maycArgs = maycStakes
+  const roboroverArgs = roboroverStakes
     ?.map((token) => {
       if (token.unclaimed?.gt(0)) {
         return token.tokenId.toNumber();
@@ -83,67 +83,67 @@ function ClaimAll({
       return token !== undefined;
     });
 
-  const maycPrepareContractWrite = usePrepareContractWrite({
-    enabled: maycStakes && maycStakes.length > 0,
+  const roboroverPrepareContractWrite = usePrepareContractWrite({
+    enabled: roboroverStakes && roboroverStakes.length > 0,
     address: stakingContractAddresses[chain?.id || 1],
     abi: ABI,
-    functionName: "claimSelfMAYC",
-    args: [maycArgs as any],
+    functionName: "claimSelfROBOROVER",
+    args: [roboroverArgs as any],
   });
 
-  const maycContractWrite = useContractWrite(maycPrepareContractWrite.config);
+  const roboroverContractWrite = useContractWrite(roboroverPrepareContractWrite.config);
 
-  interface bakcData {
+  interface nfw3cData {
     mainTokenId: BigNumber;
-    bakcTokenId: BigNumber;
+    nfw3cTokenId: BigNumber;
   }
 
-  let bakcBaycArgs: bakcData[] = [];
-  let bakcMaycArgs: bakcData[] = [];
+  let nfw3cBaycArgs: nfw3cData[] = [];
+  let nfw3cMaycArgs: nfw3cData[] = [];
 
-  if (bakcStakes) {
-    for (let i = 0; i < bakcStakes.length; i++) {
-      const stake = bakcStakes[i];
+  if (nfw3cStakes) {
+    for (let i = 0; i < nfw3cStakes.length; i++) {
+      const stake = nfw3cStakes[i];
       if (stake.unclaimed.gt(0) && stake.pair.mainTypePoolId.toNumber() === 1) {
-        bakcBaycArgs.push({
+        nfw3cBaycArgs.push({
           mainTokenId: stake.pair.mainTokenId,
-          bakcTokenId: stake.tokenId,
+          nfw3cTokenId: stake.tokenId,
         });
       }
     }
   }
 
-  if (bakcStakes) {
-    for (let i = 0; i < bakcStakes.length; i++) {
-      const stake = bakcStakes[i];
+  if (nfw3cStakes) {
+    for (let i = 0; i < nfw3cStakes.length; i++) {
+      const stake = nfw3cStakes[i];
       if (stake.unclaimed.gt(0) && stake.pair.mainTypePoolId.toNumber() === 2) {
-        bakcMaycArgs.push({
+        nfw3cMaycArgs.push({
           mainTokenId: stake.pair.mainTokenId,
-          bakcTokenId: stake.tokenId,
+          nfw3cTokenId: stake.tokenId,
         });
       }
     }
   }
 
-  const bakcPrepareContractWrite = usePrepareContractWrite({
-    enabled: bakcBaycArgs.length > 0 || bakcMaycArgs.length > 0,
+  const nfw3cPrepareContractWrite = usePrepareContractWrite({
+    enabled: nfw3cBaycArgs.length > 0 || nfw3cMaycArgs.length > 0,
     address: stakingContractAddresses[chain?.id || 1],
     abi: ABI,
-    functionName: "claimSelfBAKC",
-    args: [bakcBaycArgs, bakcMaycArgs],
+    functionName: "claimSelfNFW3C",
+    args: [nfw3cBaycArgs, nfw3cMaycArgs],
   });
 
-  const bakcContractWrite = useContractWrite(bakcPrepareContractWrite.config);
+  const nfw3cContractWrite = useContractWrite(nfw3cPrepareContractWrite.config);
   return (
     <div>
       <button
         onClick={() => {
-          if (apeCoinStakes?.[0]?.unclaimed.gt(0)) {
-            apeCoinClaimContractWrite.write?.();
+          if (nfteStakes?.[0]?.unclaimed.gt(0)) {
+            nfteClaimContractWrite.write?.();
           }
-          baycContractWrite.write?.();
-          maycContractWrite.write?.();
-          bakcContractWrite.write?.();
+          earthlingContractWrite.write?.();
+          roboroverContractWrite.write?.();
+          nfw3cContractWrite.write?.();
         }}
         className="border px-2 hover:border-zinc-500 dark:border-zinc-500 dark:bg-zinc-800 dark:hover:border-zinc-300"
       >
@@ -155,27 +155,27 @@ function ClaimAll({
 
 function WithdrawAll({
   chain,
-  apeCoinStakes,
-  baycStakes,
-  maycStakes,
-  bakcStakes,
+  nfteStakes,
+  earthlingStakes,
+  roboroverStakes,
+  nfw3cStakes,
 }: {
   chain: (Chain & { unsupported?: boolean | undefined }) | undefined;
-  apeCoinStakes: poolStakesData[] | undefined;
-  baycStakes: poolStakesData[] | undefined;
-  maycStakes: poolStakesData[] | undefined;
-  bakcStakes: poolStakesData[] | undefined;
+  nfteStakes: poolStakesData[] | undefined;
+  earthlingStakes: poolStakesData[] | undefined;
+  roboroverStakes: poolStakesData[] | undefined;
+  nfw3cStakes: poolStakesData[] | undefined;
 }) {
-  const apeCoinWithdrawPrepareContractWrite = usePrepareContractWrite({
-    enabled: !apeCoinStakes?.[0]?.deposited.isZero(),
+  const nfteWithdrawPrepareContractWrite = usePrepareContractWrite({
+    enabled: !nfteStakes?.[0]?.deposited.isZero(),
     address: stakingContractAddresses[chain?.id || 1],
     abi: ABI,
-    functionName: "withdrawSelfApeCoin",
-    args: apeCoinStakes?.[0]?.deposited && [apeCoinStakes[0].deposited],
+    functionName: "withdrawSelfNfte",
+    args: nfteStakes?.[0]?.deposited && [nfteStakes[0].deposited],
   });
 
-  const apeCoinWithdrawContractWrite = useContractWrite(
-    apeCoinWithdrawPrepareContractWrite.config
+  const nfteWithdrawContractWrite = useContractWrite(
+    nfteWithdrawPrepareContractWrite.config
   );
 
   interface withdrawData {
@@ -183,13 +183,13 @@ function WithdrawAll({
     amount: BigNumber;
   }
 
-  let baycWithdrawArgs: withdrawData[] = [];
+  let earthlingWithdrawArgs: withdrawData[] = [];
 
-  if (baycStakes) {
-    for (let i = 0; i < baycStakes.length; i++) {
-      const stake = baycStakes[i];
+  if (earthlingStakes) {
+    for (let i = 0; i < earthlingStakes.length; i++) {
+      const stake = earthlingStakes[i];
       if (stake.deposited.gt(0)) {
-        baycWithdrawArgs.push({
+        earthlingWithdrawArgs.push({
           tokenId: stake.tokenId,
           amount: stake.deposited,
         });
@@ -197,25 +197,25 @@ function WithdrawAll({
     }
   }
 
-  const baycWithdrawPrepareContractWrite = usePrepareContractWrite({
-    enabled: baycStakes && baycStakes.length > 0,
+  const earthlingWithdrawPrepareContractWrite = usePrepareContractWrite({
+    enabled: earthlingStakes && earthlingStakes.length > 0,
     address: stakingContractAddresses[chain?.id || 1],
     abi: ABI,
-    functionName: "withdrawSelfBAYC",
-    args: baycWithdrawArgs && ([baycWithdrawArgs] as any),
+    functionName: "withdrawSelfEARTHLING",
+    args: earthlingWithdrawArgs && ([earthlingWithdrawArgs] as any),
   });
 
-  const baycWithdrawContractWrite = useContractWrite(
-    baycWithdrawPrepareContractWrite.config
+  const earthlingWithdrawContractWrite = useContractWrite(
+    earthlingWithdrawPrepareContractWrite.config
   );
 
-  let maycWithdrawArgs: withdrawData[] = [];
+  let roboroverWithdrawArgs: withdrawData[] = [];
 
-  if (maycStakes) {
-    for (let i = 0; i < maycStakes.length; i++) {
-      const stake = maycStakes[i];
+  if (roboroverStakes) {
+    for (let i = 0; i < roboroverStakes.length; i++) {
+      const stake = roboroverStakes[i];
       if (stake.deposited.gt(0)) {
-        maycWithdrawArgs.push({
+        roboroverWithdrawArgs.push({
           tokenId: stake.tokenId,
           amount: stake.deposited,
         });
@@ -223,35 +223,35 @@ function WithdrawAll({
     }
   }
 
-  const maycWithdrawPrepareContractWrite = usePrepareContractWrite({
-    enabled: maycStakes && maycStakes.length > 0,
+  const roboroverWithdrawPrepareContractWrite = usePrepareContractWrite({
+    enabled: roboroverStakes && roboroverStakes.length > 0,
     address: stakingContractAddresses[chain?.id || 1],
     abi: ABI,
-    functionName: "withdrawSelfMAYC",
-    args: maycWithdrawArgs && ([maycWithdrawArgs] as any),
+    functionName: "withdrawSelfROBOROVER",
+    args: roboroverWithdrawArgs && ([roboroverWithdrawArgs] as any),
   });
 
-  const maycWithdrawContractWrite = useContractWrite(
-    maycWithdrawPrepareContractWrite.config
+  const roboroverWithdrawContractWrite = useContractWrite(
+    roboroverWithdrawPrepareContractWrite.config
   );
 
-  interface bakcData {
+  interface nfw3cData {
     mainTokenId: number;
-    bakcTokenId: number;
+    nfw3cTokenId: number;
     amount: BigNumber;
     isUncommit: boolean;
   }
 
-  let bakcBaycArgs: bakcData[] = [];
-  let bakcMaycArgs: bakcData[] = [];
+  let nfw3cBaycArgs: nfw3cData[] = [];
+  let nfw3cMaycArgs: nfw3cData[] = [];
 
-  if (bakcStakes) {
-    for (let i = 0; i < bakcStakes.length; i++) {
-      const stake = bakcStakes[i];
+  if (nfw3cStakes) {
+    for (let i = 0; i < nfw3cStakes.length; i++) {
+      const stake = nfw3cStakes[i];
       if (stake.unclaimed.gt(0) && stake.pair.mainTypePoolId.toNumber() === 1) {
-        bakcBaycArgs.push({
+        nfw3cBaycArgs.push({
           mainTokenId: stake.pair.mainTokenId.toNumber(),
-          bakcTokenId: stake.tokenId.toNumber(),
+          nfw3cTokenId: stake.tokenId.toNumber(),
           amount: stake.deposited,
           isUncommit: true,
         });
@@ -259,13 +259,13 @@ function WithdrawAll({
     }
   }
 
-  if (bakcStakes) {
-    for (let i = 0; i < bakcStakes.length; i++) {
-      const stake = bakcStakes[i];
+  if (nfw3cStakes) {
+    for (let i = 0; i < nfw3cStakes.length; i++) {
+      const stake = nfw3cStakes[i];
       if (stake.unclaimed.gt(0) && stake.pair.mainTypePoolId.toNumber() === 2) {
-        bakcMaycArgs.push({
+        nfw3cMaycArgs.push({
           mainTokenId: stake.pair.mainTokenId.toNumber(),
-          bakcTokenId: stake.tokenId.toNumber(),
+          nfw3cTokenId: stake.tokenId.toNumber(),
           amount: stake.deposited,
           isUncommit: true,
         });
@@ -273,25 +273,25 @@ function WithdrawAll({
     }
   }
 
-  const bakcPrepareContractWrite = usePrepareContractWrite({
-    enabled: bakcBaycArgs.length > 0 || bakcMaycArgs.length > 0,
+  const nfw3cPrepareContractWrite = usePrepareContractWrite({
+    enabled: nfw3cBaycArgs.length > 0 || nfw3cMaycArgs.length > 0,
     address: stakingContractAddresses[chain?.id || 1],
     abi: ABI,
-    functionName: "withdrawBAKC",
-    args: [bakcBaycArgs, bakcMaycArgs],
+    functionName: "withdrawNFW3C",
+    args: [nfw3cBaycArgs, nfw3cMaycArgs],
   });
 
-  const bakcContractWrite = useContractWrite(bakcPrepareContractWrite.config);
+  const nfw3cContractWrite = useContractWrite(nfw3cPrepareContractWrite.config);
   return (
     <div>
       <button
         onClick={() => {
-          if (apeCoinStakes?.[0]?.unclaimed.gt(0)) {
-            apeCoinWithdrawContractWrite.write?.();
+          if (nfteStakes?.[0]?.unclaimed.gt(0)) {
+            nfteWithdrawContractWrite.write?.();
           }
-          baycWithdrawContractWrite.write?.();
-          maycWithdrawContractWrite.write?.();
-          bakcContractWrite.write?.();
+          earthlingWithdrawContractWrite.write?.();
+          roboroverWithdrawContractWrite.write?.();
+          nfw3cContractWrite.write?.();
         }}
         className="border px-2 hover:border-zinc-500 dark:border-zinc-500 dark:bg-zinc-800 dark:hover:border-zinc-300"
       >
@@ -304,7 +304,7 @@ function WithdrawAll({
 export default function UserStaking() {
   const { chain } = useNetwork();
   const { address } = useAccount();
-  const { apecoinPrice } = usePrice();
+  const { nftePrice } = usePrice();
   const [statsAddress, setStatsAddress] = useState<string>("");
   useEffect(() => {
     if (address) {
@@ -314,10 +314,10 @@ export default function UserStaking() {
 
   const {
     poolsContractRead: allStakes,
-    apeCoinStakes,
-    baycStakes,
-    maycStakes,
-    bakcStakes,
+    nfteStakes,
+    earthlingStakes,
+    roboroverStakes,
+    nfw3cStakes,
   } = useAllStakes(statsAddress!);
 
   const totalStaked = allStakes.data?.reduce((sum, stake) => {
@@ -328,7 +328,7 @@ export default function UserStaking() {
     return sum + +formatUnits(stake.unclaimed);
   }, 0);
 
-  const apecoinPriceNumber = apecoinPrice && +formatUnits(apecoinPrice, 8);
+  const nftePriceNumber = nftePrice && +formatUnits(nftePrice, 8);
 
   return (
     <>
@@ -368,7 +368,7 @@ export default function UserStaking() {
                   {Intl.NumberFormat("en-US", {
                     maximumFractionDigits: 4,
                   }).format(totalStaked)}
-                  {totalStaked && apecoinPriceNumber && (
+                  {totalStaked && nftePriceNumber && (
                     <>
                       {" "}
                       (
@@ -378,7 +378,7 @@ export default function UserStaking() {
                         currency: "USD",
                         notation: "compact",
                         compactDisplay: "short",
-                      }).format(totalStaked * apecoinPriceNumber)}
+                      }).format(totalStaked * nftePriceNumber)}
                       )
                     </>
                   )}
@@ -387,15 +387,15 @@ export default function UserStaking() {
                   process.env.NEXT_PUBLIC_ENABLE_STAKE === "TRUE" && (
                     <WithdrawAll
                       chain={chain}
-                      apeCoinStakes={apeCoinStakes}
-                      baycStakes={baycStakes}
-                      maycStakes={maycStakes}
-                      bakcStakes={bakcStakes}
+                      nfteStakes={nfteStakes}
+                      earthlingStakes={earthlingStakes}
+                      roboroverStakes={roboroverStakes}
+                      nfw3cStakes={nfw3cStakes}
                     />
                   )}
               </>
             ) : (
-              <>{baycStakes && <>0</>}</>
+              <>{earthlingStakes && <>0</>}</>
             )}
           </div>
         </div>
@@ -412,7 +412,7 @@ export default function UserStaking() {
                 {Intl.NumberFormat("en-US", {
                   maximumFractionDigits: 4,
                 }).format(totalUnclaimed)}
-                {totalUnclaimed && apecoinPriceNumber && (
+                {totalUnclaimed && nftePriceNumber && (
                   <>
                     {" "}
                     (
@@ -421,7 +421,7 @@ export default function UserStaking() {
                       currency: "USD",
                       notation: "compact",
                       compactDisplay: "short",
-                    }).format(totalUnclaimed * apecoinPriceNumber)}
+                    }).format(totalUnclaimed * nftePriceNumber)}
                     )
                   </>
                 )}
@@ -429,15 +429,15 @@ export default function UserStaking() {
                   process.env.NEXT_PUBLIC_ENABLE_STAKE === "TRUE" && (
                     <ClaimAll
                       chain={chain}
-                      apeCoinStakes={apeCoinStakes}
-                      baycStakes={baycStakes}
-                      maycStakes={maycStakes}
-                      bakcStakes={bakcStakes}
+                      nfteStakes={nfteStakes}
+                      earthlingStakes={earthlingStakes}
+                      roboroverStakes={roboroverStakes}
+                      nfw3cStakes={nfw3cStakes}
                     />
                   )}
               </>
             ) : (
-              <>{baycStakes && <>0</>}</>
+              <>{earthlingStakes && <>0</>}</>
             )}
           </div>
         </div>

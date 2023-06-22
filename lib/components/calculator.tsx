@@ -12,7 +12,7 @@ import { PoolType } from "@/types/data";
 import TimeframeSelector from "@/components/timeframeSelector";
 import { Dispatch, useEffect, useState } from "react";
 import useBalances from "@/hooks/useBalances";
-import useApeCoinBalance from "@/hooks/useApeCoinBalance";
+import useApeCoinBalance from "@/hooks/useNfteBalance";
 import { useAccount } from "wagmi";
 import useAllStakes from "@/hooks/useAllStakes";
 import { BigNumber } from "ethers";

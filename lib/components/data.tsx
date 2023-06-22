@@ -17,19 +17,19 @@ export default function Data() {
   const { amount: selectedAmount } = useAmount();
 
   const poolData = usePoolData();
-  const { apecoinPrice } = usePrice();
+  const { nftePrice } = usePrice();
 
-  const apecoinPriceHumanNumber = apecoinPrice && +formatUnits(apecoinPrice, 8);
+  const nftePriceHumanNumber = nftePrice && +formatUnits(nftePrice, 8);
   const rewardHeader =
-    selectedAmount === Amount.PerApe
-      ? "ApeCoin Reward Per ApeCoin Staked"
-      : "ApeCoin Reward With 1 Max Staked NFT";
+    selectedAmount === Amount.PerNfte
+      ? "NFTE Reward Per NFTE Staked"
+      : "NFTE Reward With 1 Max Staked NFT";
 
   const rewardMultiplier = (pool: number): number => {
-    if (selectedAmount === Amount.PerApe) return 1;
-    if (pool == 1) return 10094;
-    if (pool == 2) return 2042;
-    if (pool == 3) return 856;
+    if (selectedAmount === Amount.PerNfte) return 1;
+    if (pool == 1) return 5000;
+    if (pool == 2) return 250;
+    if (pool == 3) return 100;
     return NaN;
   };
 
@@ -79,7 +79,7 @@ export default function Data() {
                   <td className="flex w-1/4 flex-wrap items-center gap-x-4 p-4">
                     <span>
                       {poolData.poolData[pool].name}
-                      {pool == PoolType.APE && <>&nbsp;</>}
+                      {pool == PoolType.NFTE && <>&nbsp;</>}
                     </span>{" "}
                     {poolData.poolData[pool].apr ? (
                       <span className="rounded bg-green-100 px-2.5 py-0.5 text-sm font-semibold text-green-800 dark:bg-green-200 dark:text-green-900">
@@ -128,7 +128,7 @@ export default function Data() {
                   <td className="flex w-1/4 flex-wrap items-center p-4">
                     {poolData.poolData[pool].rewardPerHour &&
                     poolData.poolData[pool].rewardPerDay &&
-                    apecoinPriceHumanNumber ? (
+                    nftePriceHumanNumber ? (
                       <>
                         {isNaN(rewardMultiplier(pool)) ? (
                           <>Pool has no maximum</>
@@ -150,7 +150,7 @@ export default function Data() {
                               timeFrameHourMultiplier *
                                 poolData.poolData[pool].rewardPerHour! *
                                 rewardMultiplier(pool) *
-                                apecoinPriceHumanNumber
+                                nftePriceHumanNumber
                             )}
                             )
                           </>

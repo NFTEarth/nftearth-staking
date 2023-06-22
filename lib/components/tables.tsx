@@ -2,13 +2,13 @@
 
 import { formatUnits, parseUnits } from "ethers/lib/utils.js";
 import { ethers, BigNumber } from "ethers";
-import useApeCoinBalance from "@/hooks/useApeCoinBalance";
+import useNfteBalance from "@/hooks/useNfteBalance";
 import { useState } from "react";
 
 const MAX_STAKES = {
-  1: 10094,
-  2: 2042,
-  3: 856,
+  1: 5000,
+  2: 250,
+  3: 100,
 } as const;
 
 interface poolStakesData {
@@ -20,14 +20,14 @@ interface poolStakesData {
   pair: { mainTokenId: BigNumber; mainTypePoolId: BigNumber };
 }
 
-export function ApeCoinTable({
-  apeCoinStakes,
-  apecoinPrice,
+export function NfteTable({
+  nfteStakes,
+  nftePrice,
   withdrawArgs,
   claimArgs,
 }: {
-  apeCoinStakes: poolStakesData[];
-  apecoinPrice: BigNumber | undefined;
+  nfteStakes: poolStakesData[];
+  nftePrice: BigNumber | undefined;
   withdrawArgs: (
     poolID: number,
     asString: boolean
@@ -45,19 +45,19 @@ export function ApeCoinTable({
     asString: boolean
   ) => string | ethers.BigNumber | (number | undefined)[] | undefined;
 }) {
-  const { apeCoinBalance } = useApeCoinBalance();
+  const { nfteBalance } = useNfteBalance();
 
-  const [depositApeCoinAmount, setDepositApeCoinAmount] = useState<BigNumber>(
+  const [depositNfteAmount, setDepositNfteAmount] = useState<BigNumber>(
     ethers.constants.Zero
   );
 
   const depositedTotal =
-    apeCoinStakes?.reduce((total, token) => {
+    nfteStakes?.reduce((total, token) => {
       return total.add(token.deposited);
     }, ethers.constants.Zero) || 0;
 
   const unclaimedTotal =
-    apeCoinStakes?.reduce((total, token) => {
+    nfteStakes?.reduce((total, token) => {
       return total.add(token.unclaimed);
     }, ethers.constants.Zero) || 0;
 
@@ -69,49 +69,49 @@ export function ApeCoinTable({
             Token ID
           </th>
           <th className="flex w-1/4 items-center p-4 text-left font-semibold tracking-wide">
-            Deposit ApeCoin
+            Deposit NFTE
           </th>
           <th className="flex w-1/4 items-center p-4 text-left font-semibold tracking-wide">
-            Staked ApeCoin
+            Staked NFTE
           </th>
           <th className="flex w-1/4 items-center p-4 text-left font-semibold tracking-wide">
-            Unclaimed ApeCoin
+            Unclaimed NFTE
           </th>
         </tr>
       </thead>
       <tbody className="divide-y divide-zinc-200 dark:divide-zinc-700">
-        {apeCoinStakes.map((stake, i) => (
+        {nfteStakes.map((stake, i) => (
           <tr className="flex" key={i}>
             <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
-              ApeCoin
+              NFTE
             </td>
             <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
               <input
-                value={Math.round(+formatUnits(depositApeCoinAmount || 0))}
+                value={Math.round(+formatUnits(depositNfteAmount || 0))}
                 onChange={(e) => {
                   if (e.target.value === "") {
-                    setDepositApeCoinAmount(ethers.constants.Zero);
+                    setDepositNfteAmount(ethers.constants.Zero);
                   } else if (!isNaN(+e.target.value)) {
-                    setDepositApeCoinAmount(parseUnits(e.target.value));
+                    setDepositNfteAmount(parseUnits(e.target.value));
                   }
                 }}
                 className="w-2/5 border px-2 dark:border-zinc-500 dark:bg-zinc-800"
               />
-              {apeCoinBalance?.gt(0) &&
-                !depositApeCoinAmount.eq(apeCoinBalance) && (
+              {nfteBalance?.gt(0) &&
+                !depositNfteAmount.eq(nfteBalance) && (
                   <button
                     onClick={() => {
-                      setDepositApeCoinAmount(apeCoinBalance!);
+                      setDepositNfteAmount(nfteBalance!);
                     }}
                   >
                     MAX
                   </button>
                 )}
 
-              {depositApeCoinAmount.gt(0) && (
+              {depositNfteAmount.gt(0) && (
                 <button
                   onClick={() => {
-                    setDepositApeCoinAmount(ethers.constants.Zero);
+                    setDepositNfteAmount(ethers.constants.Zero);
                   }}
                 >
                   CLEAR
@@ -120,7 +120,7 @@ export function ApeCoinTable({
             </td>
             <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
               {Intl.NumberFormat("en-us").format(+formatUnits(stake.deposited))}
-              {apecoinPrice && (
+              {nftePrice && (
                 <>
                   {" "}
                   (
@@ -132,7 +132,7 @@ export function ApeCoinTable({
                     compactDisplay: "short",
                   }).format(
                     +formatUnits(stake.deposited) *
-                      +formatUnits(apecoinPrice, 8)
+                      +formatUnits(nftePrice, 8)
                   )}
                   )
                 </>
@@ -143,7 +143,7 @@ export function ApeCoinTable({
                 notation: "compact",
                 compactDisplay: "short",
               }).format(+formatUnits(stake.unclaimed))}
-              {apecoinPrice && (
+              {nftePrice && (
                 <>
                   {" "}
                   (
@@ -155,7 +155,7 @@ export function ApeCoinTable({
                     compactDisplay: "short",
                   }).format(
                     +formatUnits(stake.unclaimed) *
-                      +formatUnits(apecoinPrice, 8)
+                      +formatUnits(nftePrice, 8)
                   )}
                   )
                 </>
@@ -166,14 +166,14 @@ export function ApeCoinTable({
 
         {(depositedTotal.gt(0) ||
           unclaimedTotal.gt(0) ||
-          depositApeCoinAmount.gt(0)) && (
+          depositNfteAmount.gt(0)) && (
           <>
             <tr className="flex">
               <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
                 Transaction:
               </td>
               <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
-                {depositApeCoinAmount.gt(0) && (
+                {depositNfteAmount.gt(0) && (
                   <button className="border px-2 hover:border-zinc-500 dark:border-zinc-500 dark:bg-zinc-800 dark:hover:border-zinc-300">
                     Deposit
                   </button>
@@ -200,16 +200,16 @@ export function ApeCoinTable({
                 Etherscan Contract:
               </td>
               <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
-                {depositApeCoinAmount.gt(0) && (
+                {depositNfteAmount.gt(0) && (
                   <>
                     <a
                       className="text-sm text-[#1da1f2] sm:text-base"
-                      href={`https://etherscan.io/address/0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9#writeContract#F14`}
+                      href={`https://arbiscan.io/address/0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe#contracts`}
                     >
-                      depositSelfApeCoin
+                      depositSelfNfte
                     </a>
                     <textarea
-                      value={`"${depositApeCoinAmount?.toString()}"`}
+                      value={`"${depositNfteAmount?.toString()}"`}
                       className="w-full border px-2 text-[10px] dark:border-zinc-500 dark:bg-zinc-800"
                     />
                   </>
@@ -222,7 +222,7 @@ export function ApeCoinTable({
                       className="text-sm text-[#1da1f2] sm:text-base"
                       href={`https://etherscan.io/address/0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9#writeContract#F23`}
                     >
-                      withdrawSelfApeCoin
+                      withdrawSelfNfte
                     </a>
                     <textarea
                       className="w-full border px-2 text-[10px] dark:border-zinc-500 dark:bg-zinc-800"
@@ -239,7 +239,7 @@ export function ApeCoinTable({
                       className="text-sm text-[#1da1f2] sm:text-base"
                       href={`https://etherscan.io/address/0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9#writeContract#F14`}
                     >
-                      claimSelfApeCoin
+                      claimSelfNfte
                     </a>
                     <textarea
                       className="w-full border px-2 text-[10px] dark:border-zinc-500 dark:bg-zinc-800"
@@ -261,7 +261,7 @@ export function NftTable({
   poolId,
   tokenSymbol,
   poolStakes,
-  apecoinPrice,
+  nftePrice,
   withdrawArgs,
   claimArgs,
   depositFunctionID,
@@ -274,7 +274,7 @@ export function NftTable({
   withdrawFunctionID: string;
   depositFunctionID: string;
   poolStakes: poolStakesData[];
-  apecoinPrice: BigNumber | undefined;
+  nftePrice: BigNumber | undefined;
   withdrawArgs: (
     poolID: number,
     asString: boolean
@@ -339,13 +339,13 @@ export function NftTable({
             Token ID
           </th>
           <th className="flex w-1/4 items-center p-4 text-left font-semibold tracking-wide">
-            Deposit ApeCoin
+            Deposit NFTE
           </th>
           <th className="flex w-1/4 items-center p-4 text-left font-semibold tracking-wide">
-            Staked ApeCoin
+            Staked NFTE
           </th>
           <th className="flex w-1/4 items-center p-4 text-left font-semibold tracking-wide">
-            Unclaimed ApeCoin
+            Unclaimed NFTE
           </th>
         </tr>
       </thead>
@@ -423,7 +423,7 @@ export function NftTable({
             </td>
             <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
               {Intl.NumberFormat("en-us").format(+formatUnits(stake.deposited))}
-              {apecoinPrice && (
+              {nftePrice && (
                 <>
                   {" "}
                   (
@@ -435,7 +435,7 @@ export function NftTable({
                     compactDisplay: "short",
                   }).format(
                     +formatUnits(stake.deposited) *
-                      +formatUnits(apecoinPrice, 8)
+                      +formatUnits(nftePrice, 8)
                   )}
                   )
                 </>
@@ -443,7 +443,7 @@ export function NftTable({
             </td>
             <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
               {Intl.NumberFormat("en-us").format(+formatUnits(stake.unclaimed))}
-              {apecoinPrice && (
+              {nftePrice && (
                 <>
                   {" "}
                   (
@@ -455,7 +455,7 @@ export function NftTable({
                     compactDisplay: "short",
                   }).format(
                     +formatUnits(stake.unclaimed) *
-                      +formatUnits(apecoinPrice, 8)
+                      +formatUnits(nftePrice, 8)
                   )}
                   )
                 </>
@@ -476,7 +476,7 @@ export function NftTable({
                 {Intl.NumberFormat("en-us").format(
                   +formatUnits(totalToDeposit)
                 )}
-                {apecoinPrice && (
+                {nftePrice && (
                   <>
                     {" "}
                     (
@@ -488,7 +488,7 @@ export function NftTable({
                       compactDisplay: "short",
                     }).format(
                       +formatUnits(totalToDeposit) *
-                        +formatUnits(apecoinPrice, 8)
+                        +formatUnits(nftePrice, 8)
                     )}
                     )
                   </>
@@ -498,7 +498,7 @@ export function NftTable({
                 {Intl.NumberFormat("en-us").format(
                   +formatUnits(depositedTotal)
                 )}
-                {apecoinPrice && (
+                {nftePrice && (
                   <>
                     {" "}
                     (
@@ -510,7 +510,7 @@ export function NftTable({
                       compactDisplay: "short",
                     }).format(
                       +formatUnits(depositedTotal) *
-                        +formatUnits(apecoinPrice, 8)
+                        +formatUnits(nftePrice, 8)
                     )}
                     )
                   </>
@@ -520,7 +520,7 @@ export function NftTable({
                 {Intl.NumberFormat("en-us").format(
                   +formatUnits(unclaimedTotal)
                 )}
-                {apecoinPrice && (
+                {nftePrice && (
                   <>
                     {" "}
                     (
@@ -532,7 +532,7 @@ export function NftTable({
                       compactDisplay: "short",
                     }).format(
                       +formatUnits(unclaimedTotal) *
-                        +formatUnits(apecoinPrice, 8)
+                        +formatUnits(nftePrice, 8)
                     )}
                     )
                   </>
@@ -630,15 +630,15 @@ export function NftTable({
   );
 }
 
-export function BakcTable({
+export function Nfw3cTable({
   poolStakes,
-  apecoinPrice,
+  nftePrice,
   withdrawArgs,
   claimArgs,
   pairOptions,
 }: {
   poolStakes: poolStakesData[];
-  apecoinPrice: BigNumber | undefined;
+  nftePrice: BigNumber | undefined;
   pairOptions: { label: string }[];
   withdrawArgs: (
     mainTypePoolId: number,
@@ -689,13 +689,13 @@ export function BakcTable({
             Token ID
           </th>
           <th className="flex w-1/4 items-center p-4 text-left font-semibold tracking-wide">
-            Deposit ApeCoin
+            Deposit NFTE
           </th>
           <th className="flex w-1/4 items-center p-4 text-left font-semibold tracking-wide">
-            Staked ApeCoin
+            Staked NFTE
           </th>
           <th className="flex w-1/4 items-center p-4 text-left font-semibold tracking-wide">
-            Unclaimed ApeCoin
+            Unclaimed NFTE
           </th>
         </tr>
       </thead>
@@ -717,7 +717,7 @@ export function BakcTable({
             </td>
             <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
               {Intl.NumberFormat("en-us").format(+formatUnits(stake.deposited))}
-              {apecoinPrice && (
+              {nftePrice && (
                 <>
                   {" "}
                   (
@@ -729,7 +729,7 @@ export function BakcTable({
                     compactDisplay: "short",
                   }).format(
                     +formatUnits(stake.deposited) *
-                      +formatUnits(apecoinPrice, 8)
+                      +formatUnits(nftePrice, 8)
                   )}
                   )
                 </>
@@ -737,7 +737,7 @@ export function BakcTable({
             </td>
             <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
               {Intl.NumberFormat("en-us").format(+formatUnits(stake.unclaimed))}
-              {apecoinPrice && (
+              {nftePrice && (
                 <>
                   {" "}
                   (
@@ -749,7 +749,7 @@ export function BakcTable({
                     compactDisplay: "short",
                   }).format(
                     +formatUnits(stake.unclaimed) *
-                      +formatUnits(apecoinPrice, 8)
+                      +formatUnits(nftePrice, 8)
                   )}
                   )
                 </>
@@ -766,7 +766,7 @@ export function BakcTable({
               </td>
               <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
                 1,712
-                {apecoinPrice && (
+                {nftePrice && (
                   <>
                     {" "}
                     (
@@ -776,7 +776,7 @@ export function BakcTable({
                       currency: "USD",
                       notation: "compact",
                       compactDisplay: "short",
-                    }).format(1712 * +formatUnits(apecoinPrice, 8))}
+                    }).format(1712 * +formatUnits(nftePrice, 8))}
                     )
                   </>
                 )}
@@ -785,7 +785,7 @@ export function BakcTable({
                 {Intl.NumberFormat("en-us").format(
                   +formatUnits(depositedTotal)
                 )}
-                {apecoinPrice && (
+                {nftePrice && (
                   <>
                     {" "}
                     (
@@ -797,7 +797,7 @@ export function BakcTable({
                       compactDisplay: "short",
                     }).format(
                       +formatUnits(depositedTotal) *
-                        +formatUnits(apecoinPrice, 8)
+                        +formatUnits(nftePrice, 8)
                     )}
                     )
                   </>
@@ -807,7 +807,7 @@ export function BakcTable({
                 {Intl.NumberFormat("en-us").format(
                   +formatUnits(unclaimedTotal)
                 )}
-                {apecoinPrice && (
+                {nftePrice && (
                   <>
                     {" "}
                     (
@@ -819,7 +819,7 @@ export function BakcTable({
                       compactDisplay: "short",
                     }).format(
                       +formatUnits(unclaimedTotal) *
-                        +formatUnits(apecoinPrice, 8)
+                        +formatUnits(nftePrice, 8)
                     )}
                     )
                   </>

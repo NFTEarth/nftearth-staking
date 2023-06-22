@@ -3,8 +3,8 @@ export default function Footer() {
     <footer className="mt-8 mb-12 text-center">
       <p>
         Made by{" "}
-        <a className="text-[#1da1f2]" href="https://twitter.com/ApeCollector">
-          @ApeCollector #ApeFollowApe
+        <a className="text-[#1da1f2]" href="https://twitter.com/NFTEarth_L2">
+          @NFTEarth_L2 #NFTE
         </a>
         
       </p>
@@ -12,7 +12,7 @@ export default function Footer() {
         View the{" "}
         <a
           className="text-[#1da1f2]"
-          href="https://github.com/apecollector/apecoinui"
+          href="https://github.com/apecollector/NFTEarth"
         >
           source code
         </a>{" "}

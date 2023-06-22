@@ -4,39 +4,38 @@ import { useEffect } from "react";
 interface Map {
   [key: number]: string;
 }
-const apecoinContractAddresses: Map = {
-  1: "0x4d224452801ACEd8B2F0aebE155379bb5D594381",
-  5: "0x328507DC29C95c170B56a1b3A758eB7a9E73455c",
+const nfteContractAddresses: Map = {
+  42161: "0xB261104A83887aE92392Fb5CE5899fCFe5481456",
 } as const;
 
 import useStore from "@/stores/store";
 
-const useApeCoinBalance = () => {
-  const apeCoinBalance = useStore((state) => state.apeCoinBalance);
-  const setApeCoinBalance = useStore((state) => state.setApeCoinBalance);
+const useNfteBalance = () => {
+  const nfteBalance = useStore((state) => state.nfteBalance);
+  const setNfteBalance = useStore((state) => state.setnfteBalance);
 
   const { address, isConnected } = useAccount();
   const { chain } = useNetwork();
   const balance = useBalance({
     enabled: isConnected,
     address: address,
-    token: apecoinContractAddresses[chain?.id!] as `0x{String}`,
+    token: nfteContractAddresses[chain?.id!] as `0x{String}`,
     watch: true,
   });
 
   useEffect(() => {
     if (balance.data) {
-      setApeCoinBalance(balance.data.value);
+      setNfteBalance(balance.data.value);
     }
   }, [balance.isSuccess, balance.isRefetching, balance.data]);
 
   useEffect(() => {
     if (!isConnected) {
-      setApeCoinBalance(undefined);
+      setNfteBalance(undefined);
     }
   }, [isConnected]);
 
-  return { apeCoinBalance, setApeCoinBalance };
+  return { nfteBalance, setNfteBalance };
 };
 
-export default useApeCoinBalance;
+export default useNfteBalance;

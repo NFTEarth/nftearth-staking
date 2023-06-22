@@ -18,12 +18,12 @@ const AmountSelector: React.FC<{ classNames?: string }> = () => {
           type="radio"
           id={perRadioID}
           name={perRadioName}
-          checked={amount === Amount.PerApe}
-          onChange={() => setAmount(Amount.PerApe)}
+          checked={amount === Amount.PerNfte}
+          onChange={() => setAmount(Amount.PerNfte)}
           className="h-3 w-3 border-zinc-300 bg-zinc-100 text-blue-600"
         />
         <label htmlFor={perRadioID} className="ml-2">
-          Per ApeCoin
+          Per NFTE
         </label>
       </div>
       <div className="flex items-center">

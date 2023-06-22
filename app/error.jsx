@@ -9,14 +9,14 @@ export default function Error({ error }) {
 
   return (
     <div>
-      <h1 className="mt-10 text-4xl font-bold">ApeCoinUI</h1>
+      <h1 className="mt-10 text-4xl font-bold">NFTEarth Staking</h1>
       <p className="mt-4">Something went wrong!</p>
       <p className="mt-4">
         Please try refreshing the page or contacting{" "}
-        <a className="text-[#1da1f2]" href="https://twitter.com/ApeCollector">
-          @ApeCollector
+        <a className="text-[#1da1f2]" href="https://twitter.com/NFTEarth_L2">
+          @NFTEarth_L2
         </a>{" "}
-        on twitter.
+        on Twitter.
       </p>
     </div>
   );

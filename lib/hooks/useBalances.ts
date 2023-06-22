@@ -4,41 +4,41 @@ import { useEffect, useState } from "react";
 import { Map } from "@/types/map";
 import BalanceABI from "@/abis/balance";
 
-const baycContractAddresses: Map = {
-  1: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d",
-  5: "0x9c4536F82bdDe595cF1F810309feE8a288aef89E",
+const earthlingContractAddresses: Map = {
+  42161: "0x8778B7FD7e2480C6F9Ad1075Bd848B7Ce1b9d90C",
+
 } as const;
 
-const maycContractAddresses: Map = {
-  1: "0x60e4d786628fea6478f785a6d7e704777c86a7c6",
-  5: "0x67d4266A52870879727EfFb903CE0030Fe86D6AC",
+const roboroverContractAddresses: Map = {
+  42161: "0xe148cb1b6b2B040FEA525856A9E2F6E25115189A",
+
 } as const;
 
-const bakcContractAddresses: Map = {
-  1: "0xba30e5f9bb24caa003e9f2f0497ad287fdf95623",
-  5: "0xC84dE322c8403f8d8E2bAA3cB384A1e281664cF6",
+const nfw3cContractAddresses: Map = {
+  42161: "0xB0CbF85907896918aaf9Aa27773637c9F8b5b0cc",
+ 
 } as const;
 
 function useBalances(): {
-  baycPoolStakable: number;
-  maycPoolStakable: number;
-  bakcPoolStakable: number;
+  earthlingPoolStakable: number;
+  roboroverPoolStakable: number;
+  nfw3cPoolStakable: number;
 } {
   const { chain } = useNetwork();
   const { address, isConnected } = useAccount();
 
-  const baycContract = {
-    address: baycContractAddresses[chain?.id || 1],
+  const earthlingContract = {
+    address: earthlingContractAddresses[chain?.id || 42161],
     abi: BalanceABI,
   };
 
-  const maycContract = {
-    address: maycContractAddresses[chain?.id || 1],
+  const roboroverContract = {
+    address: roboroverContractAddresses[chain?.id || 42161],
     abi: BalanceABI,
   };
 
-  const bakcContract = {
-    address: bakcContractAddresses[chain?.id || 1],
+  const nfw3cContract = {
+    address: nfw3cContractAddresses[chain?.id || 42161],
     abi: BalanceABI,
   };
 
@@ -47,36 +47,36 @@ function useBalances(): {
     watch: true,
     contracts: [
       {
-        ...baycContract,
+        ...earthlingContract,
         functionName: "balanceOf",
         args: [address!],
       },
       {
-        ...maycContract,
+        ...roboroverContract,
         functionName: "balanceOf",
         args: [address!],
       },
       {
-        ...bakcContract,
+        ...nfw3cContract,
         functionName: "balanceOf",
         args: [address!],
       },
     ],
   });
 
-  const [baycPoolStakable, setBaycPoolStakable] = useState(0);
-  const [maycPoolStakable, setMaycPoolStakable] = useState(0);
-  const [bakcPoolStakable, setBakcPoolStakable] = useState(0);
+  const [earthlingPoolStakable, setEarthlingPoolStakable] = useState(0);
+  const [roboroverPoolStakable, setRoboroverPoolStakable] = useState(0);
+  const [nfw3cPoolStakable, setNfw3cPoolStakable] = useState(0);
 
   useEffect(() => {
     if (isSuccess && data) {
-      setBaycPoolStakable(data?.[0]?.toNumber() || 0);
-      setMaycPoolStakable(data?.[1]?.toNumber() || 0);
-      setBakcPoolStakable(data?.[2]?.toNumber() || 0);
+      setEarthlingPoolStakable(data?.[0]?.toNumber() || 0);
+      setRoboroverPoolStakable(data?.[1]?.toNumber() || 0);
+      setNfw3cPoolStakable(data?.[2]?.toNumber() || 0);
     }
   }, [address, isSuccess, data, isRefetching]);
 
-  return { baycPoolStakable, maycPoolStakable, bakcPoolStakable };
+  return { earthlingPoolStakable, roboroverPoolStakable, nfw3cPoolStakable };
 }
 
 export default useBalances;

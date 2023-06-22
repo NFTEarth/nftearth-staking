@@ -5,9 +5,9 @@ import Countdown from "@/components/countdown";
 export default async function Page() {
   return (
     <>
-      <h1 className="text-4xl font-bold">ApeCoinUI</h1>
+      <h1 className="text-4xl font-bold">NFTEarth Staking</h1>
       <p className="mt-4">
-        An open-source alternative user interface for all things apecoin.
+        An App for NFTEarth Staking Rewards
       </p>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-3">
@@ -19,7 +19,7 @@ export default async function Page() {
         >
           <h5 className="mb-2 text-2xl font-bold tracking-tight">Data</h5>
           <p className="text-zinc-700 dark:text-zinc-400">
-            Live staking data next to how many ApeCoin you can stake and daily
+            Real-Time staking data about how many NFTE you can stake and daily
             rewards.
           </p>
         </Link>
@@ -36,7 +36,7 @@ export default async function Page() {
             </span>
           </h5>
           <p className="text-zinc-700 dark:text-zinc-400">
-            Manage your staking positions and staking contract apecoin
+            Manage your staking positions and staking contract NFTE
             allowance.
           </p>
         </Link>
@@ -48,7 +48,7 @@ export default async function Page() {
         >
           <h5 className="mb-2 text-2xl font-bold tracking-tight">FAQ</h5>
           <p className="text-zinc-700 dark:text-zinc-400">
-            Answers to common questions around staking, apecoin and how to
+            Answers to common questions around staking, NFTE and how to
             protect yourself.
           </p>
         </Link>

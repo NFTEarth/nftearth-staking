@@ -1,7 +1,7 @@
 "use client";
 
 import { WagmiConfig, createClient, configureChains } from "wagmi";
-import { mainnet, goerli } from "wagmi/chains";
+import { mainnet, goerli, arbitrum } from "wagmi/chains";
 
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
 import { alchemyProvider } from "wagmi/providers/alchemy";
@@ -9,7 +9,7 @@ import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { publicProvider } from "wagmi/providers/public";
 
 const { provider, chains } = configureChains(
-  [mainnet, goerli],
+  [arbitrum],
   [
     publicProvider({ priority: 2 }),
     alchemyProvider({
@@ -20,8 +20,8 @@ const { provider, chains } = configureChains(
       priority: 1,
       rpc: (chain) => {
         return {
-          http: `https://eth.apecoinui.com${
-            chain.id === mainnet.id ? "/v1/mainnet" : "/v1/goerli"
+          http: `https://staking.nftearth.exchange${
+            chain.id === arbitrum.id ? "/v1/arbitrum" : "/v1/goerli"
           }`,
         };
       },
@@ -31,7 +31,7 @@ const { provider, chains } = configureChains(
 
 const client = createClient(
   getDefaultClient({
-    appName: "ApeCoin UI",
+    appName: "NFTEarth Staking",
     alchemyId: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
     chains: chains,
     autoConnect: false,

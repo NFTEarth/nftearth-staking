@@ -5,38 +5,38 @@ import PriceABI from "@/abis/price";
 import { BigNumber } from "ethers";
 
 export default function usePrice() {
-  const [apecoinPrice, setApecoinPrice] = useState<BigNumber>();
+  const [nftePrice, setNftePrice] = useState<BigNumber>();
 
-  const apecoinPriceContractRead = useContractRead({
-    address: "0xD10aBbC76679a20055E167BB80A24ac851b37056",
+  const nftePriceContractRead = useContractRead({
+    address: "0xB261104A83887aE92392Fb5CE5899fCFe5481456",
     abi: PriceABI,
     functionName: "latestRoundData",
     watch: true,
-    chainId: 1,
+    chainId: 42161,
   });
 
   useEffect(() => {
     if (
-      apecoinPriceContractRead &&
-      apecoinPriceContractRead.data &&
-      apecoinPriceContractRead.isSuccess
+      nftePriceContractRead &&
+      nftePriceContractRead.data &&
+      nftePriceContractRead.isSuccess
     ) {
-      setApecoinPrice(apecoinPriceContractRead.data.answer);
+      setNftePrice(nftePriceContractRead.data.answer);
     }
   }, [
-    apecoinPriceContractRead.isSuccess,
-    apecoinPriceContractRead.isRefetching,
-    apecoinPriceContractRead.data,
+    nftePriceContractRead.isSuccess,
+    nftePriceContractRead.isRefetching,
+    nftePriceContractRead.data,
   ]);
 
   const [ethereumPrice, setEthereumPrice] = useState<BigNumber>();
 
   const ethereumPriceContractRead = useContractRead({
-    address: "0x5f4ec3df9cbd43714fe2740f5e3616155c5b8419",
+    address: "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
     abi: PriceABI,
     functionName: "latestRoundData",
     watch: true,
-    chainId: 1,
+    chainId: 42161,
   });
 
   useEffect(() => {
@@ -53,5 +53,5 @@ export default function usePrice() {
     ethereumPriceContractRead.data,
   ]);
 
-  return { apecoinPrice, ethereumPrice };
+  return { nftePrice, ethereumPrice };
 }

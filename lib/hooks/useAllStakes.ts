@@ -4,8 +4,7 @@ import { Map } from "@/types/map";
 import { BigNumber } from "ethers";
 
 const stakingContractAddresses: Map = {
-  1: "0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9",
-  5: "0xeF37717B1807a253c6D140Aca0141404D23c26D4",
+  42161: "0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe",
 } as const;
 
 export interface poolStakesData {
@@ -25,36 +24,36 @@ function useAllStakes(addressOrEns: string) {
 
   const poolsContractRead = useContractRead({
     enabled: addressOrEns !== undefined && addressOrEns !== "",
-    address: stakingContractAddresses[chain?.id || 1],
+    address: stakingContractAddresses[chain?.id || 42161],
     abi: StakingABI,
     functionName: "getAllStakes",
     watch: true,
-    chainId: chain?.id || 1,
+    chainId: chain?.id || 42161,
     args: [data as `0x${string}`],
   });
 
-  const apeCoinStakes: poolStakesData[] | undefined =
+  const nfteStakes: poolStakesData[] | undefined =
     poolsContractRead.data?.filter((stake) => {
       if (stake.poolId.toNumber() === 0) {
         return true;
       }
     });
 
-  const baycStakes: poolStakesData[] | undefined =
+  const earthlingStakes: poolStakesData[] | undefined =
     poolsContractRead.data?.filter((stake) => {
       if (stake.poolId.toNumber() === 1) {
         return true;
       }
     });
 
-  const maycStakes: poolStakesData[] | undefined =
+  const roboroverStakes: poolStakesData[] | undefined =
     poolsContractRead.data?.filter((stake) => {
       if (stake.poolId.toNumber() === 2) {
         return true;
       }
     });
 
-  const bakcStakes: poolStakesData[] | undefined =
+  const nfw3cStakes: poolStakesData[] | undefined =
     poolsContractRead.data?.filter((stake) => {
       if (stake.poolId.toNumber() === 3) {
         return true;
@@ -63,10 +62,10 @@ function useAllStakes(addressOrEns: string) {
 
   return {
     poolsContractRead,
-    apeCoinStakes,
-    baycStakes,
-    maycStakes,
-    bakcStakes,
+    nfteStakes,
+    earthlingStakes,
+    roboroverStakes,
+    nfw3cStakes,
   };
 }
 

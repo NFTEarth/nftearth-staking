@@ -6,7 +6,7 @@ import useAllStakes from "@/hooks/useAllStakes";
 import { ethers, BigNumber } from "ethers";
 import usePrice from "@/hooks/usePrice";
 import useAutoConnecting from "@/hooks/useAutoConnecting";
-import { ApeCoinTable, NftTable, BakcTable } from "@/components/tables";
+import { NfteTable, NftTable, Nfw3cTable } from "@/components/tables";
 import useAllowance from "@/hooks/useAllowance";
 import Allowance from "./allowance";
 import { formatUnits } from "ethers/lib/utils.js";
@@ -23,7 +23,7 @@ interface poolStakesData {
 
 export default function Staking() {
   const { address, isConnected } = useAccount();
-  const { apecoinPrice } = usePrice();
+  const { nftePrice } = usePrice();
   const autoConnecitng = useAutoConnecting();
   const allowance = useAllowance();
   const [statsAddress, setStatsAddress] = useState<string>("");
@@ -43,7 +43,7 @@ export default function Staking() {
     return <h1>Loading staking contract data...</h1>;
   }
 
-  const apeCoinStakes: poolStakesData[] | undefined = allStakes.data?.filter(
+  const nfteStakes: poolStakesData[] | undefined = allStakes.data?.filter(
     (stake) => {
       if (stake.poolId.toNumber() === 0) {
         return true;
@@ -51,7 +51,7 @@ export default function Staking() {
     }
   );
 
-  const baycStakes: poolStakesData[] | undefined = allStakes.data.filter(
+  const earthlingStakes: poolStakesData[] | undefined = allStakes.data.filter(
     (stake) => {
       if (stake.poolId.toNumber() === 1) {
         return true;
@@ -59,7 +59,7 @@ export default function Staking() {
     }
   );
 
-  const maycStakes: poolStakesData[] | undefined = allStakes.data.filter(
+  const roboroverStakes: poolStakesData[] | undefined = allStakes.data.filter(
     (stake) => {
       if (stake.poolId.toNumber() === 2) {
         return true;
@@ -67,7 +67,7 @@ export default function Staking() {
     }
   );
 
-  const bakcStakes: poolStakesData[] | undefined = allStakes.data.filter(
+  const nfw3cStakes: poolStakesData[] | undefined = allStakes.data.filter(
     (stake) => {
       if (stake.poolId.toNumber() === 3) {
         return true;
@@ -132,7 +132,7 @@ export default function Staking() {
             return [
               {
                 mainTokenId: token.pair.mainTokenId,
-                bakcTokenId: token.tokenId,
+                nfw3cTokenId: token.tokenId,
                 amount: token.deposited,
                 isUncommit: true,
               },
@@ -211,15 +211,15 @@ export default function Staking() {
       });
   };
 
-  const baycOptions = baycStakes.map((data) => {
-    return { label: `BAYC ${data.tokenId}` };
+  const earthlingOptions = earthlingStakes.map((data) => {
+    return { label: `EARTHLING ${data.tokenId}` };
   });
 
-  const maycOptions = maycStakes.map((data) => {
-    return { label: `MAYC ${data.tokenId}` };
+  const roboroverOptions = roboroverStakes.map((data) => {
+    return { label: `ROBOROVER ${data.tokenId}` };
   });
 
-  const options = baycOptions.concat(maycOptions);
+  const options = earthlingOptions.concat(roboroverOptions);
 
   return (
     <div>
@@ -230,12 +230,12 @@ export default function Staking() {
       <div className="mt-10 overflow-scroll">
         {/* {allowance?.data?.eq(0) ? (
           <>
-            <div>ApeCoin Staking Contract Allowance Approval not set:</div>
+            <div>NFTE Staking Contract Allowance Approval not set:</div>
             <Allowance />
           </>
         ) : (
           <div>
-            ApeCoin Staking Contract Allowance set to{" "}
+            NFTE Staking Contract Allowance set to{" "}
             {+formatUnits(allowance.data?.toString()!) >= 1e9
               ? "Unlimited"
               : formatUnits(allowance.data?.toString()!)}
@@ -243,55 +243,55 @@ export default function Staking() {
           </div>
         )} */}
 
-        <h2 className="text-4xl font-extrabold">ApeCoin Staking Pool</h2>
-        <ApeCoinTable
-          apeCoinStakes={apeCoinStakes}
+        <h2 className="text-4xl font-extrabold">NFTE Staking Pool</h2>
+        <NfteTable
+          poolStakes={nfteStakes}
           withdrawArgs={withdrawArgs}
           claimArgs={claimArgs}
-          apecoinPrice={apecoinPrice}
+          nftePrice={nftePrice}
         />
 
         <h2 className="mt-10 text-4xl font-extrabold">
-          Bored Ape Yacht Club Pool
+          Earthling Pool
         </h2>
 
         <NftTable
           poolId={1}
-          tokenSymbol="BAYC"
-          poolStakes={baycStakes}
+          tokenSymbol="EARTHLING"
+          poolStakes={earthlingStakes}
           withdrawArgs={withdrawArgs}
           claimArgs={claimArgs}
-          apecoinPrice={apecoinPrice}
+          nftePrice={nftePrice}
           withdrawFunctionID="24"
           claimFunctionID="8"
           depositFunctionID="12"
         />
 
         <h2 className="mt-10 text-4xl font-extrabold">
-          Mutant Ape Yacht Club Pool
+          RoboRover Pool
         </h2>
 
         <NftTable
           poolId={2}
-          tokenSymbol={"MAYC"}
-          poolStakes={maycStakes}
+          tokenSymbol={"ROBOROVER"}
+          poolStakes={roboroverStakes}
           withdrawArgs={withdrawArgs}
           claimArgs={claimArgs}
-          apecoinPrice={apecoinPrice}
+          nftePrice={nftePrice}
           withdrawFunctionID="25"
           claimFunctionID="9"
           depositFunctionID="13"
         />
 
         <h2 className="mt-10 text-4xl font-extrabold">
-          Bored Ape Kennel Club Pool
+          Non-Fungible Web3 Citizen Pool
         </h2>
 
-        <BakcTable
-          poolStakes={bakcStakes}
-          withdrawArgs={withdrawBakcArgs}
-          claimArgs={claimBakcArgs}
-          apecoinPrice={apecoinPrice}
+        <Nfw3cTable
+          poolStakes={nfw3cStakes}
+          withdrawArgs={withdrawNfw3cArgs}
+          claimArgs={claimNfw3cArgs}
+          nftePrice={nftePrice}
           pairOptions={options}
         />
       </div>
