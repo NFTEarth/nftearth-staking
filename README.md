@@ -1,12 +1,4 @@
-# ApeCoin UI
-
-## Getting Started
-
-You will need an [alchemy](https://www.alchemy.com/) account and API key. They are free so go get one and then create a `.env.local` file with the following:
-
-```
-NEXT_PUBLIC_ALCHEMY_API_KEY=YOUR_KEY_HERE
-```
+# NFTEarth Staking Rewards
 
 Next, run the development server:
 
