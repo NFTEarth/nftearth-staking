@@ -67,7 +67,7 @@ export default async function Page() {
     },
     {
       question:
-        "If I stake into an NFT pool (Earthling, RoboRover, NFW3C) can I sell my NFT?",
+        "If I stake into an NFT pool (Earthling, RoboRover, Non-Fungible Web3 Citizen) can I sell my NFT?",
       answer:
         "You should first withdraw all NFTE paired with the NFT or you will lose access to it.",
     },
@@ -103,7 +103,7 @@ export default async function Page() {
       ),
     },
     {
-      question: "Got a question that I didn't answer?",
+      question: "Got a question you still want answered?",
       answer: (
         <>
           Send a tweet or DM{" "}
