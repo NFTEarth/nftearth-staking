@@ -10,7 +10,7 @@ const ConnectButton: React.FC<{ classNames?: string }> = ({ classNames }) => {
   const client = useClient();
   const { isConnected } = useAccount();
   const { connectAsync, connectors } = useConnect();
-  const { nfteBalance } = useNfteBalance();
+  const { nfteBalance } = nfteBalance();
   const { autoConnecting, setAutoConnecting } = useAutoConnecting();
 
   useEffect(() => {
