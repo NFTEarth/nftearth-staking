@@ -12,37 +12,37 @@ import { PoolType } from "@/types/data";
 import TimeframeSelector from "@/components/timeframeSelector";
 import { Dispatch, useEffect, useState } from "react";
 import useBalances from "@/hooks/useBalances";
-import useApeCoinBalance from "@/hooks/useNfteBalance";
+import useNfteBalance from "@/hooks/useNfteBalance";
 import { useAccount } from "wagmi";
 import useAllStakes from "@/hooks/useAllStakes";
 import { BigNumber } from "ethers";
 
 export default function Calculator() {
   const poolData = usePoolData();
-  const { apecoinPrice } = usePrice();
+  const { nftePrice } = usePrice();
   const { timeframe } = useTimeframe();
-  const { baycPoolStakable, maycPoolStakable, bakcPoolStakable } =
+  const { earthlingPoolStakable, roboroverPoolStakable, nfw3cPoolStakable } =
     useBalances();
-  const { apeCoinBalance } = useApeCoinBalance();
+  const { nfteBalance } = useNfteBalance();
 
   const { address } = useAccount();
 
   const { poolsContractRead: allStakes } = useAllStakes(address!);
 
-  // apecoinPrice comes back as a big number and apecoin token has 8 decimal
+  // nftePrice comes back as a big number and nfte token has 8 decimal
   // places, so we need to turn it into a formatted string via ethers then
   // turn that into a number
-  const apecoinPriceNumber = apecoinPrice && +formatUnits(apecoinPrice, 8);
+  const nftePriceNumber = nftePrice && +formatUnits(nftePrice, 8);
 
-  const [apeCoinOwnedCount, setApeCoinOwnedCount] = useState<number>(0);
-  const [baycTokenOwnedCount, setBaycTokenOwnedCount] = useState<number>(0);
-  const [maycTokenOwnedCount, setMaycTokenOwnedCount] = useState<number>(0);
-  const [bakcTokenOwnedCount, setBakcTokenOwnedCount] = useState<number>(0);
+  const [nfteOwnedCount, setNfteOwnedCount] = useState<number>(0);
+  const [earthlingTokenOwnedCount, setEathlingTokenOwnedCount] = useState<number>(0);
+  const [roboroverTokenOwnedCount, setRoboroverTokenOwnedCount] = useState<number>(0);
+  const [nfw3cTokenOwnedCount, setNfw3cTokenOwnedCount] = useState<number>(0);
 
-  const [apeCoinToStakeCount, setApeCoinToStakeCount] = useState<number>(0);
-  const [baycTokenToStakeCount, setBaycTokenToStakeCount] = useState<number>(0);
-  const [maycTokenToStakeCount, setMaycTokenToStakeCount] = useState<number>(0);
-  const [bakcTokenToStakeCount, setBakcTokenToStakeCount] = useState<number>(0);
+  const [nfteToStakeCount, setNfteToStakeCount] = useState<number>(0);
+  const [earthlingTokenToStakeCount, setEathlingTokenToStakeCount] = useState<number>(0);
+  const [roboroverTokenToStakeCount, setRoboroverTokenToStakeCount] = useState<number>(0);
+  const [nfw3cTokenToStakeCount, setNfw3cTokenToStakeCount] = useState<number>(0);
 
   interface PoolDataInterface {
     type: PoolType;
@@ -55,35 +55,35 @@ export default function Calculator() {
 
   const PoolDataArray: PoolDataInterface[] = [
     {
-      type: PoolType.APE,
-      ownedCount: apeCoinOwnedCount,
-      setOwnedCount: setApeCoinOwnedCount,
-      toStake: apeCoinToStakeCount,
-      setToStakeCount: setApeCoinToStakeCount,
+      type: PoolType.NFTE,
+      ownedCount: nfteOwnedCount,
+      setOwnedCount: setNfteOwnedCount,
+      toStake: nfteToStakeCount,
+      setToStakeCount: setNfteToStakeCount,
     },
     {
-      type: PoolType.BAYC,
-      maxStakeAmount: 10094,
-      ownedCount: baycTokenOwnedCount,
-      setOwnedCount: setBaycTokenOwnedCount,
-      toStake: baycTokenToStakeCount,
-      setToStakeCount: setBaycTokenToStakeCount,
+      type: PoolType.EARTHLING,
+      maxStakeAmount: 5000,
+      ownedCount: earthlingTokenOwnedCount,
+      setOwnedCount: setEathlingTokenOwnedCount,
+      toStake: earthlingTokenToStakeCount,
+      setToStakeCount: setEathlingTokenToStakeCount,
     },
     {
-      type: PoolType.MAYC,
-      maxStakeAmount: 2042,
-      ownedCount: maycTokenOwnedCount,
-      setOwnedCount: setMaycTokenOwnedCount,
-      toStake: maycTokenToStakeCount,
-      setToStakeCount: setMaycTokenToStakeCount,
+      type: PoolType.ROBOROVER,
+      maxStakeAmount: 250,
+      ownedCount: roboroverTokenOwnedCount,
+      setOwnedCount: setRoboroverTokenOwnedCount,
+      toStake: roboroverTokenToStakeCount,
+      setToStakeCount: setRoboroverTokenToStakeCount,
     },
     {
-      type: PoolType.BAKC,
+      type: PoolType.NFW3C,
       maxStakeAmount: 856,
-      ownedCount: bakcTokenOwnedCount,
-      setOwnedCount: setBakcTokenOwnedCount,
-      toStake: bakcTokenToStakeCount,
-      setToStakeCount: setBakcTokenToStakeCount,
+      ownedCount: nfw3cTokenOwnedCount,
+      setOwnedCount: setNfw3cTokenOwnedCount,
+      toStake: nfw3cTokenToStakeCount,
+      setToStakeCount: setNfw3cTokenToStakeCount,
     },
   ];
 
@@ -98,65 +98,65 @@ export default function Calculator() {
       return sum.add(stake.unclaimed);
     }, BigNumber.from(0)) || BigNumber.from(0);
 
-  let unstakedApeCoin = apeCoinBalance || BigNumber.from(0);
+  let unstakedNfte = nfteBalance || BigNumber.from(0);
   if (allStakes.data && allStakes.data[0].deposited) {
-    unstakedApeCoin = unstakedApeCoin.add(allStakes.data[0].deposited);
+    unstakedNfte = unstakedNfte.add(allStakes.data[0].deposited);
   }
 
   if (allStakes.data) {
-    unstakedApeCoin = unstakedApeCoin.add(totalUnclaimed);
+    unstakedNfte = unstakedNfte.add(totalUnclaimed);
   }
 
   useEffect(() => {
-    setApeCoinToStakeCount(apeCoinOwnedCount);
-  }, [apeCoinOwnedCount]);
+    setNfteToStakeCount(nfteOwnedCount);
+  }, [nfteOwnedCount]);
 
   useEffect(() => {
-    setBaycTokenToStakeCount(
-      baycTokenOwnedCount * PoolDataObject[PoolType.BAYC].maxStakeAmount!
+    setEathlingTokenToStakeCount(
+      earthlingTokenOwnedCount * PoolDataObject[PoolType.EARTHLING].maxStakeAmount!
     );
-  }, [baycTokenOwnedCount]);
+  }, [earthlingTokenOwnedCount]);
 
   useEffect(() => {
-    setMaycTokenToStakeCount(
-      maycTokenOwnedCount * PoolDataObject[PoolType.MAYC].maxStakeAmount!
+    setRoboroverTokenToStakeCount(
+      roboroverTokenOwnedCount * PoolDataObject[PoolType.ROBOROVER].maxStakeAmount!
     );
-  }, [maycTokenOwnedCount]);
+  }, [roboroverTokenOwnedCount]);
 
   useEffect(() => {
-    setBakcTokenToStakeCount(
-      bakcTokenOwnedCount * PoolDataObject[PoolType.BAKC].maxStakeAmount!
+    setNfw3cTokenToStakeCount(
+      nfw3cTokenOwnedCount * PoolDataObject[PoolType.NFW3C].maxStakeAmount!
     );
-  }, [bakcTokenOwnedCount]);
+  }, [nfw3cTokenOwnedCount]);
 
   useEffect(() => {
-    if (unstakedApeCoin.isZero()) return;
-    setApeCoinOwnedCount(Math.round(+formatUnits(unstakedApeCoin)));
-  }, [apeCoinBalance]);
+    if (unstakedNfte.isZero()) return;
+    setNfteOwnedCount(Math.round(+formatUnits(unstakedNfte)));
+  }, [nfteBalance]);
 
   useEffect(() => {
-    setBaycTokenOwnedCount(baycPoolStakable);
-  }, [baycPoolStakable]);
+    setEathlingTokenOwnedCount(earthlingPoolStakable);
+  }, [earthlingPoolStakable]);
 
   useEffect(() => {
-    setMaycTokenOwnedCount(maycPoolStakable);
-  }, [maycPoolStakable]);
+    setRoboroverTokenOwnedCount(roboroverPoolStakable);
+  }, [roboroverPoolStakable]);
 
   useEffect(() => {
-    setBakcTokenOwnedCount(bakcPoolStakable);
-  }, [bakcPoolStakable]);
+    setNfw3cTokenOwnedCount(nfw3cPoolStakable);
+  }, [nfw3cPoolStakable]);
 
   const totalStakable =
-    apeCoinToStakeCount +
-    baycTokenToStakeCount +
-    maycTokenToStakeCount +
-    bakcTokenToStakeCount;
+    nfteToStakeCount +
+    earthlingTokenToStakeCount +
+    roboroverTokenToStakeCount +
+    nfw3cTokenToStakeCount;
 
   const hourlyRewardsTotal =
-    apeCoinToStakeCount * poolData.poolData[PoolType.APE].rewardPerHour! +
-    baycTokenToStakeCount * poolData.poolData[PoolType.BAYC].rewardPerHour! +
-    maycTokenToStakeCount * poolData.poolData[PoolType.MAYC].rewardPerHour! +
-    bakcTokenToStakeCount * poolData.poolData[PoolType.BAKC].rewardPerHour!;
+    nfteToStakeCount * poolData.poolData[PoolType.NFTE].rewardPerHour! +
+    earthlingTokenToStakeCount * poolData.poolData[PoolType.EARTHLING].rewardPerHour! +
+    roboroverTokenToStakeCount * poolData.poolData[PoolType.ROBOROVER].rewardPerHour! +
+    nfw3cTokenToStakeCount * poolData.poolData[PoolType.NFW3C].rewardPerHour!;
 
   const dailyRewardsTotal = hourlyRewardsTotal * 24;
   const weeklyRewardsTotal = dailyRewardsTotal * 7;
@@ -194,10 +194,10 @@ export default function Calculator() {
                 Owned Token Count
               </th>
               <th className="flex w-1/3 items-center p-4 text-left font-semibold tracking-wide">
-                ApeCoin To Stake
+                NFTE To Stake
               </th>
               <th className="flex w-1/3 items-center p-4 text-left font-semibold tracking-wide">
-                {timeframe} ApeCoin Reward
+                {timeframe} NFTE Reward
               </th>
             </tr>
           </thead>
@@ -208,7 +208,7 @@ export default function Calculator() {
                   <td className="flex w-1/3 flex-wrap items-center gap-2 p-4">
                     <input
                       className={`${
-                        pool != PoolType.APE ? "w-16" : "w-28"
+                        pool != PoolType.NFTE ? "w-16" : "w-28"
                       } border px-2 dark:border-zinc-500 dark:bg-zinc-800`}
                       value={PoolDataObject[pool].ownedCount}
                       onChange={(e) => {
@@ -220,7 +220,7 @@ export default function Calculator() {
                     />
                     <span>
                       {poolData.poolData[pool].name}
-                      {pool != PoolType.APE && <>&nbsp;NFTs</>}
+                      {pool != PoolType.NFTE && <>&nbsp;NFTs</>}
                     </span>{" "}
                   </td>
                   <td className="flex w-1/3 flex-wrap items-center gap-2 p-4">
@@ -269,7 +269,7 @@ export default function Calculator() {
                   <td className="flex w-1/3 flex-wrap items-center gap-2 p-4">
                     {poolData.poolData[pool].rewardPerHour &&
                     poolData.poolData[pool].rewardPerDay &&
-                    apecoinPriceNumber ? (
+                    nftePriceNumber ? (
                       <>
                         {Intl.NumberFormat("en-US", {
                           maximumFractionDigits: 4,
@@ -287,7 +287,7 @@ export default function Calculator() {
                           poolData.poolData[pool].rewardPerHour! *
                             timeFrameHourMultiplier *
                             PoolDataObject[pool].toStake *
-                            apecoinPriceNumber!
+                            nftePriceNumber!
                         )}
                         )
                       </>
@@ -321,7 +321,7 @@ export default function Calculator() {
                 }).format(totalStakable) || 0}
               </td>
               <td className="flex w-1/3 flex-wrap items-center gap-2 p-4">
-                {apecoinPriceNumber ? (
+                {nftePriceNumber ? (
                   <>
                     {Intl.NumberFormat("en-US", {
                       maximumFractionDigits: 4,
@@ -333,7 +333,7 @@ export default function Calculator() {
                       currency: "USD",
                     }).format(
                       hourlyRewardsTotal *
-                        apecoinPriceNumber! *
+                        nftePriceNumber! *
                         timeFrameHourMultiplier
                     )}
                     )
