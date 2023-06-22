@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { ConnectKitButton } from "connectkit";
 import { useAccount, useClient, useConnect } from "wagmi";
 import useAutoConnecting from "@/hooks/useAutoConnecting";
-import usenftBalance from "@/hooks/useNfteBalance";
+import useNfteBalance from "@/hooks/useNfteBalance";
 import { formatUnits } from "ethers/lib/utils.js";
 
 const ConnectButton: React.FC<{ classNames?: string }> = ({ classNames }) => {
