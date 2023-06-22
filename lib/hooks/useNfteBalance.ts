@@ -10,7 +10,7 @@ const nfteContractAddresses: Map = {
 
 import useStore from "@/stores/store";
 
-const useNfteBalance = () => {
+const nfteBalance = () => {
   const nfteBalance = useStore((state) => state.nfteBalance);
   const setNfteBalance = useStore((state) => state.setNfteBalance);
 
