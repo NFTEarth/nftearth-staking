@@ -16,7 +16,7 @@ export default function Footer() {
         >
           source code
         </a>{" "}
-        on GitHub.
+        on GitHub. Shoutout to ApeCoin Collector for the OpenSource repo.
       </p>
     </footer>
   );
