@@ -12,7 +12,7 @@ import useStore from "@/stores/store";
 
 const useNfteBalance = () => {
   const nfteBalance = useStore((state) => state.nfteBalance);
-  const setNfteBalance = useStore((state) => state.setnfteBalance);
+  const setNfteBalance = useStore((state) => state.setNfteBalance);
 
   const { address, isConnected } = useAccount();
   const { chain } = useNetwork();
