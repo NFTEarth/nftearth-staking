@@ -3,14 +3,14 @@ import { useEffect } from "react";
 import { ConnectKitButton } from "connectkit";
 import { useAccount, useClient, useConnect } from "wagmi";
 import useAutoConnecting from "@/hooks/useAutoConnecting";
-import useApeCoinBalance from "@/hooks/useNfteBalance";
+import usenftBalance from "@/hooks/useNfteBalance";
 import { formatUnits } from "ethers/lib/utils.js";
 
 const ConnectButton: React.FC<{ classNames?: string }> = ({ classNames }) => {
   const client = useClient();
   const { isConnected } = useAccount();
   const { connectAsync, connectors } = useConnect();
-  const { apeCoinBalance } = useApeCoinBalance();
+  const { nfteBalance } = useNfteBalance();
   const { autoConnecting, setAutoConnecting } = useAutoConnecting();
 
   useEffect(() => {
@@ -42,12 +42,12 @@ const ConnectButton: React.FC<{ classNames?: string }> = ({ classNames }) => {
 
   return (
     <>
-      {apeCoinBalance !== undefined && (
+      {NfteBalance !== undefined && (
         <>
           {Intl.NumberFormat("en-us", {
             maximumFractionDigits: 2,
-          }).format(+formatUnits(apeCoinBalance))}{" "}
-          APE
+          }).format(+formatUnits(NfteBalance))}{" "}
+          NFTE
         </>
       )}
       <ConnectKitButton.Custom>
