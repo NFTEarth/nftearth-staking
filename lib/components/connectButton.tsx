@@ -3,14 +3,14 @@ import { useEffect } from "react";
 import { ConnectKitButton } from "connectkit";
 import { useAccount, useClient, useConnect } from "wagmi";
 import useAutoConnecting from "@/hooks/useAutoConnecting";
-import useNfteBalance from "@/hooks/useNfteBalance";
+import usenfteBalance from "@/hooks/useNfteBalance";
 import { formatUnits } from "ethers/lib/utils.js";
 
 const ConnectButton: React.FC<{ classNames?: string }> = ({ classNames }) => {
   const client = useClient();
   const { isConnected } = useAccount();
   const { connectAsync, connectors } = useConnect();
-  const { NfteBalance } = useNfteBalance();
+  const { nfteBalance } = useNfteBalance();
   const { autoConnecting, setAutoConnecting } = useAutoConnecting();
 
   useEffect(() => {
@@ -42,11 +42,11 @@ const ConnectButton: React.FC<{ classNames?: string }> = ({ classNames }) => {
 
   return (
     <>
-      {NfteBalance !== undefined && (
+      {nfteBalance !== undefined && (
         <>
           {Intl.NumberFormat("en-us", {
             maximumFractionDigits: 2,
-          }).format(+formatUnits(NfteBalance))}{" "}
+          }).format(+formatUnits(nfteBalance))}{" "}
           NFTE
         </>
       )}
