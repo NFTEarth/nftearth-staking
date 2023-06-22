@@ -45,7 +45,7 @@ export function NfteTable({
     asString: boolean
   ) => string | ethers.BigNumber | (number | undefined)[] | undefined;
 }) {
-  const { nfteBalance } = useNfteBalance();
+  const { NfteBalance } = useNfteBalance();
 
   const [depositNfteAmount, setDepositNfteAmount] = useState<BigNumber>(
     ethers.constants.Zero
@@ -97,11 +97,11 @@ export function NfteTable({
                 }}
                 className="w-2/5 border px-2 dark:border-zinc-500 dark:bg-zinc-800"
               />
-              {nfteBalance?.gt(0) &&
-                !depositNfteAmount.eq(nfteBalance) && (
+              {NfteBalance?.gt(0) &&
+                !depositNfteAmount.eq(NfteBalance) && (
                   <button
                     onClick={() => {
-                      setDepositNfteAmount(nfteBalance!);
+                      setDepositNfteAmount(NfteBalance!);
                     }}
                   >
                     MAX
@@ -237,7 +237,7 @@ export function NfteTable({
                   <>
                     <a
                       className="text-sm text-[#1da1f2] sm:text-base"
-                      href={`https://etherscan.io/address/0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9#writeContract#F14`}
+                      href={`https://arbiscan.io/address/0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe`}
                     >
                       claimSelfNfte
                     </a>
@@ -648,7 +648,7 @@ export function Nfw3cTable({
         | (string | number)[]
         | {
             mainTokenId: ethers.BigNumber;
-            bakcTokenId: ethers.BigNumber;
+            nfw3cTokenId: ethers.BigNumber;
             amount: ethers.BigNumber;
             isUncommit: boolean;
           }[]
@@ -850,16 +850,16 @@ export function Nfw3cTable({
 
             <tr className="flex items-start justify-start">
               <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
-                Etherscan Contract:
+                Arbiscan Contract:
               </td>
               <td className="w-1/4 p-4">
                 <a
                   className="text-sm text-[#1da1f2] sm:text-base"
-                  href={`https://etherscan.io/address/0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9#writeContract#F12`}
+                  href={`https://arbiscan.io/address0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe`}
                 >
-                  depositBAKC
+                Deposit Non-Fungible Web3 Citizen
                 </a>
-                <p className="mt-4 text-sm">_baycPairs</p>
+                <p className="mt-4 text-sm">_earthlingPairs</p>
                 <textarea
                   className="w-full border px-2 text-[10px] dark:border-zinc-500 dark:bg-zinc-800"
                   readOnly
@@ -875,17 +875,17 @@ export function Nfw3cTable({
               <td className="w-1/4 p-4">
                 <a
                   className="text-sm text-[#1da1f2] sm:text-base"
-                  href={`https://etherscan.io/address/0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9#writeContract#F20`}
+                  href={`https://arbiscan.io/address/0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe`}
                 >
-                  withdrawBAKC
+                  Withdraw Non-Fungible Web3 Citizen
                 </a>
-                <p className="mt-4 text-sm">_baycPairs</p>
+                <p className="mt-4 text-sm">_earthlingPairs</p>
                 <textarea
                   className="w-full border px-2 text-[10px] dark:border-zinc-500  dark:bg-zinc-800"
                   readOnly
                   value={JSON.stringify(withdrawArgs(1, true))}
                 />
-                <p className="text-sm">_maycPairs</p>
+                <p className="text-sm">_roboroverPairs</p>
                 <textarea
                   className="w-full border px-2 text-[10px] dark:border-zinc-500 dark:bg-zinc-800"
                   readOnly
@@ -895,9 +895,9 @@ export function Nfw3cTable({
               <td className="w-1/4 p-4">
                 <a
                   className="text-sm text-[#1da1f2] sm:text-base"
-                  href={`https://etherscan.io/address/0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9#writeContract#F7`}
+                  href={`https://arbiscan.io/address/0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe`}
                 >
-                  claimBAKC
+                  Claim Non-Fungible Web3 Citizen
                 </a>
                 <p className="mt-4 text-sm">_baycPairs</p>
                 <textarea

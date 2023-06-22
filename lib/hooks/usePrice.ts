@@ -5,7 +5,7 @@ import PriceABI from "@/abis/price";
 import { BigNumber } from "ethers";
 
 export default function usePrice() {
-  const [nftePrice, setNftePrice] = useState<BigNumber>();
+  const [NftePrice, setNftePrice] = useState<BigNumber>();
 
   const nftePriceContractRead = useContractRead({
     address: "0xB261104A83887aE92392Fb5CE5899fCFe5481456",
@@ -53,5 +53,5 @@ export default function usePrice() {
     ethereumPriceContractRead.data,
   ]);
 
-  return { nftePrice, ethereumPrice };
+  return { NftePrice, ethereumPrice };
 }

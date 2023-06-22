@@ -7,7 +7,7 @@ export default async function Page() {
     <>
       <h1 className="text-4xl font-bold">NFTEarth Staking</h1>
       <p className="mt-4">
-        An App for NFTEarth Staking Rewards
+       NFTEarth Staking Rewards
       </p>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-3">

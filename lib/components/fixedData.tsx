@@ -5,21 +5,21 @@ import usePrice from "@/hooks/usePrice";
 import useCountdown from "@/hooks/useCountdown";
 
 export default function FixedData() {
-  const { nftePrice, ethereumPrice } = usePrice();
+  const { NftePrice, ethereumPrice } = usePrice();
   const { minutes, seconds, mounted } = useCountdown();
 
   return (
     <div className="fixed bottom-0 right-0 flex h-8 w-full items-center bg-zinc-100 text-sm uppercase dark:bg-black">
       <div className="container flex max-w-6xl items-center justify-between px-4 md:px-8">
         <div className="flex gap-x-8">
-          {nftePrice && (
+          {NftePrice && (
             <span>
               NFTE:{" "}
               {Intl.NumberFormat("en-us", {
                 maximumFractionDigits: 4,
                 style: "currency",
                 currency: "USD",
-              }).format(+formatUnits(nftePrice, 8))}{" "}
+              }).format(+formatUnits(NftePrice, 8))}{" "}
             </span>
           )}
 

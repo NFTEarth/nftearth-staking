@@ -17,9 +17,9 @@ export default function Data() {
   const { amount: selectedAmount } = useAmount();
 
   const poolData = usePoolData();
-  const { nftePrice } = usePrice();
+  const { NftePrice } = usePrice();
 
-  const nftePriceHumanNumber = nftePrice && +formatUnits(nftePrice, 8);
+  const nftePriceHumanNumber = NftePrice && +formatUnits(NftePrice, 8);
   const rewardHeader =
     selectedAmount === Amount.PerNfte
       ? "NFTE Reward Per NFTE Staked"
