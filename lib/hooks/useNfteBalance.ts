@@ -11,8 +11,8 @@ const nfteContractAddresses: Map = {
 import useStore from "@/stores/store";
 
 const useNfteBalance = () => {
-  const nfteBalance = useStore((state) => state.nfteBalance);
-  const setNfteBalance = useStore((state) => state.setnfteBalance);
+  const NfteBalance = useStore((state) => state.NfteBalance);
+  const setNfteBalance = useStore((state) => state.setNfteBalance);
 
   const { address, isConnected } = useAccount();
   const { chain } = useNetwork();
@@ -35,7 +35,7 @@ const useNfteBalance = () => {
     }
   }, [isConnected]);
 
-  return { nfteBalance, setNfteBalance };
+  return { NfteBalance, setNfteBalance };
 };
 
 export default useNfteBalance;

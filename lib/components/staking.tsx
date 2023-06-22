@@ -289,8 +289,8 @@ export default function Staking() {
 
         <Nfw3cTable
           poolStakes={nfw3cStakes}
-          withdrawArgs={withdrawNfw3cArgs}
-          claimArgs={claimNfw3cArgs}
+          withdrawArgs={withdrawArgs}
+          claimArgs={claimArgs}
           nftePrice={nftePrice}
           pairOptions={options}
         />

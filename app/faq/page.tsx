@@ -16,38 +16,32 @@ export default async function Page() {
         <>
           <p className="mt-2">
             Please be aware there are bound to be a lot of scams and fake
-            websites / twitter accounts trying to steal your ApeCoin and/or
+            websites / Twitter accounts trying to steal your NFTE and/or
             NFTs. If you're unsure you should only use official links.
           </p>
           <p className="mt-2">
-            The official link to ApeCoin is{" "}
-            <a className="underline" href="https://apecoin.com/">
-              https://apecoin.com
+            The official link to NFTEarth is{" "}
+            <a className="underline" href="https://nftearth.exchange">
+              https://nftearth.exchange
             </a>
           </p>
 
           <p className="mt-2">
             The official link to the staking website is{" "}
-            <a className="underline" href="https://apestake.io/">
-              https://apestake.io
+            <a className="underline" href="https://staking.nftearth.exchange">
+            https://staking.nftearth.exchange
             </a>
           </p>
           <p className="mt-2">
             The official link to the staking contract documentation is{" "}
-            <a className="underline" href="https://docs.apestake.io/">
-              https://docs.apestake.io
+            <a className="underline" href="https://docs.nftearth.exchange">
+            https://docs.nftearth.exchange
             </a>
           </p>
           <p className="mt-2">
-            The official twitter account for ApeCoin is{" "}
-            <a className="underline" href="https://twitter.com/apecoin">
-              @apecoin
-            </a>
-          </p>
-          <p className="mt-2">
-            The official twitter account for HorizenLabs is{" "}
-            <a className="underline" href="https://twitter.com/HorizenLabs">
-              @HorizenLabs
+            The official twitter account for NFTEarth is{" "}
+            <a className="underline" href="https://twitter.com/NFTEarth_L2">
+              @NFTEarth_L2
             </a>
           </p>
         </>
@@ -56,16 +50,16 @@ export default async function Page() {
     {
       question: "Can I unstake or withdraw anytime?",
       answer:
-        "Yes, there is no locking period for withdrawing staked apecoin or claiming rewards.",
+        "Yes, there is no locking period for withdrawing staked NFTE or claiming rewards.",
     },
     {
       question: "When I stake do my NFTs leave my wallet?",
       answer: (
         <>
           <p className="mt-2">
-            No, only the ApeCoin gets deposited into the contract. Your NFTs act
+            No, only the NFTE gets deposited into the contract. Your NFTs act
             as "keys" to withdraw or claim any apecoin rewards, if you don't
-            hold the NFT you can't get the ApeCoin out of the contract, but the
+            hold the NFT you can't get the NFTE out of the contract, but the
             new owner can.
           </p>
         </>
@@ -73,19 +67,19 @@ export default async function Page() {
     },
     {
       question:
-        "If I stake into an NFT pool (BAYC, MAYC, BAKC) can I sell my NFT?",
+        "If I stake into an NFT pool (Earthling, RoboRover, NFW3C) can I sell my NFT?",
       answer:
-        "You should first withdraw all apecoin paired with the NFT or you will lose access to it.",
+        "You should first withdraw all NFTE paired with the NFT or you will lose access to it.",
     },
     {
       question: "What are the maximum limits for staking?",
       answer: (
         <>
           <ul>
-            <li>ApeCoin pool: No limit</li>
-            <li>Bored Ape Yacht Club pool: 10094</li>
-            <li>Mutant Ape Yacht Club pool: 2042</li>
-            <li>Bored Ape Kennel Club pool: 856</li>
+            <li>NFTE pool: No limit</li>
+            <li>Earthling pool: 5000</li>
+            <li>RoboRover pool: 250</li>
+            <li>Non-Fungible Web3 Citizen pool: 100</li>
           </ul>
         </>
       ),
@@ -94,16 +88,16 @@ export default async function Page() {
       question: "Is this site safe?",
       answer: (
         <>
-          I hope so, I've tried my best to ensure that all information is
-          accurate and interactions with the apecoin and staking contracts are
+         We hope so, and have done our best to ensure at all information is
+          accurate and interactions with the NFTEarth information and staking contracts are
           correct. All the{" "}
           <a
             className="underline"
-            href="https://github.com/apecollector/apecoinui"
+            href="https://github.com/NFTEarth"
           >
             source code is open-source and available on GitHub
           </a>
-          . That being said there are still risks involved, and I assume no
+          . That being said there are still risks involved, and we assume no
           liability or provide any warranty.
         </>
       ),
@@ -113,10 +107,10 @@ export default async function Page() {
       answer: (
         <>
           Send a tweet or DM{" "}
-          <a className="text-[#1da1f2]" href="https://twitter.com/ApeCollector">
-            @ApeCollector
+          <a className="text-[#1da1f2]" href="https://twitter.com/NFTEarth_L2">
+            @NFTEarth_L2
           </a>{" "}
-          on twitter and I'll do my best to get you an answer!
+          on Twitter and we will do our best to get you an answer!
         </>
       ),
     },

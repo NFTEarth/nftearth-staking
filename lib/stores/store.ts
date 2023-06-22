@@ -8,6 +8,7 @@ import { TimeFrame } from "@/types/timeframe";
 import { Amount } from "@/types/data";
 
 interface AppState {
+  setNfteBalance: any;
   autoConnecting: boolean;
   setAutoConnecting: (autoConnecting: boolean) => void;
 
@@ -21,8 +22,8 @@ interface AppState {
   amount: Amount;
   setAmount: (amount: Amount) => void;
 
-  nfteBalance: BigNumber | undefined;
-  setnfteBalance: (balance: BigNumber | undefined) => void;
+  NfteBalance: BigNumber | undefined;
+  setNfteBalance: (balance: BigNumber | undefined) => void;
 }
 
 const useStore = create<AppState>()(
@@ -39,9 +40,9 @@ const useStore = create<AppState>()(
     setAmount: (newAmount) => {
       set(() => ({ amount: newAmount }));
     },
-    nfteBalance: undefined,
-    setnfteBalance: (balance) => {
-      set(() => ({ nfteBalance: balance }));
+    NfteBalance: undefined,
+    setNfteBalance: (balance: any) => {
+      set(() => ({ NfteBalance: balance }));
     },
     events: [],
     addEvent: (newEvent) => {
