@@ -23,7 +23,7 @@ export default function Calculator() {
   const { timeframe } = useTimeframe();
   const { earthlingPoolStakable, roboroverPoolStakable, nfw3cPoolStakable } =
     useBalances();
-  const { nfteBalance } = useNfteBalance();
+  const { NfteBalance } = useNfteBalance();
 
   const { address } = useAccount();
 
@@ -98,7 +98,7 @@ export default function Calculator() {
       return sum.add(stake.unclaimed);
     }, BigNumber.from(0)) || BigNumber.from(0);
 
-  let unstakedNfte = nfteBalance || BigNumber.from(0);
+  let unstakedNfte = NfteBalance || BigNumber.from(0);
   if (allStakes.data && allStakes.data[0].deposited) {
     unstakedNfte = unstakedNfte.add(allStakes.data[0].deposited);
   }
@@ -132,7 +132,7 @@ export default function Calculator() {
   useEffect(() => {
     if (unstakedNfte.isZero()) return;
     setNfteOwnedCount(Math.round(+formatUnits(unstakedNfte)));
-  }, [nfteBalance]);
+  }, [NfteBalance]);
 
   useEffect(() => {
     setEathlingTokenOwnedCount(earthlingPoolStakable);
