@@ -148,7 +148,7 @@ const ClaimAllModal: React.FC<{
               <li className="flex items-center gap-2 py-1 text-sm text-gray-500 dark:text-gray-400">
                 <ClaimEarthling />
               </li>
-              {/* 1) Claim {displayNfte(apeCoinPoolUnclaimed)} from Nfte
+              { 0 Claim {displayNfte(nftePoolUnclaimed)} from NFTE Pool
                 Pool <CheckCircleIcon className="h-5 w-5 text-green-500" />
                 <a
                   href=""
@@ -157,26 +157,29 @@ const ClaimAllModal: React.FC<{
                   View Tx
                 </a>
               </li>
-
+              };
               <li className="flex items-center gap-2 py-1 text-sm text-gray-500 dark:text-gray-400">
-                1) Claim {displayNfte(earthlingPoolUnclaimed)} from Nfte Pool{" "}
+               { 1 Claim {displayNfte(earthlingPoolUnclaimed)} from NFTE Pool{" "}
                 <XCircleIcon className="h-5 w-5 text-red-800 dark:text-red-500" />{" "}
                 <span className="text-sm text-red-900 dark:text-red-400">
                   Rejected
                 </span>
               </li>
+              }
               <li className="flex items-center gap-2 py-1 text-sm">
-                2) Claim {displayNfte(earthlingPoolUnclaimed)} from EARTHLING Pool{" "}
+                { 1 Claim {displayNfte(earthlingPoolUnclaimed)} from Earthling Pool{" "}
                 <WalletIcon className="h-5 w-5" />{" "}
                 <span className="text-sms">Confirm</span>
               </li>
+              }
               <li className="flex items-center gap-2 py-1 text-sm">
-                2) Claim {displayNfte(roboroverPoolUnclaimed)} from MAYC Pool{" "}
+                { 2 Claim {displayNfte(roboroverPoolUnclaimed)} from RoboRover Pool{" "}
                 <WalletIcon className="h-5 w-5" />{" "}
                 <span className="text-sms">Confirm</span>
               </li>
+            }
               <li className="flex items-center gap-2 py-1 text-sm">
-                2) Claim {displayNfte(earthlingPoolUnclaimed)} from EARTHLING Pool{" "}
+               { 3 Claim {displayNfte(earthlingPoolUnclaimed)} from Non-Fungible Web3 Citizen Pool{" "}
                 <ClockIcon className="h-5 w-5  text-blue-800 hover:underline dark:text-blue-500" />
                 <a
                   href=""
@@ -185,9 +188,10 @@ const ClaimAllModal: React.FC<{
                   View Tx
                 </a>
               </li>
+            }
               <li className="flex items-center py-1 text-sm text-gray-500 dark:text-gray-400">
-                3) Claim {displayNfte(nfw3cPoolUnclaimed)} from BAKC Pool{" "}
-              </li> */}
+                { 3 Claim {displayNfte(nfw3cPoolUnclaimed)} from Non-Fungible Web3 Citizen Pooll{" "}
+              </li> }
             </ol>
           </div>
         </Modal.Body>

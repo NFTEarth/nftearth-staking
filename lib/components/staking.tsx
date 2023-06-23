@@ -24,7 +24,7 @@ interface poolStakesData {
 export default function Staking() {
   const { address, isConnected } = useAccount();
   const { NftePrice } = usePrice();
-  const autoConnecitng = useAutoConnecting();
+  const autoConnectinng = useAutoConnecting();
   const allowance = useAllowance();
   const [statsAddress, setStatsAddress] = useState<string>("");
   useEffect(() => {

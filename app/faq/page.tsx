@@ -93,7 +93,7 @@ export default async function Page() {
           correct. All the{" "}
           <a
             className="underline"
-            href="https://github.com/NFTEarth"
+            href="https://github.com/NFTEarth/nftearth-staking"
           >
             source code is open-source and available on GitHub
           </a>
