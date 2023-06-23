@@ -40,24 +40,15 @@ export default async function Page() {
             allowance.
           </p>
         </Link>
-
         <Link
-        shallow={true}
-        href="https://mintearthling.nftearth.exchange"
-        className={`block border border-zinc-200 bg-white p-6 hover:bg-zinc-100
-        dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800 sm:max-w-sm`}
-        >
-        <h5 className="mb-2 text-2xl font-bold tracking-tight">Mint an Earthling</h5>
-        <p className="text-zinc-700 dark:text-zinc-400">
-        at {" "}
-        <a
-          className="text-[#1da1f2]"
+          shallow={true}
           href="https://mintearthling.nftearth.exchange"
+          className={`block border border-zinc-200 bg-white p-6 hover:bg-zinc-100
+          dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800 sm:max-w-sm`}
         >
-         Mint 
-        </a>{" "}
-        NFT mint page.
-       Max supply of 4,444 - when Minted out, acuire an Earthling at NFTEarth marketplace or OpenSea.
+          <h5 className="mb-2 text-2xl font-bold tracking-tight">Mint an Earthling</h5>
+          <p className="text-zinc-700 dark:text-zinc-400">
+          At the NFT mint page. Max supply of 4,444 - when Minted out, aquire an Earthling at NFTEarth marketplace or OpenSea.
         </p>
        </Link>
         <Link

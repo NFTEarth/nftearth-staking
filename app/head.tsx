@@ -22,7 +22,7 @@ export default function Head() {
       <meta name="twitter:title" content="NFTEarth" />
       <meta
         name="twitter:description"
-        content="ApeCoinUI is an open-source interface for ApeCoin including a Staking Calculator."
+        content="NFTEarth Staking is an open-source interface for NFTEarth including a Staking Calculator."
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta
