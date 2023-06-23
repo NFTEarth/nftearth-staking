@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.7.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@heroicons/react": "^2.0.13",
     "@thirdweb-dev/react": "^3.14.1",
     "@thirdweb-dev/sdk": "^3.10.23",
@@ -26,6 +29,7 @@
     "ethers": "^5.7.2",
     "flowbite": "^1.5.5",
     "flowbite-react": "^0.3.7",
+    "framer-motion": "^10.12.16",
     "immer": "^9.0.16",
     "lokijs": "^1.5.12",
     "next": "13.0.6",
