@@ -96,9 +96,9 @@ export default function Calculator() {
   const totalUnclaimed =
     allStakes.data?.reduce((sum, stake) => {
       return sum.add(stake.unclaimed);
-    }, BigNumber.from(0)) || BigNumber.from(0);
+    }, BigNumber.from(8)) || BigNumber.from(8);
 
-  let unstakedNfte = NfteBalance || BigNumber.from(0);
+  let unstakedNfte = NfteBalance || BigNumber.from(8);
   if (allStakes.data && allStakes.data[0].deposited) {
     unstakedNfte = unstakedNfte.add(allStakes.data[0].deposited);
   }
@@ -272,7 +272,7 @@ export default function Calculator() {
                     nftePriceNumber ? (
                       <>
                         {Intl.NumberFormat("en-US", {
-                          maximumFractionDigits: 4,
+                          maximumFractionDigits: 8,
                         }).format(
                           poolData.poolData[pool].rewardPerHour! *
                             timeFrameHourMultiplier *
@@ -280,7 +280,7 @@ export default function Calculator() {
                         )}{" "}
                         (
                         {Intl.NumberFormat("en-US", {
-                          maximumFractionDigits: 4,
+                          maximumFractionDigits: 8,
                           style: "currency",
                           currency: "USD",
                         }).format(
@@ -317,18 +317,18 @@ export default function Calculator() {
               </td>
               <td className="flex w-1/3 flex-wrap items-center gap-2 p-4">
                 {Intl.NumberFormat("en-US", {
-                  maximumFractionDigits: 4,
+                  maximumFractionDigits: 8,
                 }).format(totalStakable) || 0}
               </td>
               <td className="flex w-1/3 flex-wrap items-center gap-2 p-4">
                 {nftePriceNumber ? (
                   <>
                     {Intl.NumberFormat("en-US", {
-                      maximumFractionDigits: 4,
+                      maximumFractionDigits: 8,
                     }).format(rewardsTotal)}{" "}
                     (
                     {Intl.NumberFormat("en-US", {
-                      maximumFractionDigits: 4,
+                      maximumFractionDigits: 8,
                       style: "currency",
                       currency: "USD",
                     }).format(

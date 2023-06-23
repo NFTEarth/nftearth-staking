@@ -16,7 +16,7 @@ export default function FixedData() {
             <span>
               NFTE:{" "}
               {Intl.NumberFormat("en-us", {
-                maximumFractionDigits: 4,
+                maximumFractionDigits: 8,
                 style: "currency",
                 currency: "USD",
               }).format(+formatUnits(NftePrice, 8))}{" "}

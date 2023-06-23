@@ -25,7 +25,7 @@ const stakingContractAddresses: Map = {
 
 function displayNfte(nfte: BigNumber | number): string {
   return Intl.NumberFormat("en-US", {
-    maximumFractionDigits: 4,
+    maximumFractionDigits: 8,
   }).format(+ethers.utils.formatUnits(nfte));
 }
 

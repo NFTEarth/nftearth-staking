@@ -34,7 +34,7 @@ const DisplayStakeEvent: React.FC<{ event: EventData }> = ({ event }) => {
       staked{" "}
       <span className="font-medium text-zinc-900 dark:text-white">
         {new Intl.NumberFormat("en-US", {
-          maximumFractionDigits: 4,
+          maximumFractionDigits: 8,
         }).format(+formatUnits(event.amount))}{" "}
         NFTE
       </span>{" "}
@@ -63,7 +63,7 @@ const DisplayWithdrawEvent: React.FC<{ event: EventData }> = ({ event }) => {
       withdrew{" "}
       <span className="font-medium text-zinc-900 dark:text-white">
         {new Intl.NumberFormat("en-US", {
-          maximumFractionDigits: 4,
+          maximumFractionDigits: 8,
         }).format(+formatUnits(event.amount))}{" "}
         NFTE
       </span>{" "}
@@ -92,7 +92,7 @@ const DisplayClaimEvent: React.FC<{ event: EventData }> = ({ event }) => {
       claimed{" "}
       <span className="font-medium text-zinc-900 dark:text-white">
         {new Intl.NumberFormat("en-US", {
-          maximumFractionDigits: 4,
+          maximumFractionDigits: 8,
         }).format(+formatUnits(event.amount))}{" "}
         NFTE
       </span>{" "}
@@ -128,7 +128,7 @@ const DisplayEvent: React.FC<{ event: EventData }> = ({ event }) => {
       staked{" "}
       <span className="font-medium text-zinc-900 dark:text-white">
         {new Intl.NumberFormat("en-US", {
-          maximumFractionDigits: 4,
+          maximumFractionDigits: 8,
         }).format(+formatUnits(event.amount))}{" "}
         NFTE
       </span>{" "}

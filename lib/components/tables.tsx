@@ -125,7 +125,7 @@ export function NfteTable({
                   {" "}
                   (
                   {Intl.NumberFormat(undefined, {
-                    maximumFractionDigits: 2,
+                    maximumFractionDigits: 8,
                     style: "currency",
                     currency: "USD",
                     notation: "compact",
@@ -148,7 +148,7 @@ export function NfteTable({
                   {" "}
                   (
                   {Intl.NumberFormat(undefined, {
-                    maximumFractionDigits: 2,
+                    maximumFractionDigits: 8,
                     style: "currency",
                     currency: "USD",
                     notation: "compact",
@@ -197,7 +197,7 @@ export function NfteTable({
 
             <tr className="flex">
               <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
-                Etherscan Contract:
+                Arbiscan Contract:
               </td>
               <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
                 {depositNfteAmount.gt(0) && (
@@ -220,7 +220,7 @@ export function NfteTable({
                   <>
                     <a
                       className="text-sm text-[#1da1f2] sm:text-base"
-                      href={`https://etherscan.io/address/0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9#writeContract#F23`}
+                      href={`https://arbiscan.io/address/0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe#contracts`}
                     >
                       withdrawSelfNfte
                     </a>
@@ -356,7 +356,7 @@ export function NftTable({
               {tokenSymbol} {stake.tokenId.toNumber()}
             </td>
             <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
-              {+formatUnits(stake.deposited) === 10094 ? (
+              {+formatUnits(stake.deposited) === 5000 ? (
                 <>MAXED OUT</>
               ) : (
                 <>
@@ -428,7 +428,7 @@ export function NftTable({
                   {" "}
                   (
                   {Intl.NumberFormat(undefined, {
-                    maximumFractionDigits: 2,
+                    maximumFractionDigits: 8,
                     style: "currency",
                     currency: "USD",
                     notation: "compact",
@@ -448,7 +448,7 @@ export function NftTable({
                   {" "}
                   (
                   {Intl.NumberFormat(undefined, {
-                    maximumFractionDigits: 2,
+                    maximumFractionDigits: 8,
                     style: "currency",
                     currency: "USD",
                     notation: "compact",
@@ -481,7 +481,7 @@ export function NftTable({
                     {" "}
                     (
                     {Intl.NumberFormat(undefined, {
-                      maximumFractionDigits: 2,
+                      maximumFractionDigits: 8,
                       style: "currency",
                       currency: "USD",
                       notation: "compact",
@@ -503,7 +503,7 @@ export function NftTable({
                     {" "}
                     (
                     {Intl.NumberFormat(undefined, {
-                      maximumFractionDigits: 2,
+                      maximumFractionDigits: 8,
                       style: "currency",
                       currency: "USD",
                       notation: "compact",
@@ -525,7 +525,7 @@ export function NftTable({
                     {" "}
                     (
                     {Intl.NumberFormat(undefined, {
-                      maximumFractionDigits: 2,
+                      maximumFractionDigits: 8,
                       style: "currency",
                       currency: "USD",
                       notation: "compact",
@@ -569,14 +569,14 @@ export function NftTable({
 
             <tr className="flex">
               <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
-                Etherscan Contract:
+                Arbiscan Contract:
               </td>
               <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
                 {totalToDeposit.gt(0) && (
                   <>
                     <a
                       className="text-sm text-[#1da1f2] sm:text-base"
-                      href={`https://etherscan.io/address/0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9#writeContract#F${depositFunctionID}`}
+                      href={`https://arbiscan.io/address/0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe#contracts#writeContract#F${depositFunctionID}`}
                     >
                       deposit{tokenSymbol}
                     </a>
@@ -593,7 +593,7 @@ export function NftTable({
                   <>
                     <a
                       className="text-sm text-[#1da1f2] sm:text-base"
-                      href={`https://etherscan.io/address/0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9#writeContract#F${withdrawFunctionID}`}
+                      href={`https://arbiscan.io/address/0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe#contracts#writeContract#F${withdrawFunctionID}`}
                     >
                       withdrawSelf{tokenSymbol}
                     </a>
@@ -610,7 +610,7 @@ export function NftTable({
                   <>
                     <a
                       className="text-sm text-[#1da1f2] sm:text-base"
-                      href={`https://etherscan.io/address/0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9#writeContract#F${claimFunctionID}`}
+                      href={`https://arbiscan.io/address/0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe#contracts#writeContract#F${claimFunctionID}`}
                     >
                       claimSelf{tokenSymbol}
                     </a>
@@ -703,7 +703,7 @@ export function Nfw3cTable({
         {poolStakes.map((stake, i) => (
           <tr className="flex" key={i}>
             <td className="flex w-1/4 flex-wrap items-center gap-2 p-4">
-              BAKC {stake.tokenId.toNumber()}
+              EARTHLING {stake.tokenId.toNumber()}
               <select className="h-7 w-1/2 appearance-none border px-2 py-0 dark:border-zinc-500 dark:bg-zinc-800">
                 <option>PAIR WITH</option>
                 {pairOptions.map((option) => (
@@ -722,7 +722,7 @@ export function Nfw3cTable({
                   {" "}
                   (
                   {Intl.NumberFormat(undefined, {
-                    maximumFractionDigits: 2,
+                    maximumFractionDigits: 8,
                     style: "currency",
                     currency: "USD",
                     notation: "compact",
@@ -742,7 +742,7 @@ export function Nfw3cTable({
                   {" "}
                   (
                   {Intl.NumberFormat(undefined, {
-                    maximumFractionDigits: 2,
+                    maximumFractionDigits: 8,
                     style: "currency",
                     currency: "USD",
                     notation: "compact",
@@ -771,7 +771,7 @@ export function Nfw3cTable({
                     {" "}
                     (
                     {Intl.NumberFormat(undefined, {
-                      maximumFractionDigits: 2,
+                      maximumFractionDigits: 8,
                       style: "currency",
                       currency: "USD",
                       notation: "compact",

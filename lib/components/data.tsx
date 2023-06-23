@@ -22,8 +22,8 @@ export default function Data() {
   const nftePriceHumanNumber = NftePrice && +formatUnits(NftePrice, 8);
   const rewardHeader =
     selectedAmount === Amount.PerNfte
-      ? "NFTE Reward Per NFTE Staked"
-      : "NFTE Reward With 1 Max Staked NFT";
+      ? "NFTE Rewards Per NFTE Staked"
+      : "NFTE Max Rewards Per 1 Staked NFT";
 
   const rewardMultiplier = (pool: number): number => {
     if (selectedAmount === Amount.PerNfte) return 1;
@@ -96,7 +96,7 @@ export default function Data() {
                     {poolData.poolData[pool].stakedAmount ? (
                       <>
                         {Intl.NumberFormat(undefined, {
-                          maximumFractionDigits: 0,
+                          maximumFractionDigits: 8,
                         }).format(poolData.poolData[pool].stakedAmount!)}
                       </>
                     ) : (
@@ -111,7 +111,7 @@ export default function Data() {
                     poolData.poolData[pool].rewardPoolPerDay ? (
                       <>
                         {Intl.NumberFormat(undefined, {
-                          maximumFractionDigits: 0,
+                          maximumFractionDigits: 8,
                         }).format(
                           selectedTimeframe === TimeFrame.Hourly
                             ? poolData.poolData[pool].rewardPoolPerHour!
@@ -135,7 +135,7 @@ export default function Data() {
                         ) : (
                           <>
                             {Intl.NumberFormat(undefined, {
-                              maximumFractionDigits: 4,
+                              maximumFractionDigits: 8,
                             }).format(
                               timeFrameHourMultiplier *
                                 poolData.poolData[pool].rewardPerHour! *
@@ -143,7 +143,7 @@ export default function Data() {
                             )}{" "}
                             (
                             {Intl.NumberFormat(undefined, {
-                              maximumFractionDigits: 4,
+                              maximumFractionDigits: 8,
                               style: "currency",
                               currency: "USD",
                             }).format(

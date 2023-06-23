@@ -21,7 +21,7 @@ export default async function Page() {
       </div>
 
       { <div className="mt-10">
-        <h3 className="text-3xl font-bold">Live staking Activity:</h3>
+        <h3 className="text-3xl font-bold">Live Staking Activity:</h3>
         <Events />
       </div> }
     </>

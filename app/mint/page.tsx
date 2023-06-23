@@ -46,30 +46,6 @@ export default async function Page() {
       ),
     },
     {
-      question: "Can I unstake or withdraw anytime?",
-      answer:
-        "Yes, there is no locking period for withdrawing staked NFTE or claiming rewards.",
-    },
-    {
-      question: "When I stake do my NFTs leave my wallet?",
-      answer: (
-        <>
-          <p className="mt-2">
-            No, only the NFTE gets deposited into the contract. Your NFTs act
-            as a form of metaphorical key, which allows you to withdraw or claim any NFTE rewards, if you do not
-            hold the NFT, you cannot get the NFTE out of the contract, but the
-            new owner can.
-          </p>
-        </>
-      ),
-    },
-    {
-      question:
-        "If I stake into an NFT pool (Earthling, RoboRover, Non-Fungible Web3 Citizen) can I sell my NFT?",
-      answer:
-        "You should first withdraw all NFTE paired with the NFT or you will lose access to it.",
-    },
-    {
       question: "What are the maximum limits for staking?",
       answer: (
         <>
@@ -79,24 +55,6 @@ export default async function Page() {
             <li>RoboRover pool: 500</li>
             <li>Non-Fungible Web3 Citizen pool: 250</li>
           </ul>
-        </>
-      ),
-    },
-    {
-      question: "Is this site safe?",
-      answer: (
-        <>
-         We hope so, and have done our best to ensure at all information is
-          accurate and interactions with the NFTEarth information and staking contracts are
-          correct. All the{" "}
-          <a
-            className="underline"
-            href="https://github.com/NFTEarth"
-          >
-            source code is open-source and available on GitHub
-          </a>
-          . That being said there are still risks involved, and we assume no
-          liability or provide any warranty.
         </>
       ),
     },
