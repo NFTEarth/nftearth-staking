@@ -1,6 +1,8 @@
 # NFTEarth Staking Rewards
 
-Next, run the development server:
+![NFTEarthStakingRewards](https://github.com/NFTEarth/nftearth-staking/assets/29180454/d9e89d45-47c0-48b1-ae69-8a3b67da7f8f)
+
+Begin development by:
 
 ```bash
 npm run dev
