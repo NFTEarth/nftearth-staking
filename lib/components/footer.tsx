@@ -25,7 +25,7 @@ export default function Footer() {
           className="text-[#1da1f2]"
           href="https://https://arbiscan.io/address/0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe#code"
         >
-         Contract Address 
+         Staking Contract Address 
         </a>{" "}
         on Arbiscan.
       </p>
