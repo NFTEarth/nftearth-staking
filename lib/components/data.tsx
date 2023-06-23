@@ -28,8 +28,8 @@ export default function Data() {
   const rewardMultiplier = (pool: number): number => {
     if (selectedAmount === Amount.PerNfte) return 1;
     if (pool == 1) return 5000;
-    if (pool == 2) return 250;
-    if (pool == 3) return 100;
+    if (pool == 2) return 500;
+    if (pool == 3) return 250;
     return NaN;
   };
 

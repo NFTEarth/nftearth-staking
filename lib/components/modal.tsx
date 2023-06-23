@@ -82,7 +82,7 @@ const ClaimEarthling = () => {
     });
 
   const earthlingPrepareContractWrite = usePrepareContractWrite({
-    address: stakingContractAddresses[chain?.id || 1],
+    address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "claimSelfEARTHLING",
     args: [args as any],
@@ -148,8 +148,8 @@ const ClaimAllModal: React.FC<{
               <li className="flex items-center gap-2 py-1 text-sm text-gray-500 dark:text-gray-400">
                 <ClaimEarthling />
               </li>
-              {/* 1) Claim {displayNfte(apeCoinPoolUnclaimed)} from Nfte
-                Pool <CheckCircleIcon className="h-5 w-5 text-green-500" />
+              {/* 1) Claim {displayNfte(NftePoolUnclaimed)} from NFTE Pool 
+                <CheckCircleIcon className="h-5 w-5 text-green-500" />
                 <a
                   href=""
                   className="text-sm text-green-800 hover:underline dark:text-green-400"
@@ -186,7 +186,7 @@ const ClaimAllModal: React.FC<{
                 </a>
               </li>
               <li className="flex items-center py-1 text-sm text-gray-500 dark:text-gray-400">
-                3) Claim {displayNfte(nfw3cPoolUnclaimed)} from BAKC Pool{" "}
+                3) Claim {displayNfte(nfw3cPoolUnclaimed)} from NFW3C Pool{" "}
               </li> */}
             </ol>
           </div>

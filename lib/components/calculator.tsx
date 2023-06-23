@@ -71,7 +71,7 @@ export default function Calculator() {
     },
     {
       type: PoolType.ROBOROVER,
-      maxStakeAmount: 250,
+      maxStakeAmount: 500,
       ownedCount: roboroverTokenOwnedCount,
       setOwnedCount: setRoboroverTokenOwnedCount,
       toStake: roboroverTokenToStakeCount,
@@ -79,7 +79,7 @@ export default function Calculator() {
     },
     {
       type: PoolType.NFW3C,
-      maxStakeAmount: 856,
+      maxStakeAmount: 250,
       ownedCount: nfw3cTokenOwnedCount,
       setOwnedCount: setNfw3cTokenOwnedCount,
       toStake: nfw3cTokenToStakeCount,

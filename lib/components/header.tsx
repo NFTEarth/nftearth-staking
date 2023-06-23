@@ -8,6 +8,7 @@ export default function Header() {
     { name: "Data", pathname: "/data" },
     { name: "Stake", pathname: "/stake" },
     { name: "FAQ", pathname: "/faq" },
+    { name: "Mint", pathname: "/mint"},
   ];
 
   return (

@@ -16,14 +16,14 @@ export default async function Page() {
       </div>
 
       <div className="mt-10">
-        <h3 className="text-3xl font-bold">Staking calculator:</h3>
+        <h3 className="text-3xl font-bold">Staking Calculator:</h3>
         <Calculator />
       </div>
 
-      {/* <div className="mt-10">
-        <h3 className="text-3xl font-bold">Live staking activity:</h3>
+      { <div className="mt-10">
+        <h3 className="text-3xl font-bold">Live taking Activity:</h3>
         <Events />
-      </div> */}
+      </div> }
     </>
   );
 }

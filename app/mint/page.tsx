@@ -11,13 +11,11 @@ function Question({ question, answer }: { question: string; answer: any }) {
 export default async function Page() {
   const faqs = [
     {
-      question: "What are the official links?",
+      question: "How many Earthlings are there?",
       answer: (
         <>
           <p className="mt-2">
-            Please be aware there are bound to be a lot of scams and fake
-            websites / Twitter accounts trying to steal your NFTE and/or
-            NFTs. If you are unsure, you should only use official links.
+            4,444 is the max total supply that will ever exist.
           </p>
           <p className="mt-2">
             The official link to NFTEarth is{" "}
@@ -27,9 +25,9 @@ export default async function Page() {
           </p>
 
           <p className="mt-2">
-            The official link to the staking website is{" "}
-            <a className="underline" href="https://staking.nftearth.exchange">
-            https://staking.nftearth.exchange
+            The official link to the minting website is{" "}
+            <a className="underline" href="https://mintearthling.nftearth.exchange">
+            https://mintearthling.nftearth.exchange
             </a>
           </p>
           <p className="mt-2">

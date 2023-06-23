@@ -19,7 +19,7 @@ export default async function Page() {
         >
           <h5 className="mb-2 text-2xl font-bold tracking-tight">Data</h5>
           <p className="text-zinc-700 dark:text-zinc-400">
-            Real-Time staking data about how many NFTE you can stake and daily
+            Real-Time staking data about how many NFTE you can stake and earn daily in
             rewards.
           </p>
         </Link>
@@ -32,11 +32,11 @@ export default async function Page() {
           <h5 className="mb-2 text-2xl font-bold tracking-tight">
             Stake{" "}
             <span className="mr-2 rounded bg-yellow-200 px-2.5 py-0.5 text-sm font-semibold text-yellow-800 dark:bg-yellow-200 dark:text-yellow-900">
-              BETA
+              BETA FEATURE
             </span>
           </h5>
           <p className="text-zinc-700 dark:text-zinc-400">
-            Manage your staking positions and staking contract NFTE
+            Manage your NFTE staking positions and staking contract allowance on NFTE
             allowance.
           </p>
         </Link>
@@ -49,7 +49,7 @@ export default async function Page() {
           <h5 className="mb-2 text-2xl font-bold tracking-tight">FAQ</h5>
           <p className="text-zinc-700 dark:text-zinc-400">
             Answers to common questions around staking, NFTE and how to
-            protect yourself.
+            protect yourself in web3.
           </p>
         </Link>
       </div>

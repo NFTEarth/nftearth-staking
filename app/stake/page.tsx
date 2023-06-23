@@ -9,7 +9,7 @@ export default async function Page() {
             <h1 className="mb-4 flex items-center text-4xl font-bold ">
               NFTE Staking{" "}
             </h1>
-            <p className="mb-2">Staking UI for NFTE and NFTs </p>
+            <p className="mb-2">Stake your NFTE here! </p>
           </div>
         </div>
         <p className="mt-10">

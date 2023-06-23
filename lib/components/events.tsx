@@ -130,7 +130,7 @@ const DisplayEvent: React.FC<{ event: EventData }> = ({ event }) => {
         {new Intl.NumberFormat("en-US", {
           maximumFractionDigits: 4,
         }).format(+formatUnits(event.amount))}{" "}
-        ApeCoin
+        NFTE
       </span>{" "}
       into the{" "}
       <span className="font-medium text-zinc-900 dark:text-white">

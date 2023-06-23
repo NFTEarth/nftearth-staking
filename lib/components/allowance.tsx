@@ -40,7 +40,7 @@ export default function Allowance() {
     abi: ABI,
     functionName: "approve",
     args: [
-      stakingContractAddresses[chain?.id || 1],
+      stakingContractAddresses[chain?.id || 42161],
       ethers.constants.MaxUint256,
     ],
   });
