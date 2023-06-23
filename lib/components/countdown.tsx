@@ -18,7 +18,7 @@ export default function Countdown() {
 
   return (
     <div className="mt-4">
-      Next reward in{" "}
+      Next staking rewards in{" "}
       <span className="font-medium text-zinc-900 dark:text-white">
         {padTo2Digits(minutes)} minutes {padTo2Digits(seconds)} seconds
       </span>{" "}
