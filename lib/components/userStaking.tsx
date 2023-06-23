@@ -199,7 +199,7 @@ function WithdrawAll({
 
   const earthlingWithdrawPrepareContractWrite = usePrepareContractWrite({
     enabled: earthlingStakes && earthlingStakes.length > 0,
-    address: stakingContractAddresses[chain?.id || 1],
+    address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "withdrawSelfEARTHLING",
     args: earthlingWithdrawArgs && ([earthlingWithdrawArgs] as any),
@@ -225,7 +225,7 @@ function WithdrawAll({
 
   const roboroverWithdrawPrepareContractWrite = usePrepareContractWrite({
     enabled: roboroverStakes && roboroverStakes.length > 0,
-    address: stakingContractAddresses[chain?.id || 1],
+    address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "withdrawSelfROBOROVER",
     args: roboroverWithdrawArgs && ([roboroverWithdrawArgs] as any),

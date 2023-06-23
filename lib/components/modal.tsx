@@ -148,7 +148,7 @@ const ClaimAllModal: React.FC<{
               <li className="flex items-center gap-2 py-1 text-sm text-gray-500 dark:text-gray-400">
                 <ClaimEarthling />
               </li>
-              { 0 Claim {displayNfte(nftePoolUnclaimed)} from NFTE Pool
+              {/* 0 Claim {displayNfte(nftePoolUnclaimed)} from NFTE Pool
                 Pool <CheckCircleIcon className="h-5 w-5 text-green-500" />
                 <a
                   href=""
@@ -191,7 +191,7 @@ const ClaimAllModal: React.FC<{
             }
               <li className="flex items-center py-1 text-sm text-gray-500 dark:text-gray-400">
                 { 3 Claim {displayNfte(nfw3cPoolUnclaimed)} from Non-Fungible Web3 Citizen Pooll{" "}
-              </li> }
+          </li> */}
             </ol>
           </div>
         </Modal.Body>

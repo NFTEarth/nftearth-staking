@@ -1,9 +1,8 @@
 import { Web3Button } from "@thirdweb-dev/react";
 import type { NextPage } from "next";
 import { useRouter } from "next/navigation";
-import { earthlingContractAddress } from "../../constants/contractAddresses";
+import { earthlingContractAddress } from "../abis/constants/contractAddresses";
 import styles from "../styles/Home.module.css";
-import { useWeb3Modal } from "@web3modal/react";
 const Mint: NextPage = () => {
   const router = useRouter();
 
