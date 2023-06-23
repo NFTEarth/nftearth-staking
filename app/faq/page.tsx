@@ -78,8 +78,8 @@ export default async function Page() {
           <ul>
             <li>NFTE pool: No limit</li>
             <li>Earthling pool: 5000</li>
-            <li>RoboRover pool: 250</li>
-            <li>Non-Fungible Web3 Citizen pool: 100</li>
+            <li>RoboRover pool: 500</li>
+            <li>Non-Fungible Web3 Citizen pool: 250</li>
           </ul>
         </>
       ),
