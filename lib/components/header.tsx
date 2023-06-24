@@ -9,6 +9,7 @@ export default function Header() {
     { name: "Stake", pathname: "/stake" },
     { name: "FAQ", pathname: "/faq" },
     { name: "Mint", pathname: "/mint"},
+    { name: "Raffle", pathname: "/raffle"},
   ];
 
   return (
