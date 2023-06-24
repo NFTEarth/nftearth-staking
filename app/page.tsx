@@ -52,6 +52,28 @@ export default async function Page() {
             protect yourself in web3.
           </p>
         </Link>
+        <Link
+          shallow={true}
+          href="/mint"
+          className={`block border border-zinc-200 bg-white p-6 hover:bg-zinc-100
+          dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800 sm:max-w-sm`}
+        >
+          <h5 className="mb-2 text-2xl font-bold tracking-tight">Earthlings</h5>
+          <p className="text-zinc-700 dark:text-zinc-400">
+            Mint an Earthling NFT!
+          </p>
+        </Link>
+        <Link
+          shallow={true}
+          href="/mint"
+          className={`block border border-zinc-200 bg-white p-6 hover:bg-zinc-100
+          dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800 sm:max-w-sm`}
+        >
+          <h5 className="mb-2 text-2xl font-bold tracking-tight">Raffle</h5>
+          <p className="text-zinc-700 dark:text-zinc-400">
+            Enter the Raffle to Win NFTs, $NFTE, and more!
+          </p>
+        </Link>
       </div>
 
       {/* <div className="mt-10">
