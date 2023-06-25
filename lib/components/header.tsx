@@ -10,6 +10,7 @@ export default function Header() {
     { name: "FAQ", pathname: "/faq" },
     { name: "Mint", pathname: "/mint"},
     { name: "Raffle", pathname: "/raffle"},
+    { name: "Balancer", pathname: "/ve8020locking"},
   ];
 
   return (
