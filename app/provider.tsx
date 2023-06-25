@@ -26,8 +26,8 @@ const { provider, chains } = configureChains(
         };
       },
     }),
-  ]
-);
+  
+
 
 const client = createClient(
   getDefaultClient({
