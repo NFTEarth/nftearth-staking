@@ -74,6 +74,18 @@ export default async function Page() {
             Enter the Raffle to Win NFTs, $NFTE, and more!
           </p>
         </Link>
+        <Link
+          shallow={true}
+          href="/mint"
+          className={`block border border-zinc-200 bg-white p-6 hover:bg-zinc-100
+          dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800 sm:max-w-sm`}
+        >
+          <h5 className="mb-2 text-2xl font-bold tracking-tight">Balancer ve8020</h5>
+          <p className="text-zinc-700 dark:text-zinc-400">
+            Learn about our innovative approach to building liquidity on Balancer.
+          </p>
+        </Link>
+        
       </div>
 
       {/* <div className="mt-10">
