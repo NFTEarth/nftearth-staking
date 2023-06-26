@@ -1,7 +1,7 @@
 import "./globals.css";
 import Provider from "./provider";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Header from "../components/header";
+import Footer from "../components/footer";
 
 export default async function RootLayout({
   children,

@@ -8,13 +8,13 @@ export default function Head() {
 
       <meta
         name="description"
-        content="NFTEarth Staking is an open-source interface for NFTEarth including a Staking Calculator."
+        content="NFTEarth Staking user interface with batch actions and other improvements."
       />
       <meta
         property="og:title"
-        content="NFTEarth Staking is an open-source interface for NFTEarth including a Staking Calculator."
+        content="NFTEarth Staking user interface with batch actions and other improvements."
       />
-      <meta property="og:site_name" content="NFTEarth" />
+      <meta property="og:site_name" content="NFTEarth Staking" />
       <meta property="og:url" content="https://staking.nftearth.exchange" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content="https://staking.nftearth.exchange/opengraph.png" />
@@ -22,7 +22,7 @@ export default function Head() {
       <meta name="twitter:title" content="NFTEarth" />
       <meta
         name="twitter:description"
-        content="NFTEarth Staking is an open-source interface for NFTEarth including a Staking Calculator."
+        content="NFTEarth Staking user interface with batch actions and other improvements."
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta
