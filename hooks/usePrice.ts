@@ -2,16 +2,16 @@ import { useContractRead } from "wagmi";
 
 import PriceABI from "../abis/price";
 import {useEffect, useState} from "react";
-import {ethers} from "ethers";
+import {BigNumber, ethers} from "ethers";
 
 export default function usePrice() {
-  const [nftePrice, setNftePrice] = useState('0');
+  const [nftePrice, setNftePrice] = useState<BigNumber>();
 
   useEffect(() => {
     fetch(`/api/price`).then(async (res) => {
       const data = await res.json();
 
-      setNftePrice(ethers.utils.parseUnits(data.price.toFixed(8), 8).toString())
+      setNftePrice(ethers.utils.parseUnits(data.price.toFixed(8), 8))
     })
   }, [])
 
