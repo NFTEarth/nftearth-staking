@@ -17,7 +17,7 @@ export default async function Page() {
           <p className="mt-2">
             Please be aware there are bound to be a lot of scams and fake
             websites / Twitter accounts trying to steal your NFTE and/or
-            NFTs. If you're unsure you should only use official links.
+            NFTs. If you are unsure you should only use official links.
           </p>
           <p className="mt-2">
             The official link to NFTEarth is{" "}
@@ -58,8 +58,8 @@ export default async function Page() {
         <>
           <p className="mt-2">
             No, only the NFTE gets deposited into the contract. Your NFTs act
-            as "keys" to withdraw or claim any apecoin rewards, if you don't
-            hold the NFT you can't get the NFTE out of the contract, but the
+            as keys to withdraw or claim any apecoin rewards, if you do not
+            hold the NFT you cannot get the NFTE out of the contract, but the
             new owner can.
           </p>
         </>
