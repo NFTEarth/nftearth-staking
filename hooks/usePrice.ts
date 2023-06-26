@@ -1,19 +1,19 @@
 import { useContractRead } from "wagmi";
 
 import PriceABI from "../abis/price";
-import {
-  NFTE_TOKEN_ADDRESS,
-  WETH_TOKEN_ADDRESS
-} from "../constants";
+import {useEffect, useState} from "react";
+import {ethers} from "ethers";
 
 export default function usePrice() {
-  const { data: nftePriceContractReadData } = useContractRead<typeof PriceABI, 'latestRoundData', any>({
-    address: NFTE_TOKEN_ADDRESS,
-    abi: PriceABI,
-    functionName: "latestRoundData",
-    watch: true,
-    chainId: 42161,
-  });
+  const [nftePrice, setNftePrice] = useState('0');
+
+  useEffect(() => {
+    fetch(`/api/price`).then(async (res) => {
+      const data = await res.json();
+
+      setNftePrice(ethers.utils.parseUnits(data.price.toFixed(8), 8).toString())
+    })
+  }, [])
 
   const { data: ethereumPriceContractReadData } = useContractRead<typeof PriceABI, 'latestRoundData', any>({
     // EACAggregatorProxy ETH / USD
@@ -24,5 +24,5 @@ export default function usePrice() {
     chainId: 42161,
   });
 
-  return { NftePrice: nftePriceContractReadData?.answer, ethereumPrice: ethereumPriceContractReadData?.answer };
+  return { NftePrice: nftePrice, ethereumPrice: ethereumPriceContractReadData?.answer };
 }
