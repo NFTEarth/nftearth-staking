@@ -21,13 +21,13 @@ const useNfteBalance = () => {
     if (balance.data) {
       setNfteBalance(balance.data.value);
     }
-  }, [balance.isSuccess, balance.isRefetching, balance.data]);
+  }, [balance.isSuccess, balance.isRefetching, balance.data, setNfteBalance]);
 
   useEffect(() => {
     if (!isConnected) {
       setNfteBalance(undefined);
     }
-  }, [isConnected]);
+  }, [isConnected, setNfteBalance]);
 
   return { NfteBalance, setNfteBalance };
 };

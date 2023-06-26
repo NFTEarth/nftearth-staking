@@ -36,7 +36,7 @@ const ConnectButton: React.FC<{ classNames?: string }> = ({ classNames }) => {
     };
 
     autoConnect();
-  }, []);
+  }, [client.storage, connectAsync, connectors, isConnected, setAutoConnecting]);
 
   if (autoConnecting) return <></>;
 
