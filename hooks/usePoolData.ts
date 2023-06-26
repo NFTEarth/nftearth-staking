@@ -2,7 +2,7 @@ import { useContractRead, useNetwork } from "wagmi";
 import StakingABI from "../abis/staking";
 import { useEffect, useState } from "react";
 import { formatUnits } from "ethers/lib/utils.js";
-import { PoolData } from "../types/data";
+import {Pool, PoolData} from "../types/data";
 import {
   CHAIN_ID,
   stakingContractAddresses
@@ -18,7 +18,7 @@ function usePoolData(): {
 } {
   const { chain } = useNetwork();
 
-  const { data: poolsContractReadData, isSuccess, isRefetching } = useContractRead<typeof StakingABI, 'getPoolsUI', any>({
+  const { data: poolsContractReadData, isSuccess, isRefetching } = useContractRead<typeof StakingABI, 'getPoolsUI', Pool[]>({
     address: stakingContractAddresses[chain?.id || CHAIN_ID],
     abi: StakingABI,
     functionName: "getPoolsUI",
@@ -84,7 +84,7 @@ function usePoolData(): {
       const earthlingRewardPerDay = earthlingRewardPerHour * 24;
 
       const earthlingStakedAmount = +formatUnits(
-        poolsContractReadData?.[1].stakedAmount
+        poolsContractReadData[1].stakedAmount
       );
       const earthlingPoolAPR = calculateAPR(earthlingRewardPoolPerDay, earthlingStakedAmount);
 

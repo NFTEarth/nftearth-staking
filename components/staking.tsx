@@ -8,7 +8,7 @@ import usePrice from "../hooks/usePrice";
 import useAutoConnecting from "../hooks/useAutoConnecting";
 import { NfteTable, NftTable, Nfw3cTable } from "./tables";
 import useAllowance from "../hooks/useAllowance";
-import AllowanceButton from "./allowance";
+import AllowanceButton from "./AllowanceButton";
 import { formatUnits } from "ethers/lib/utils.js";
 import UserStaking from "./userStaking";
 
@@ -178,7 +178,7 @@ export default function Staking() {
   };
 
   const claimNfw3cArgs = (mainTypePoolId: number, asString: boolean) => {
-    return allStakes.data
+    return allStakes
       ?.filter((stake) => {
         if (
           stake.poolId.toNumber() === 3 &&
@@ -228,10 +228,10 @@ export default function Staking() {
       </div>
 
       <div className="mt-10 overflow-scroll">
-        {/* {allowance?.data?.eq(0) ? (
+        {allowance?.data?.eq(0) ? (
           <>
             <div>NFTE Staking Contract Allowance Approval not set:</div>
-            <Allowance />
+            <AllowanceButton />
           </>
         ) : (
           <div>
@@ -239,9 +239,9 @@ export default function Staking() {
             {+formatUnits(allowance.data?.toString()!) >= 1e9
               ? "Unlimited"
               : formatUnits(allowance.data?.toString()!)}
-            <Allowance />
+            <AllowanceButton />
           </div>
-        )} */}
+        )}
 
         <h2 className="text-4xl font-extrabold">NFTE Staking Pool</h2>
         <NfteTable

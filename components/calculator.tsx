@@ -94,7 +94,7 @@ export default function Calculator() {
   }, {} as { [key in PoolType]: PoolDataInterface });
 
   const totalUnclaimed =
-    allStakes?.reduce((sum, stake) => {
+    allStakes?.reduce((sum: BigNumber, stake: any) => {
       return sum.add(stake.unclaimed);
     }, BigNumber.from(0)) || BigNumber.from(0);
 
