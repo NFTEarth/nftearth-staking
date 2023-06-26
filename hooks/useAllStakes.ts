@@ -20,7 +20,7 @@ function useAllStakes(addressOrEns: string) {
     name: addressOrEns,
   });
 
-  const { data: poolsContractReadData, isError, error } = useContractRead<typeof StakingABI, 'getAllStakes', any>({
+  const { data: poolsContractReadData, isError, error } = useContractRead<typeof StakingABI, 'getAllStakes', poolStakesData[]>({
     enabled: addressOrEns !== undefined && addressOrEns !== "",
     address: stakingContractAddresses[chain?.id || 42161],
     abi: StakingABI,
@@ -31,7 +31,7 @@ function useAllStakes(addressOrEns: string) {
   });
 
   const nfteStakes: poolStakesData[] | undefined =
-    poolsContractReadData?.filter((stake: any) => {
+    poolsContractReadData?.filter((stake) => {
       if (stake.poolId.toNumber() === 0) {
         return true;
       }

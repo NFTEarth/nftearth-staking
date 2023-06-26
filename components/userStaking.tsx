@@ -16,7 +16,7 @@ import ABI from "../abis/staking";
 import { BigNumber } from "ethers";
 import {
   stakingContractAddresses
-} from "constants";
+} from "../constants";
 
 
 function ClaimAll({

@@ -46,7 +46,7 @@ const useEvents = () => {
     alreadyAdded.current = true;
   }, [alreadyAdded]);
 
-  useContractEvent({
+  useContractEvent<typeof  StakingABI, 'Deposit'>({
     address: NFTE_STAKING_CONTRACT_ADDRESS,
     abi: StakingABI,
     eventName: "Deposit",
@@ -56,13 +56,13 @@ const useEvents = () => {
         user: args[0] as string,
         amount: args[1] as BigNumber,
         poolId: 0,
-        hash: (args[3] as any).transactionHash,
+        hash: "",
       });
     },
     chainId: 42161,
   });
 
-  useContractEvent({
+  useContractEvent<typeof  StakingABI, 'DepositNft'>({
     address: NFTE_STAKING_CONTRACT_ADDRESS,
     abi: StakingABI,
     eventName: "DepositNft",
@@ -72,13 +72,13 @@ const useEvents = () => {
         user: args[0] as string,
         poolId: (args[1] as BigNumber).toNumber(),
         amount: args[2] as BigNumber,
-        hash: (args[4] as any).transactionHash,
+        hash: "",
       });
     },
     chainId: 42161,
   });
 
-  useContractEvent({
+  useContractEvent<typeof  StakingABI, 'DepositPairNft'>({
     address: NFTE_STAKING_CONTRACT_ADDRESS,
     abi: StakingABI,
     eventName: "DepositPairNft",
@@ -88,13 +88,13 @@ const useEvents = () => {
         user: args[0] as string,
         amount: args[1] as BigNumber,
         poolId: 3,
-        hash: (args[5] as any).transactionHash,
+        hash: "",
       });
     },
     chainId: 42161,
   });
 
-  useContractEvent({
+  useContractEvent<typeof  StakingABI, 'Withdraw'>({
     address: NFTE_STAKING_CONTRACT_ADDRESS,
     abi: StakingABI,
     eventName: "Withdraw",
@@ -104,13 +104,13 @@ const useEvents = () => {
         user: args[0] as string,
         amount: args[1] as BigNumber,
         poolId: 0,
-        hash: (args[3] as any).transactionHash,
+        hash: "",
       });
     },
     chainId: 42161,
   });
 
-  useContractEvent({
+  useContractEvent<typeof  StakingABI, 'WithdrawNft'>({
     address: "0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9",
     abi: StakingABI,
     eventName: "WithdrawNft",
@@ -120,13 +120,13 @@ const useEvents = () => {
         user: args[0] as string,
         poolId: (args[1] as BigNumber).toNumber(),
         amount: args[2] as BigNumber,
-        hash: (args[5] as any).transactionHash,
+        hash: "",
       });
     },
     chainId: 42161,
   });
 
-  useContractEvent({
+  useContractEvent<typeof  StakingABI, 'WithdrawPairNft'>({
     address: NFTE_STAKING_CONTRACT_ADDRESS,
     abi: StakingABI,
     eventName: "WithdrawPairNft",
@@ -136,13 +136,13 @@ const useEvents = () => {
         user: args[0] as string,
         amount: args[1] as BigNumber,
         poolId: 3,
-        hash: (args[5] as any).transactionHash,
+        hash: "",
       });
     },
     chainId: 42161,
   });
 
-  useContractEvent({
+  useContractEvent<typeof  StakingABI, 'ClaimRewards'>({
     address: NFTE_STAKING_CONTRACT_ADDRESS,
     abi: StakingABI,
     eventName: "ClaimRewards",
@@ -152,13 +152,13 @@ const useEvents = () => {
         user: args[0] as string,
         amount: args[1] as BigNumber,
         poolId: 0,
-        hash: (args[3] as any).transactionHash,
+        hash: "",
       });
     },
     chainId: 42161,
   });
 
-  useContractEvent({
+  useContractEvent<typeof StakingABI, 'ClaimRewardsNft'>({
     address: NFTE_STAKING_CONTRACT_ADDRESS,
     abi: StakingABI,
     eventName: "ClaimRewardsNft",
@@ -168,13 +168,13 @@ const useEvents = () => {
         user: args[0] as string,
         poolId: (args[1] as BigNumber).toNumber(),
         amount: args[2] as BigNumber,
-        hash: (args[4] as any).transactionHash,
+        hash: "",
       });
     },
     chainId:42161,
   });
 
-  useContractEvent({
+  useContractEvent<typeof  StakingABI, 'ClaimRewardsPairNft'>({
     address: NFTE_STAKING_CONTRACT_ADDRESS,
     abi: StakingABI,
     eventName: "ClaimRewardsPairNft",
@@ -184,7 +184,7 @@ const useEvents = () => {
         user: args[0] as string,
         amount: args[1] as BigNumber,
         poolId: 3,
-        hash: (args[5] as any).transactionHash,
+        hash: "",
       });
     },
     chainId: 42161 ,
