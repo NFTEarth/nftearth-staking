@@ -16,7 +16,7 @@ export default function Data() {
   const { timeframe: selectedTimeframe } = useTimeframe();
   const { amount: selectedAmount } = useAmount();
 
-  const poolData = usePoolData();
+  const { poolData } = usePoolData();
   const { NftePrice } = usePrice();
 
   const nftePriceHumanNumber = NftePrice && +formatUnits(NftePrice, 8);
@@ -73,62 +73,62 @@ export default function Data() {
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-200 dark:divide-zinc-700">
-            {(Object.keys(poolData.poolData) as unknown as PoolType[]).map(
+            {(Object.keys(poolData) as unknown as PoolType[]).map(
               (pool) => (
                 <tr key={pool} className="flex">
                   <td className="flex w-1/4 flex-wrap items-center gap-x-4 p-4">
                     <span>
-                      {poolData.poolData[pool].name}
+                      {poolData[pool].name}
                       {pool == PoolType.NFTE && <>&nbsp;</>}
                     </span>{" "}
-                    {poolData.poolData[pool].apr ? (
+                    {poolData[pool].apr ? (
                       <span className="rounded bg-green-100 px-2.5 py-0.5 text-sm font-semibold text-green-800 dark:bg-green-200 dark:text-green-900">
-                        {poolData.poolData[pool].apr?.toFixed(0)}%&nbsp;APR
+                        {poolData[pool].apr?.toFixed(0)}%&nbsp;APR
                       </span>
                     ) : (
                       <div role="status" className="max-w-sm animate-pulse">
-                        <div className="h-4 w-20 rounded-full bg-zinc-200 dark:bg-zinc-700"></div>
+                        <div className="h-4 w-20 rounded-full bg-zinc-200 dark:bg-zinc-700"/>
                         <span className="sr-only">Loading...</span>
                       </div>
                     )}
                   </td>
                   <td className="flex w-1/4 flex-wrap items-center p-4">
-                    {poolData.poolData[pool].stakedAmount ? (
+                    {poolData[pool].stakedAmount ? (
                       <>
                         {Intl.NumberFormat(undefined, {
                           maximumFractionDigits: 0,
-                        }).format(poolData.poolData[pool].stakedAmount!)}
+                        }).format(poolData[pool].stakedAmount!)}
                       </>
                     ) : (
                       <div role="status" className="max-w-sm animate-pulse">
-                        <div className="h-4 w-16 rounded-full bg-zinc-200 dark:bg-zinc-700 md:w-36"></div>
+                        <div className="h-4 w-16 rounded-full bg-zinc-200 dark:bg-zinc-700 md:w-36"/>
                         <span className="sr-only">Loading...</span>
                       </div>
                     )}
                   </td>
                   <td className="flex w-1/4 flex-wrap items-center p-4">
-                    {poolData.poolData[pool].rewardPoolPerHour &&
-                    poolData.poolData[pool].rewardPoolPerDay ? (
+                    {(poolData[pool].rewardPoolPerHour &&
+                      poolData[pool].rewardPoolPerDay) ? (
                       <>
                         {Intl.NumberFormat(undefined, {
                           maximumFractionDigits: 0,
                         }).format(
                           selectedTimeframe === TimeFrame.Hourly
-                            ? poolData.poolData[pool].rewardPoolPerHour!
-                            : poolData.poolData[pool].rewardPoolPerDay!
+                            ? poolData[pool].rewardPoolPerHour!
+                            : poolData[pool].rewardPoolPerDay!
                         )}
                       </>
                     ) : (
                       <div role="status" className="max-w-sm animate-pulse">
-                        <div className="h-4 w-16 rounded-full bg-zinc-200 dark:bg-zinc-700 md:w-36"></div>
+                        <div className="h-4 w-16 rounded-full bg-zinc-200 dark:bg-zinc-700 md:w-36"/>
                         <span className="sr-only">Loading...</span>
                       </div>
                     )}
                   </td>
                   <td className="flex w-1/4 flex-wrap items-center p-4">
-                    {poolData.poolData[pool].rewardPerHour &&
-                    poolData.poolData[pool].rewardPerDay &&
-                    nftePriceHumanNumber ? (
+                    {(poolData[pool].rewardPerHour &&
+                      poolData[pool].rewardPerDay &&
+                      nftePriceHumanNumber) ? (
                       <>
                         {isNaN(rewardMultiplier(pool)) ? (
                           <>Pool has no maximum</>
@@ -138,7 +138,7 @@ export default function Data() {
                               maximumFractionDigits: 4,
                             }).format(
                               timeFrameHourMultiplier *
-                                poolData.poolData[pool].rewardPerHour! *
+                                poolData[pool].rewardPerHour! *
                                 rewardMultiplier(pool)
                             )}{" "}
                             (
@@ -148,7 +148,7 @@ export default function Data() {
                               currency: "USD",
                             }).format(
                               timeFrameHourMultiplier *
-                                poolData.poolData[pool].rewardPerHour! *
+                                poolData[pool].rewardPerHour! *
                                 rewardMultiplier(pool) *
                                 nftePriceHumanNumber
                             )}
@@ -158,7 +158,7 @@ export default function Data() {
                       </>
                     ) : (
                       <div role="status" className="max-w-sm animate-pulse">
-                        <div className="h-4 w-16 rounded-full bg-zinc-200 dark:bg-zinc-700 md:w-36"></div>
+                        <div className="h-4 w-16 rounded-full bg-zinc-200 dark:bg-zinc-700 md:w-36"/>
                         <span className="sr-only">Loading...</span>
                       </div>
                     )}
