@@ -59,7 +59,7 @@ export default async function Page() {
           <p className="mt-2">
             No, only the NFTE gets deposited into the contract. Your NFTs act
             as keys to withdraw or claim any apecoin rewards, if you do not
-            hold the NFT you canmot get the NFTE out of the contract, but the
+            hold the NFT you cannot get the NFTE out of the contract, but the
             new owner can.
           </p>
         </>

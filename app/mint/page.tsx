@@ -1,44 +1,28 @@
-function MintEarthling({ question, answer }: { question: string; answer: any }) {
-    return (
-      <div className="mb-10">
-        <h3 className="mb-4 flex items-center text-lg font-medium text-zinc-900 dark:text-white">
-          {question}
-        </h3>
-        <div className="text-zinc-700 dark:text-zinc-400">{answer}</div>
+import Events from "../../components/events";
+import Data from "../../components/data";
+import UserStaking from "../../components/userStaking";
+
+export default async function Page() {
+  return (
+    <>
+      <div>
+        <UserStaking />
       </div>
-    );
-  }
-  export default async function Page() {
-    const faqs = [
-      {
-        question: "Where do I mint an Earthling?",
-        answer: (
-          <>
-            <p className="mt-2">
-              Mint on of the capped supply flagship NFTs at the Earthling mint page!
-            </p>
-            <p className="mt-2">
-              The official link to get the is{" "}
-              <a className="underline" href="https://mintearthling.nftearth.exchange">
-                https://mintearthling.nftearth.exchange
-              </a>
-            </p>
-            <p className="mt-2">
-              The official twitter account for NFTEarth is{" "}
-              <a className="underline" href="https://twitter.com/NFTEarth_L2">
-                @NFTEarth_L2
-                </a>
-            </p>
-          </>
-        ),
-      },
-      {
-        question: "Got a question you still want answered?",
-        answer: (
-          <>
-            Send a tweet or DM{" "}
-            <a className="text-[#1da1f2]" href="https://twitter.com/NFTEarth_L2">
-              @NFTEarth_L2
+
+      <div className="mt-10">
+        <h3 className="text-3xl font-bold">Mint an Earthling</h3>
+        <Data />
+      </div>
+
+
+{ <div className="mt-10">
+  <h3 className="text-3xl font-bold">Live Minting Activity:</h3>
+  <Events />
+</div> }
+</>
+);
+}
+
             </a>{" "}
             on Twitter and we will do our best to get you an answer!
           </>
@@ -60,5 +44,3 @@ function MintEarthling({ question, answer }: { question: string; answer: any }) 
       </>
     );
   }
-  
-  
