@@ -10,7 +10,7 @@ import { TimeFrame } from "../types/timeframe";
 import { PoolType } from "../types/data";
 
 import TimeframeSelector from "./timeframeSelector";
-import { Dispatch, useEffect, useState } from "react";
+import {Dispatch, useEffect, useMemo, useState} from "react";
 import useBalances from "../hooks/useBalances";
 import useNfteBalance from "../hooks/useNfteBalance";
 import { useAccount } from "wagmi";
@@ -18,7 +18,7 @@ import useAllStakes from "../hooks/useAllStakes";
 import { BigNumber } from "ethers";
 
 export default function Calculator() {
-  const poolData = usePoolData();
+  const { poolData } = usePoolData();
   const { NftePrice } = usePrice();
   const { timeframe } = useTimeframe();
   const { earthlingPoolStakable, roboroverPoolStakable, nfw3cPoolStakable } =
@@ -146,17 +146,23 @@ export default function Calculator() {
     setNfw3cTokenOwnedCount(nfw3cPoolStakable);
   }, [nfw3cPoolStakable]);
 
-  const totalStakable =
-    nfteToStakeCount +
+  const totalStakable = useMemo(() => (nfteToStakeCount +
     earthlingTokenToStakeCount +
     roboroverTokenToStakeCount +
-    nfw3cTokenToStakeCount;
+    nfw3cTokenToStakeCount)
+    , [
+      nfteToStakeCount,
+      earthlingTokenToStakeCount,
+      roboroverTokenToStakeCount,
+      nfw3cTokenToStakeCount
+  ]);
 
-  const hourlyRewardsTotal =
-    nfteToStakeCount * poolData.poolData[PoolType.NFTE].rewardPerHour! +
-    earthlingTokenToStakeCount * poolData.poolData[PoolType.EARTHLING].rewardPerHour! +
-    roboroverTokenToStakeCount * poolData.poolData[PoolType.ROBOROVER].rewardPerHour! +
-    nfw3cTokenToStakeCount * poolData.poolData[PoolType.NFW3C].rewardPerHour!;
+  const hourlyRewardsTotal = useMemo(() => (
+    nfteToStakeCount * poolData[PoolType.NFTE].rewardPerHour! +
+    earthlingTokenToStakeCount * poolData[PoolType.EARTHLING].rewardPerHour! +
+    roboroverTokenToStakeCount * poolData[PoolType.ROBOROVER].rewardPerHour! +
+    nfw3cTokenToStakeCount * poolData[PoolType.NFW3C].rewardPerHour!
+  ), [poolData]);
 
   const dailyRewardsTotal = hourlyRewardsTotal * 24;
   const weeklyRewardsTotal = dailyRewardsTotal * 7;
@@ -202,7 +208,7 @@ export default function Calculator() {
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-200 dark:divide-zinc-700">
-            {(Object.keys(poolData.poolData) as unknown as PoolType[]).map(
+            {(Object.keys(poolData) as unknown as PoolType[]).map(
               (pool) => (
                 <tr key={pool} className="flex">
                   <td className="flex w-1/3 flex-wrap items-center gap-2 p-4">
@@ -219,7 +225,7 @@ export default function Calculator() {
                       }}
                     />
                     <span>
-                      {poolData.poolData[pool].name}
+                      {poolData[pool].name}
                       {pool != PoolType.NFTE && <>&nbsp;NFTs</>}
                     </span>{" "}
                   </td>
@@ -267,14 +273,14 @@ export default function Calculator() {
                     )}
                   </td>
                   <td className="flex w-1/3 flex-wrap items-center gap-2 p-4">
-                    {poolData.poolData[pool].rewardPerHour &&
-                    poolData.poolData[pool].rewardPerDay &&
+                    {poolData[pool].rewardPerHour &&
+                    poolData[pool].rewardPerDay &&
                     nftePriceNumber ? (
                       <>
                         {Intl.NumberFormat("en-US", {
                           maximumFractionDigits: 4,
                         }).format(
-                          poolData.poolData[pool].rewardPerHour! *
+                          poolData[pool].rewardPerHour! *
                             timeFrameHourMultiplier *
                             PoolDataObject[pool].toStake
                         )}{" "}
@@ -284,7 +290,7 @@ export default function Calculator() {
                           style: "currency",
                           currency: "USD",
                         }).format(
-                          poolData.poolData[pool].rewardPerHour! *
+                          poolData[pool].rewardPerHour! *
                             timeFrameHourMultiplier *
                             PoolDataObject[pool].toStake *
                             nftePriceNumber!
@@ -293,7 +299,7 @@ export default function Calculator() {
                       </>
                     ) : (
                       <div role="status" className="max-w-sm animate-pulse">
-                        <div className="h-4 w-16 rounded-full bg-zinc-200 dark:bg-zinc-700 md:w-36"></div>
+                        <div className="h-4 w-16 rounded-full bg-zinc-200 dark:bg-zinc-700 md:w-36"/>
                         <span className="sr-only">Loading...</span>
                       </div>
                     )}
@@ -340,7 +346,7 @@ export default function Calculator() {
                   </>
                 ) : (
                   <div role="status" className="max-w-sm animate-pulse">
-                    <div className="h-4 w-16 rounded-full bg-zinc-200 dark:bg-zinc-700 md:w-36"></div>
+                    <div className="h-4 w-16 rounded-full bg-zinc-200 dark:bg-zinc-700 md:w-36"/>
                     <span className="sr-only">Loading...</span>
                   </div>
                 )}
