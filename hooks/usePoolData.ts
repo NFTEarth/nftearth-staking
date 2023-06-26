@@ -3,10 +3,6 @@ import StakingABI from "../abis/staking";
 import { useEffect, useState } from "react";
 import { formatUnits } from "ethers/lib/utils.js";
 import {Pool, PoolData} from "../types/data";
-import {
-  CHAIN_ID,
-  stakingContractAddresses
-} from "../constants";
 
 function calculateAPR(perDayPool: number, stakedAmount: number): number {
   return (perDayPool / stakedAmount) * 365 * 100;

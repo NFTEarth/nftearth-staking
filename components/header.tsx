@@ -8,7 +8,7 @@ export default function Header() {
     { name: "Data", pathname: "/data" },
     { name: "Stake", pathname: "/stake" },
     { name: "Mint", pathname: "/mint" },
-    { name: "veNFTE", pathname: "/venfte" },
+    { name: "veNFTE", pathname: "/venfte"},
     { name: "FAQ", pathname: "/faq" },
   ];
 
