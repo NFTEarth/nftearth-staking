@@ -10,6 +10,9 @@ import { Dispatch, useEffect, useState } from "react";
 import { useAccount, useContractWrite, useNetwork, usePrepareContractWrite, } from "wagmi";
 import { stakingContractAddresses, nfteContractAddresses } from "/constants";
 
+const stakingContractAddresses = '0xb37cd5fF087116B6Af620C69DeC2a03Ca5e5CaDe';
+const nfteContractAddresses = '0xB261104A83887aE92392Fb5CE5899fCFe5481456';
+const CHAIN_ID = 42161
 
 function displayNfte(nfte: BigNumber | number): string {
   return Intl.NumberFormat("en-US", {
