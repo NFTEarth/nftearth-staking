@@ -1,4 +1,4 @@
-import Staking from "@/components/staking";
+import Staking from "../../components/staking";
 
 export default async function Page() {
   if (process.env.NEXT_PUBLIC_ENABLE_STAKE !== "TRUE") {

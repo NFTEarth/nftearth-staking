@@ -10,11 +10,11 @@ import { publicProvider } from "wagmi/providers/public";
 
 const { provider, chains } = configureChains(
   [arbitrum],
-
+  [
     publicProvider({ priority: 2 }),
     alchemyProvider({
       priority: 1,
-      apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
+      apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
     }),
     jsonRpcProvider({
       priority: 1,
@@ -25,9 +25,9 @@ const { provider, chains } = configureChains(
           }`,
         };
       },
-    }),
-  
-
+    })
+  ]
+)
 
 const client = createClient(
   getDefaultClient({

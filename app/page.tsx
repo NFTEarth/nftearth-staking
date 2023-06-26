@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Events from "@/components/events";
-import Countdown from "@/components/countdown";
+import Events from "../components/events";
+import Countdown from "../components/countdown";
 
 export default async function Page() {
   return (
