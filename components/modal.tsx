@@ -8,7 +8,7 @@ import { BigNumber, ethers } from "ethers";
 import { Modal } from "flowbite-react";
 import { Dispatch, useEffect, useState } from "react";
 import { useAccount, useContractWrite, useNetwork, usePrepareContractWrite, } from "wagmi";
-import { stakingContractAddresses, nfteContractAddresses } from "../constants/addresses";
+import { stakingContractAddresses, nfteContractAddresses } from "/constants";
 
 
 function displayNfte(nfte: BigNumber | number): string {
