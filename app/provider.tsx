@@ -16,16 +16,16 @@ const { provider, chains } = configureChains(
       priority: 1,
       apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
     }),
-    jsonRpcProvider({
-      priority: 1,
-      rpc: (chain) => {
-        return {
-          http: `https://staking.nftearth.exchange${
-            chain.id === arbitrum.id ? "/v1/arbitrum" : "/v1/goerli"
-          }`,
-        };
-      },
-    })
+    // jsonRpcProvider({
+    //   priority: 1,
+    //   rpc: (chain) => {
+    //     return {
+    //       http: `https://staking.nftearth.exchange${
+    //         chain.id === arbitrum.id ? "/v1/arbitrum" : "/v1/goerli"
+    //       }`,
+    //     };
+    //   },
+    // })
   ]
 )
 
