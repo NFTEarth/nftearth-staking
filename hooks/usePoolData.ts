@@ -1,21 +1,18 @@
 import { useContractRead, useNetwork } from "wagmi";
 import StakingABI from "../abis/staking";
 import { useEffect, useState } from "react";
-import { formatUnits } from "ethers/lib/utils.js";
-import {Pool, PoolData} from "../types/data";
-import {
-  CHAIN_ID,
-  stakingContractAddresses
-} from "../constants";
+import { formatUnits } from "ethers/lib/utils";
+import { Pool, PoolData } from "../types/data";
+import { CHAIN_ID, stakingContractAddresses } from "../constants";
 
 function calculateAPR(perDayPool: number, stakedAmount: number): number {
   return (perDayPool / stakedAmount) * 365 * 100;
 }
 
-function usePoolData(): {
+const usePoolData = () : {
   initialLoad: boolean;
   poolData: PoolData;
-} {
+} =>  {
   const { chain } = useNetwork();
 
   const { data: poolsContractReadData, isSuccess, isRefetching } = useContractRead<typeof StakingABI, 'getPoolsUI', Pool[]>({

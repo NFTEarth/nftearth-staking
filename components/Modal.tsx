@@ -3,30 +3,16 @@
 import ABI from "../abis/staking";
 import useAllStakes, { poolStakesData } from "../hooks/useAllStakes";
 import { Map } from "../types/map";
-import {
-  CheckCircleIcon,
-  ClockIcon,
-  WalletIcon,
-  XCircleIcon,
-} from "@heroicons/react/24/solid";
+import { CheckCircleIcon, ClockIcon, WalletIcon, XCircleIcon,} from "@heroicons/react/24/solid";
 import { BigNumber, ethers } from "ethers";
 import { Modal } from "flowbite-react";
 import { Dispatch, useEffect, useState } from "react";
-import {
-  useAccount,
-  useContractWrite,
-  useNetwork,
-  usePrepareContractWrite,
-} from "wagmi";
-import {
-  CHAIN_ID,
-  stakingContractAddresses
-} from "../constants";
-
+import { useAccount, useContractWrite, useNetwork, usePrepareContractWrite, } from "wagmi";
+import { stakingContractAddresses } from "../constants";
 
 function displayNfte(nfte: BigNumber | number): string {
   return Intl.NumberFormat("en-US", {
-    maximumFractionDigits: 4,
+    maximumFractionDigits: 8,
   }).format(+ethers.utils.formatUnits(nfte));
 }
 
@@ -35,8 +21,8 @@ const ClaimNfte = () => {
   const { address } = useAccount();
   const { nfteStakes } : ReturnType<typeof  useAllStakes> = useAllStakes(address);
 
-  const nftePrepareContractWrite = usePrepareContractWrite({
-    address: stakingContractAddresses[chain?.id || CHAIN_ID],
+  const nftePrepareContractWrite = usePrepareContractWrite<typeof ABI, 'claimSelfNfte', any>({
+    address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "claimSelfNfte",
   });
@@ -47,7 +33,7 @@ const ClaimNfte = () => {
 
   useEffect(() => {
     nfteContractWrite.write?.();
-  }, []);
+  }, [nfteContractWrite]);
 
   if (!nfteStakes) return <>No NFTE</>;
   return (
@@ -67,9 +53,7 @@ const ClaimNfte = () => {
 const ClaimEarthling = () => {
   const { chain } = useNetwork();
   const { address } = useAccount();
-
   const { earthlingStakes } : ReturnType<typeof  useAllStakes> = useAllStakes(address);
-
   const [state, setState] = useState<string>();
 
   const args = earthlingStakes
@@ -82,33 +66,25 @@ const ClaimEarthling = () => {
       return token !== undefined;
     });
 
-  const earthlingPrepareContractWrite = usePrepareContractWrite({
-    address: stakingContractAddresses[chain?.id || 1],
+  const { config: earthlingConfig } = usePrepareContractWrite({
+    address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "claimSelfEARTHLING",
     args: [args as any],
   });
 
-  const earthlingContractWrite = useContractWrite(earthlingPrepareContractWrite.config);
+  const nfteContractWrite = useContractWrite(
+    earthlingConfig
+  );
 
-  const earthlingPoolUnclaimed =
-    earthlingStakes?.reduce((total, token) => {
-      return total.add(token.unclaimed);
-    }, ethers.constants.Zero) || 0;
+  useEffect(() => {
+    nfteContractWrite.write?.();
+  }, [nfteContractWrite]);
 
-//   useEffect(() => {
-//     if (state !== "started") {
-//       if (earthlingContractWrite.write) {
-//         setState("started");
-//         earthlingContractWrite.write();
-//       }
-//     }
-//   }, [earthlingContractWrite.write]);
-
-  if (!earthlingStakes) return <>No Earthling Rewards</>;
+  if (!earthlingStakes) return <>No Earthlings</>;
   return (
     <>
-      Claim {displayNfte(earthlingPoolUnclaimed)} from EARTHLING Pool{" "}
+      Claim {displayNfte(earthlingStakes[0].unclaimed)} from Earthling Pool{" "}
       <CheckCircleIcon className="h-5 w-5 text-green-500" />
       <a
         href=""
@@ -119,6 +95,61 @@ const ClaimEarthling = () => {
     </>
   );
 };
+
+const ClaimRoboRover = () => {
+  const { chain } = useNetwork();
+  const { address } = useAccount();
+  const { roboroverStakes } = useAllStakes(address);
+  const [state, setState] = useState<string>();
+
+  roboroverStakes
+  ?.map((token) => {
+    if (token.unclaimed?.gt(0)) {
+      return token.tokenId.toNumber();
+    }
+  })
+  .filter((token) => {
+    return token !== undefined;
+  });
+
+  const { config: roboRoverConfig } = usePrepareContractWrite({
+    address: stakingContractAddresses[chain?.id || 42161],
+    abi: ABI,
+    functionName: "claimSelfROBOROVER",
+    args: [roboroverStakes as any],
+  });
+
+  const roboRoverContractWrite = useContractWrite(
+    roboRoverConfig
+  );
+
+  useEffect(() => {
+    roboRoverContractWrite.write?.();
+  }, [roboRoverContractWrite]);
+
+  if (!roboroverStakes) return <>No RoboRover</>;
+  return (
+    <>
+      Claim {displayNfte(roboroverStakes[2].unclaimed)} from RoboRover Pool{" "}
+      <CheckCircleIcon className="h-5 w-5 text-green-500" />
+      <a
+        href=""
+        className="text-sm text-green-800 hover:underline dark:text-green-400"
+      >
+        View Tx
+      </a>
+    </>
+  );
+};
+
+//   useEffect(() => {
+//     if (state !== "started") {
+//       if (earthlingContractWrite.write) {
+//         setState("started");
+//         earthlingContractWrite.write();
+//       }
+//     }
+//   }, [earthlingContractWrite.write]);
 
 const ClaimAllModal: React.FC<{
   show: boolean;

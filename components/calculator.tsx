@@ -115,24 +115,24 @@ export default function Calculator() {
     setEathlingTokenToStakeCount(
       earthlingTokenOwnedCount * PoolDataObject[PoolType.EARTHLING].maxStakeAmount!
     );
-  }, [earthlingTokenOwnedCount]);
+  }, [PoolDataObject, earthlingTokenOwnedCount]);
 
   useEffect(() => {
     setRoboroverTokenToStakeCount(
       roboroverTokenOwnedCount * PoolDataObject[PoolType.ROBOROVER].maxStakeAmount!
     );
-  }, [roboroverTokenOwnedCount]);
+  }, [PoolDataObject, roboroverTokenOwnedCount]);
 
   useEffect(() => {
     setNfw3cTokenToStakeCount(
       nfw3cTokenOwnedCount * PoolDataObject[PoolType.NFW3C].maxStakeAmount!
     );
-  }, [nfw3cTokenOwnedCount]);
+  }, [PoolDataObject, nfw3cTokenOwnedCount]);
 
   useEffect(() => {
     if (unstakedNfte.isZero()) return;
     setNfteOwnedCount(Math.round(+formatUnits(unstakedNfte)));
-  }, [NfteBalance]);
+  }, [NfteBalance, unstakedNfte]);
 
   useEffect(() => {
     setEathlingTokenOwnedCount(earthlingPoolStakable);
@@ -162,7 +162,7 @@ export default function Calculator() {
     earthlingTokenToStakeCount * poolData[PoolType.EARTHLING].rewardPerHour! +
     roboroverTokenToStakeCount * poolData[PoolType.ROBOROVER].rewardPerHour! +
     nfw3cTokenToStakeCount * poolData[PoolType.NFW3C].rewardPerHour!
-  ), [poolData]);
+  ), [earthlingTokenToStakeCount, nfteToStakeCount, nfw3cTokenToStakeCount, poolData, roboroverTokenToStakeCount]);
 
   const dailyRewardsTotal = hourlyRewardsTotal * 24;
   const weeklyRewardsTotal = dailyRewardsTotal * 7;
