@@ -1,7 +1,9 @@
-import { useContractRead, useNetwork, useEnsAddress } from "wagmi";
+import {useContractRead, useNetwork} from "wagmi";
 import StakingABI from "../abis/staking";
 import { BigNumber } from "ethers";
+import useEnsResolver from './useENSResolver'
 import {
+  CHAIN_ID,
   stakingContractAddresses
 } from "../constants";
 
@@ -15,8 +17,8 @@ export interface poolStakesData {
 }
 
 type useAllStakesReturn = {
-  isError: boolean
   error: Error | null
+  addressError: Error | null
   poolsContractReadData: poolStakesData[],
   nfteStakes: poolStakesData[],
   earthlingStakes: poolStakesData[],
@@ -26,18 +28,18 @@ type useAllStakesReturn = {
 
 const useAllStakes = (addressOrEns?: `0x${string}`) : useAllStakesReturn => {
   const { chain } = useNetwork();
-  const { data } = useEnsAddress({
-    name: addressOrEns,
-  });
+  const { address, error: addressError } = useEnsResolver(addressOrEns, CHAIN_ID);
 
-  const { data: poolsContractReadData = [], isError, error } = useContractRead<typeof StakingABI, 'getAllStakes', poolStakesData[]>({
-    enabled: addressOrEns !== undefined && addressOrEns !== "0x",
+  const isNonEmpty = !!addressOrEns && addressOrEns !== "0x" && !addressError;
+
+  const { data: poolsContractReadData = [], error } = useContractRead<typeof StakingABI, 'getAllStakes', poolStakesData[]>({
+    enabled: isNonEmpty,
     address: stakingContractAddresses[chain?.id || 42161],
     abi: StakingABI,
     functionName: "getAllStakes",
     watch: true,
     chainId: chain?.id || 42161,
-    args: [data as `0x${string}`],
+    args: [address as `0x${string}`],
   });
 
   const nfteStakes: poolStakesData[] =
@@ -69,8 +71,8 @@ const useAllStakes = (addressOrEns?: `0x${string}`) : useAllStakesReturn => {
     });
 
   return {
-    isError,
     error,
+    addressError,
     poolsContractReadData,
     nfteStakes,
     earthlingStakes,

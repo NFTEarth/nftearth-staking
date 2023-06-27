@@ -5,7 +5,7 @@ import { arbitrum } from "wagmi/chains";
 
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
 import { alchemyProvider } from "wagmi/providers/alchemy";
-import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
+// import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { publicProvider } from "wagmi/providers/public";
 
 const { provider, chains } = configureChains(
@@ -34,7 +34,7 @@ const client = createClient(
     appName: "NFTEarth",
     alchemyId: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
     chains: chains,
-    autoConnect: false,
+    autoConnect: true,
     provider: provider,
   })
 );

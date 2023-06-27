@@ -15,6 +15,7 @@ import usePrice from "../hooks/usePrice";
 import ABI from "../abis/staking";
 import { BigNumber } from "ethers";
 import {
+  CHAIN_ID,
   stakingContractAddresses
 } from "../constants";
 
@@ -33,10 +34,9 @@ function ClaimAll({
   nfw3cStakes: poolStakesData[] | undefined;
 }) {
   const nfteClaimPrepareContractWrite = usePrepareContractWrite({
-    enabled:
-      nfteStakes &&
-      nfteStakes.length !== 0 &&
-      !nfteStakes[0].unclaimed.isZero(),
+    enabled: (nfteStakes &&
+    nfteStakes.length !== 0 &&
+    !nfteStakes[0].unclaimed.isZero()),
     address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "claimSelfNfte",
@@ -169,7 +169,7 @@ function WithdrawAll({
     address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "withdrawSelfNfte",
-    args: nfteStakes?.[0]?.deposited && [nfteStakes[0].deposited],
+    args: nfteStakes?.[0]?.deposited ? [nfteStakes[0].deposited] : undefined,
   });
 
   const nfteWithdrawContractWrite = useContractWrite(
@@ -197,7 +197,7 @@ function WithdrawAll({
 
   const earthlingWithdrawPrepareContractWrite = usePrepareContractWrite({
     enabled: earthlingStakes && earthlingStakes.length > 0,
-    address: stakingContractAddresses[chain?.id || 42161],
+    address: stakingContractAddresses[chain?.id || CHAIN_ID],
     abi: ABI,
     functionName: "withdrawSelfEARTHLING",
     args: earthlingWithdrawArgs && ([earthlingWithdrawArgs] as any),
@@ -303,7 +303,7 @@ export default function UserStaking() {
   const { chain } = useNetwork();
   const { address } = useAccount();
   const { NftePrice } = usePrice();
-  const [statsAddress, setStatsAddress] = useState<`0x${string}` | undefined>();
+  const [statsAddress, setStatsAddress] = useState<`0x${string}` | undefined>('0x');
   useEffect(() => {
     if (address) {
       setStatsAddress(address);
@@ -311,7 +311,7 @@ export default function UserStaking() {
   }, [address]);
 
   const {
-    isError,
+    addressError,
     error,
     poolsContractReadData,
     nfteStakes,
@@ -349,7 +349,7 @@ export default function UserStaking() {
               setStatsAddress(e.target.value as `0x${string}`);
             }}
           />
-          {(statsAddress && isError && error) && (
+          {addressError && (
             <span>{`Invalid address or ENS name`}</span>
           )}
         </div>
@@ -367,7 +367,7 @@ export default function UserStaking() {
                   {Intl.NumberFormat("en-US", {
                     maximumFractionDigits: 4,
                   }).format(totalStaked)}
-                  {totalStaked && nftePriceNumber && (
+                  {(totalStaked && nftePriceNumber) && (
                     <>
                       {" "}
                       (
@@ -382,8 +382,8 @@ export default function UserStaking() {
                     </>
                   )}
                 </div>
-                {address === statsAddress &&
-                  process.env.NEXT_PUBLIC_ENABLE_STAKE === "TRUE" && (
+                {(address === statsAddress &&
+                  process.env.NEXT_PUBLIC_ENABLE_STAKE === "TRUE") && (
                     <WithdrawAll
                       chain={chain}
                       nfteStakes={nfteStakes}
@@ -414,18 +414,16 @@ export default function UserStaking() {
                 {totalUnclaimed && nftePriceNumber && (
                   <>
                     {" "}
-                    (
                     {Intl.NumberFormat("en-US", {
                       style: "currency",
                       currency: "USD",
                       notation: "compact",
                       compactDisplay: "short",
                     }).format(totalUnclaimed * nftePriceNumber)}
-                    )
                   </>
                 )}
-                {address === statsAddress &&
-                  process.env.NEXT_PUBLIC_ENABLE_STAKE === "TRUE" && (
+                {(address === statsAddress &&
+                  process.env.NEXT_PUBLIC_ENABLE_STAKE === "TRUE") && (
                     <ClaimAll
                       chain={chain}
                       nfteStakes={nfteStakes}

@@ -13,7 +13,7 @@ export default (address?: string, chainId: number = 1) => {
   const response = useSWR(
     `https://api.ensideas.com/ens/resolve/${addressLowercase}`,
     (url: string) => {
-      if (!isENSAvailable || !address) {
+      if (!isENSAvailable || !address || address === '' || address === '0x') {
         return null
       }
       return fetch(url).then((response) => response.json())

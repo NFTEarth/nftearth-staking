@@ -8,7 +8,8 @@ function Question({ question, answer }: { question: string; answer: any }) {
     </div>
   );
 }
-export default async function Page() {
+
+const FaqPage = () => {
   const faqs = [
     {
       question: "What are the official links?",
@@ -130,3 +131,5 @@ export default async function Page() {
     </>
   );
 }
+
+export default FaqPage;
