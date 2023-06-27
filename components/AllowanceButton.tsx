@@ -54,7 +54,7 @@ export default function AllowanceButton() {
 
   return (
     <button
-      className="ml-2 border px-2 hover:border-gray-500 disabled:text-gray-400 disabled:hover:cursor-not-allowed dark:border-slate-500 dark:bg-slate-800  dark:hover:border-slate-300"
+      className="ml-2 border px-3 py-2 hover:border-gray-500 disabled:text-gray-400 disabled:hover:cursor-not-allowed dark:border-slate-500 dark:bg-slate-800  dark:hover:border-slate-300"
       disabled={
         contractWrite.isLoading ||
         waitForTransaction.isFetching ||
@@ -64,7 +64,7 @@ export default function AllowanceButton() {
         contractWrite.write?.();
       }}
     >
-      Approve NFTE Staking Unlimited Allowance
+      Approve NFTE Staking
     </button>
   );
 }

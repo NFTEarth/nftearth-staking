@@ -303,7 +303,7 @@ export default function UserStaking() {
   const { chain } = useNetwork();
   const { address } = useAccount();
   const { NftePrice } = usePrice();
-  const [statsAddress, setStatsAddress] = useState<string>("");
+  const [statsAddress, setStatsAddress] = useState<`0x${string}` | undefined>();
   useEffect(() => {
     if (address) {
       setStatsAddress(address);
@@ -342,17 +342,16 @@ export default function UserStaking() {
           </h5>
           <input
             spellCheck="false"
-            className="w-full border px-1 text-xs dark:border-zinc-500 dark:bg-zinc-800"
+            className="w-full border px-1 text-xs dark:border-zinc-500 dark:bg-zinc-800 px-3 py-2"
             value={statsAddress}
             placeholder={"enter address or ens name"}
             onChange={(e) => {
-              setStatsAddress(e.target.value);
+              setStatsAddress(e.target.value as `0x${string}`);
             }}
           />
-          {(statsAddress &&
-            isError &&
-            error) &&
-            "Invalid address or ENS name"}
+          {(statsAddress && isError && error) && (
+            <span>{`Invalid address or ENS name`}</span>
+          )}
         </div>
         <div
           className={`block border border-zinc-200 bg-white p-4

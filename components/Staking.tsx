@@ -11,6 +11,7 @@ import useAllowance from "../hooks/useAllowance";
 import AllowanceButton from "./AllowanceButton";
 import { formatUnits } from "ethers/lib/utils.js";
 import UserStaking from "./userStaking";
+import useMounted from "../hooks/useMounted";
 
 interface poolStakesData {
   poolId: BigNumber;
@@ -24,16 +25,13 @@ interface poolStakesData {
 export default function Staking() {
   const { address, isConnected } = useAccount();
   const { NftePrice } = usePrice();
-  const autoConnectinng = useAutoConnecting();
-  const allowance = useAllowance();
-  const [statsAddress, setStatsAddress] = useState<string>("");
-  useEffect(() => {
-    if (address) {
-      setStatsAddress(address);
-    }
-  }, [address]);
+  const mounted = useMounted()
+  const { data: allowance } = useAllowance();
+  const { poolsContractReadData: allStakes } : ReturnType<typeof  useAllStakes> = useAllStakes(address);
 
-  const { poolsContractReadData: allStakes } = useAllStakes(statsAddress);
+  if (!mounted) {
+    return null;
+  }
 
   if (!isConnected) {
     return <h1>You must be connected to stake.</h1>;
@@ -79,7 +77,7 @@ export default function Staking() {
     if (poolID === 0) {
       const token = allStakes?.[0];
       if (token?.deposited.gt(0)) {
-        return asString ? token.deposited.toString() : token.deposited;
+        return asString ? token?.deposited.toString() : token?.deposited;
       } else {
         return "";
       }
@@ -228,24 +226,25 @@ export default function Staking() {
       </div>
 
       <div className="mt-10 overflow-scroll">
-        {allowance?.data?.eq(0) ? (
-          <>
-            <div>NFTE Staking Contract Allowance Approval not set:</div>
+        {allowance?.eq(0) ? (
+          <div className="mb-10">
+            <div className="mb-4">NFTE Staking Contract Allowance Approval not set:</div>
             <AllowanceButton />
-          </>
+          </div>
         ) : (
-          <div>
-            NFTE Staking Contract Allowance set to{" "}
-            {+formatUnits(allowance.data?.toString()!) >= 1e9
-              ? "Unlimited"
-              : formatUnits(allowance.data?.toString()!)}
+          <div className="mb-10">
+            <div className="mb-4">
+              {`NFTE Staking Contract Allowance set to ${+formatUnits(allowance?.toString() || '0') >= 1e9
+                ? "Unlimited"
+                : formatUnits(allowance?.toString() || '0')}`}
+            </div>
             <AllowanceButton />
           </div>
         )}
 
         <h2 className="text-4xl font-extrabold">NFTE Staking Pool</h2>
         <NfteTable
-          nfteStakes={nfteStakes}
+          nfteStakes={nfteStakes || []}
           withdrawArgs={withdrawArgs}
           claimArgs={claimArgs}
           nftePrice={NftePrice}
@@ -274,7 +273,7 @@ export default function Staking() {
         <NftTable
           poolId={2}
           tokenSymbol={"ROBOROVER"}
-          poolStakes={roboroverStakes}
+          poolStakes={roboroverStakes || []}
           withdrawArgs={withdrawArgs}
           claimArgs={claimArgs}
           nftePrice={NftePrice}
@@ -288,7 +287,7 @@ export default function Staking() {
         </h2>
 
         <Nfw3cTable
-          poolStakes={nfw3cStakes}
+          poolStakes={nfw3cStakes || []}
           withdrawArgs={withdrawNfw3cArgs}
           claimArgs={claimNfw3cArgs}
           nftePrice={NftePrice}

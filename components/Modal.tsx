@@ -33,7 +33,7 @@ function displayNfte(nfte: BigNumber | number): string {
 const ClaimNfte = () => {
   const { chain } = useNetwork();
   const { address } = useAccount();
-  const { nfteStakes } = useAllStakes(address as string);
+  const { nfteStakes } : ReturnType<typeof  useAllStakes> = useAllStakes(address);
 
   const nftePrepareContractWrite = usePrepareContractWrite({
     address: stakingContractAddresses[chain?.id || CHAIN_ID],
@@ -68,7 +68,7 @@ const ClaimEarthling = () => {
   const { chain } = useNetwork();
   const { address } = useAccount();
 
-  const { earthlingStakes } = useAllStakes(address as string);
+  const { earthlingStakes } : ReturnType<typeof  useAllStakes> = useAllStakes(address);
 
   const [state, setState] = useState<string>();
 

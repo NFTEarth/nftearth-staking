@@ -146,7 +146,6 @@ export function NfteTable({
               {nftePrice && (
                 <>
                   {" "}
-                  (
                   {Intl.NumberFormat(undefined, {
                     maximumFractionDigits: 4,
                     style: "currency",
@@ -155,9 +154,8 @@ export function NfteTable({
                     compactDisplay: "short",
                   }).format(
                     +formatUnits(stake.unclaimed) *
-                      +formatUnits(nftePrice, 8)
+                    +formatUnits(nftePrice, 8)
                   )}
-                  )
                 </>
               )}
             </td>

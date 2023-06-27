@@ -14,14 +14,24 @@ export interface poolStakesData {
   pair: { mainTokenId: BigNumber; mainTypePoolId: BigNumber };
 }
 
-function useAllStakes(addressOrEns: string) {
+type useAllStakesReturn = {
+  isError: boolean
+  error: Error | null
+  poolsContractReadData: poolStakesData[],
+  nfteStakes: poolStakesData[],
+  earthlingStakes: poolStakesData[],
+  roboroverStakes: poolStakesData[],
+  nfw3cStakes: poolStakesData[],
+}
+
+const useAllStakes = (addressOrEns?: `0x${string}`) : useAllStakesReturn => {
   const { chain } = useNetwork();
   const { data } = useEnsAddress({
     name: addressOrEns,
   });
 
-  const { data: poolsContractReadData, isError, error } = useContractRead<typeof StakingABI, 'getAllStakes', poolStakesData[]>({
-    enabled: addressOrEns !== undefined && addressOrEns !== "",
+  const { data: poolsContractReadData = [], isError, error } = useContractRead<typeof StakingABI, 'getAllStakes', poolStakesData[]>({
+    enabled: addressOrEns !== undefined && addressOrEns !== "0x",
     address: stakingContractAddresses[chain?.id || 42161],
     abi: StakingABI,
     functionName: "getAllStakes",
@@ -30,29 +40,29 @@ function useAllStakes(addressOrEns: string) {
     args: [data as `0x${string}`],
   });
 
-  const nfteStakes: poolStakesData[] | undefined =
-    poolsContractReadData?.filter((stake) => {
+  const nfteStakes: poolStakesData[] =
+    poolsContractReadData.filter((stake) => {
       if (stake.poolId.toNumber() === 0) {
         return true;
       }
     });
 
-  const earthlingStakes: poolStakesData[] | undefined =
-    poolsContractReadData?.filter((stake: any) => {
+  const earthlingStakes: poolStakesData[] =
+    poolsContractReadData.filter((stake) => {
       if (stake.poolId.toNumber() === 1) {
         return true;
       }
     });
 
-  const roboroverStakes: poolStakesData[] | undefined =
-    poolsContractReadData?.filter((stake: any) => {
+  const roboroverStakes: poolStakesData[] =
+    poolsContractReadData.filter((stake) => {
       if (stake.poolId.toNumber() === 2) {
         return true;
       }
     });
 
-  const nfw3cStakes: poolStakesData[] | undefined =
-    poolsContractReadData?.filter((stake: any) => {
+  const nfw3cStakes: poolStakesData[] =
+    poolsContractReadData.filter((stake) => {
       if (stake.poolId.toNumber() === 3) {
         return true;
       }

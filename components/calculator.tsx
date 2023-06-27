@@ -27,7 +27,7 @@ export default function Calculator() {
 
   const { address } = useAccount();
 
-  const { poolsContractReadData: allStakes } = useAllStakes(address!);
+  const { poolsContractReadData: allStakes } : ReturnType<typeof  useAllStakes> = useAllStakes(address!);
 
   // nftePrice comes back as a big number and nfte token has 8 decimal
   // places, so we need to turn it into a formatted string via ethers then
@@ -99,7 +99,7 @@ export default function Calculator() {
     }, BigNumber.from(0)) || BigNumber.from(0);
 
   let unstakedNfte = NfteBalance || BigNumber.from(0);
-  if (allStakes && allStakes[0].deposited) {
+  if (allStakes && allStakes[0]?.deposited) {
     unstakedNfte = unstakedNfte.add(allStakes[0].deposited);
   }
 

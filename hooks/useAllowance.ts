@@ -5,12 +5,13 @@ import {
   nfteContractAddresses,
   CHAIN_ID
 } from "../constants";
+import {BigNumber} from "ethers";
 
 function useAllowance() {
   const { chain } = useNetwork();
   const { address } = useAccount();
 
-  return useContractRead({
+  return useContractRead<typeof NFTETokenABI, 'allowance', BigNumber>({
     enabled: address !== undefined,
     address: nfteContractAddresses[chain?.id || CHAIN_ID],
     abi: NFTETokenABI,
