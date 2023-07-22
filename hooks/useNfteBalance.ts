@@ -14,7 +14,7 @@ const useNfteBalance = () => {
     enabled: isConnected,
     address: address,
     token: nfteContractAddresses[chain?.id!] as `0x{String}`,
-    watch: true,
+    //watch: true,
   });
 
   useEffect(() => {

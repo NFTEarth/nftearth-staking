@@ -44,7 +44,7 @@ function useBalances(): {
 
   const { data, isSuccess, isRefetching } = useContractReads({
     enabled: isConnected,
-    watch: true,
+    //watch: true,
     contracts: [
       {
         ...earthlingContract,

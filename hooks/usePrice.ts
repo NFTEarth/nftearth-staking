@@ -11,7 +11,7 @@ export default function usePrice() {
     fetch(`/api/price`).then(async (res) => {
       const data = await res.json();
 
-      setNftePrice(ethers.utils.parseUnits(data.price.toFixed(8), 8))
+      setNftePrice(ethers.utils.parseUnits(data?.price?.toFixed(8) || '0', 8))
     })
   }, [])
 
@@ -20,7 +20,7 @@ export default function usePrice() {
     address: "0x639Fe6ab55C921f74e7fac1ee960C0B6293ba612",
     abi: PriceABI,
     functionName: "latestRoundData",
-    watch: true,
+    //watch: true,
     chainId: 42161,
   });
 

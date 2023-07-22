@@ -1,7 +1,14 @@
 "use client";
 
-import { useAccount } from "wagmi";
-import { useState, useEffect } from "react";
+import {
+  useAccount,
+  useContractRead,
+  useContractWrite,
+  useNetwork,
+  usePrepareContractWrite,
+  useWaitForTransaction
+} from "wagmi";
+import {useState, useEffect, ChangeEventHandler} from "react";
 import useAllStakes from "../hooks/useAllStakes";
 import { ethers, BigNumber } from "ethers";
 import usePrice from "../hooks/usePrice";
@@ -12,6 +19,9 @@ import AllowanceButton from "./AllowanceButton";
 import { formatUnits } from "ethers/lib/utils.js";
 import UserStaking from "./userStaking";
 import useMounted from "../hooks/useMounted";
+import {CHAIN_ID, nfteContractAddresses, stakingContractAddresses} from "../constants";
+import ABI from "../abis/nfteToken";
+import StakingABI from "../abis/staking";
 
 interface poolStakesData {
   poolId: BigNumber;
@@ -27,7 +37,48 @@ export default function Staking() {
   const { NftePrice } = usePrice();
   const mounted = useMounted()
   const { data: allowance } = useAllowance();
+  const { chain } = useNetwork();
+  const [amount, setAmount] = useState('0');
   const { poolsContractReadData: allStakes } : ReturnType<typeof  useAllStakes> = useAllStakes(address);
+
+  const allowanceContractRead = useContractRead({
+    enabled: address !== undefined,
+    address: nfteContractAddresses[chain?.id || CHAIN_ID],
+    abi: ABI,
+    functionName: "allowance",
+    args: [address as `0x${string}`, stakingContractAddresses[chain?.id || CHAIN_ID]],
+  });
+
+  const { config: depositConfig } = usePrepareContractWrite({
+    enabled: isConnected && allowanceContractRead.isSuccess,
+    address: stakingContractAddresses[chain?.id || CHAIN_ID],
+    abi: StakingABI,
+    functionName: "depositNfte",
+    args: [
+      ethers.utils.parseEther(amount === '' ? '0' : amount),
+      stakingContractAddresses[chain?.id || CHAIN_ID]
+    ],
+  });
+
+  const depositContractWrite = useContractWrite(depositConfig);
+
+  const waitForDepositTransaction = useWaitForTransaction({
+    hash: depositContractWrite.data?.hash,
+    confirmations: 2,
+    onSuccess() {
+      depositContractWrite.reset();
+    },
+  });
+
+  const handleDepositClick = () => {
+    depositContractWrite.write?.();
+  };
+
+  const handleSetAmount:  ChangeEventHandler<HTMLInputElement> = (e) => {
+    let value = e.target?.value;
+
+    setAmount(value.replace(/[^0-9.]+/g, ''));
+  }
 
   if (!mounted) {
     return null;
@@ -229,7 +280,10 @@ export default function Staking() {
         {allowance?.eq(0) ? (
           <div className="mb-10">
             <div className="mb-4">NFTE Staking Contract Allowance Approval not set:</div>
-            <AllowanceButton />
+
+            {allowanceContractRead.isSuccess && (
+              <AllowanceButton />
+            )}
           </div>
         ) : (
           <div className="mb-10">
@@ -238,7 +292,22 @@ export default function Staking() {
                 ? "Unlimited"
                 : formatUnits(allowance?.toString() || '0')}`}
             </div>
-            <AllowanceButton />
+            {allowanceContractRead.isSuccess && (
+              <AllowanceButton />
+            )}
+          </div>
+        )}
+
+        {allowanceContractRead.isSuccess && (
+          <div className="mb-10">
+            <label>Amount: <input className="border px-2 dark:border-zinc-500 dark:bg-zinc-800" value={amount} onChange={handleSetAmount}/></label>
+            <button
+              className="ml-2 border px-3 py-2 hover:border-gray-500 disabled:text-gray-400 disabled:hover:cursor-not-allowed dark:border-slate-500 dark:bg-slate-800  dark:hover:border-slate-300"
+              disabled={depositContractWrite.isLoading || waitForDepositTransaction.isFetching || waitForDepositTransaction.isLoading}
+              onClick={handleDepositClick}
+            >
+              Stake NFTE
+            </button>
           </div>
         )}
 

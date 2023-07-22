@@ -1,6 +1,6 @@
 import { BigNumber, constants } from "ethers";
 import produce from "immer";
-import create from "zustand";
+import { create } from 'zustand'
 import { devtools } from "zustand/middleware";
 
 import { EventData } from "../types/event";

@@ -19,7 +19,7 @@ const usePoolData = () : {
     address: stakingContractAddresses[chain?.id || CHAIN_ID],
     abi: StakingABI,
     functionName: "getPoolsUI",
-    watch: true,
+    // watch: true,
     chainId: chain?.id || 42161,
   });
 

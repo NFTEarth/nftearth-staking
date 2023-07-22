@@ -83,7 +83,7 @@ export default function Data() {
                     </span>{" "}
                     {poolData[pool].apr ? (
                       <span className="rounded bg-green-100 px-2.5 py-0.5 text-sm font-semibold text-green-800 dark:bg-green-200 dark:text-green-900">
-                        {poolData[pool].apr?.toFixed(0)}%&nbsp;APR
+                        {poolData[pool].apr?.toFixed(0) || '-'}%&nbsp;APR
                       </span>
                     ) : (
                       <div role="status" className="max-w-sm animate-pulse">
