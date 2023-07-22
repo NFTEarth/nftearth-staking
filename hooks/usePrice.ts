@@ -20,7 +20,7 @@ export default function usePrice() {
     address: "0x639Fe6ab55C921f74e7fac1ee960C0B6293ba612",
     abi: PriceABI,
     functionName: "latestRoundData",
-    //watch: true,
+    watch: true,
     chainId: 42161,
   });
 

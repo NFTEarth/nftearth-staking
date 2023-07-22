@@ -37,7 +37,7 @@ const useAllStakes = (addressOrEns?: `0x${string}`) : useAllStakesReturn => {
     address: stakingContractAddresses[chain?.id || 42161],
     abi: StakingABI,
     functionName: "getAllStakes",
-    //watch: true,
+    watch: true,
     chainId: chain?.id || 42161,
     args: [address as `0x${string}`],
   });
