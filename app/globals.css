@@ -11,7 +11,7 @@ body {
 }
 
 a {
-  color: hsl(124, 70%, 51%);
+  color: #79ffa8;
   text-decoration: none;
 }
 
@@ -24,5 +24,5 @@ html {
 }
 body {
   color: #e8e8e7;
-  background: #0f2d53;
+  background: #FFA879;
 }

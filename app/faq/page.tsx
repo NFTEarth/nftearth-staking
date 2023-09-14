@@ -17,7 +17,7 @@ const FaqPage = () => {
         <>
           <p className="mt-2">
             Please be aware there are bound to be a lot of scams and fake
-            websites / Twitter accounts trying to steal your NFTE and/or
+            websites / X accounts trying to steal your NFTE and/or
             NFTs. If you are unsure you should only use official links.
           </p>
           <p className="mt-2">
@@ -34,7 +34,7 @@ const FaqPage = () => {
             </a>
           </p>
           <p className="mt-2">
-            The official link to the staking contract documentation is{" "}
+            The official link to the NFTEarth documentation is{" "}
             <a className="underline" href="https://docs.nftearth.exchange">
             https://docs.nftearth.exchange
             </a>
@@ -52,19 +52,6 @@ const FaqPage = () => {
       question: "Can I unstake or withdraw anytime?",
       answer:
         "Yes, there is no locking period for withdrawing staked NFTE or claiming rewards.",
-    },
-    {
-      question: "When I stake do my NFTs leave my wallet?",
-      answer: (
-        <>
-          <p className="mt-2">
-            No, only the NFTE gets deposited into the contract. Your NFTs act
-            as keys to withdraw or claim any apecoin rewards, if you do not
-            hold the NFT you canmot get the NFTE out of the contract, but the
-            new owner can.
-          </p>
-        </>
-      ),
     },
     {
       question:
@@ -108,7 +95,7 @@ const FaqPage = () => {
       answer: (
         <>
           Send a tweet or DM{" "}
-          <a className="text-[#1da1f2]" href="https://twitter.com/NFTEarth_L2">
+          <a className="text-[#79ffa8]" href="https://twitter.com/NFTEarth_L2">
             @NFTEarth_L2
           </a>{" "}
           on Twitter and we will do our best to get you an answer!
