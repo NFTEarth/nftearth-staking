@@ -17,11 +17,11 @@ export default function usePrice() {
 
   const { data: ethereumPriceContractReadData } = useContractRead<typeof PriceABI, 'latestRoundData', any>({
     // EACAggregatorProxy ETH / USD
-    address: "0x639Fe6ab55C921f74e7fac1ee960C0B6293ba612",
+    address: "0x5f4ec3df9cbd43714fe2740f5e3616155c5b8419",
     abi: PriceABI,
     functionName: "latestRoundData",
     watch: true,
-    chainId: 42161,
+    chainId: 137,
   });
 
   return { NftePrice: nftePrice, ethereumPrice: ethereumPriceContractReadData?.answer };

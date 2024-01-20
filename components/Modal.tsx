@@ -1,5 +1,5 @@
 "use client";
-
+/*
 import ABI from "../abis/staking";
 import useAllStakes, { poolStakesData } from "../hooks/useAllStakes";
 import { Map } from "../types/map";
@@ -223,8 +223,8 @@ const ClaimAllModal: React.FC<{
             }
               <li className="flex items-center py-1 text-sm text-gray-500 dark:text-gray-400">
                 { 3 Claim {displayNfte(nfw3cPoolUnclaimed)} from Non-Fungible Web3 Citizen Pooll{" "}
-          </li> */}
-            </ol>
+          </li> } */
+/*            </ol>
           </div>
         </Modal.Body>
       </Modal>
@@ -232,4 +232,4 @@ const ClaimAllModal: React.FC<{
   );
 };
 
-export default ClaimAllModal;
+export default ClaimAllModal; */

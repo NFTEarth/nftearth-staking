@@ -15,7 +15,7 @@ export default async function Page() {
         >
           <h5 className="mb-2 text-2xl font-bold tracking-tight">Data</h5>
           <p className="text-zinc-700 dark:text-zinc-400">
-            Real-Time staking data
+            Real-time staking data
           </p>
         </Link>
         <Link
@@ -26,21 +26,9 @@ export default async function Page() {
         >
           <h5 className="mb-2 text-2xl font-bold tracking-tight">Stake</h5>
           <p className="text-zinc-700 dark:text-zinc-400">
-            Manage your staking positions and staking contract allowances for xNFTE
+            Manage your staked positions and rewards.
           </p>
         </Link>
-       <Link
-          shallow={true}
-          href="https://app.uniswap.org/add/0x51B902f19a56F0c8E409a34a215AD2673EDF3284/0x82aF49447D8a07e3bd95BD0d56f35241523fBab1/10000?minPrice=0.0000000000000000000000000000000000000029602&maxPrice=337820000000000000000000000000000000000"
-          className={`block border border-zinc-200 bg-white p-6 hover:bg-zinc-100
-          dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800 sm:max-w-sm`}
-        >
-         <h5 className="mb-2 text-2xl font-bold tracking-tight">xNFTE</h5>
-          <p className="text-zinc-700 dark:text-zinc-400">
-           The innovative tokenomic model for NFTE holders designed to increase protocol value over time by staking LP positions.
-           Get your LP position that is created on Uniswapv3 on Arbitrum, stake, and then earn rewards and governance power.
-           </p>
-       </Link>
         <Link
           shallow={true}
           href="/faq"

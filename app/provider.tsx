@@ -1,7 +1,7 @@
 "use client";
 
 import { WagmiConfig, createClient, configureChains } from "wagmi";
-import { arbitrum } from "wagmi/chains";
+import { arbitrum, polygon } from "wagmi/chains";
 
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
 import { alchemyProvider } from "wagmi/providers/alchemy";
@@ -20,7 +20,7 @@ const ALCHEMY_RPC: Record<number, string> = {
 }
 
 const { provider, chains } = configureChains(
-  [arbitrum],
+  [polygon, arbitrum],
   [
     publicProvider({ priority: 2 }),
     alchemyProvider({

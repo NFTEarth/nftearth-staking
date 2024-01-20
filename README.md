@@ -1,3 +1,3 @@
-# NFTEarth Staking Rewards
+![sNFTE](image-1.png)
 
-xNFTE
+Update for staking of NFTs for rewards on NFTEarth. 

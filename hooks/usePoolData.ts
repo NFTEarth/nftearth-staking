@@ -18,9 +18,9 @@ const usePoolData = () : {
   const { data: poolsContractReadData, isSuccess, isRefetching } = useContractRead<typeof StakingABI, 'getPoolsUI', Pool[]>({
     address: stakingContractAddresses[chain?.id || CHAIN_ID],
     abi: StakingABI,
-    functionName: "getPoolsUI",
+    functionName: "balanceOf",
     watch: true,
-    chainId: chain?.id || 42161,
+    chainId: chain?.id || 137,
   });
 
   const [initialLoad, setInitialLoad] = useState(false);
