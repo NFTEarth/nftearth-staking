@@ -11,7 +11,7 @@ body {
 }
 
 a {
-  color: #A879FF;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -23,6 +23,6 @@ html {
   color-scheme: dark;
 }
 body {
-  color: #e8e8e7;
+  color: #A879FF;
   background: #A879FF;
 }

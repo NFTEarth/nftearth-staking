@@ -22,7 +22,7 @@ export default function FixedData() {
             <span>
               NFTE:{" "}
               {Intl.NumberFormat("en-us", {
-                maximumFractionDigits: 8,
+                maximumFractionDigits: 6,
                 style: "currency",
                 currency: "USD",
               }).format(+formatUnits(NftePrice, 8))}{" "}
@@ -41,7 +41,7 @@ export default function FixedData() {
           )}
         </div>
         <div className="flex items-center gap-x-4">
-          {`Staking Rewards in ${(minutes === 0 && seconds === 0) ?
+          {`New Staking Rewards in ${(minutes === 0 && seconds === 0) ?
           `60M 00S` : `${minutes}M ${seconds}S`}`}
         </div>
       </div>

@@ -279,7 +279,7 @@ export default function Staking() {
       <div className="mt-10 overflow-scroll">
         {allowance?.eq(0) ? (
           <div className="mb-10">
-            <div className="mb-4">NFTE Staking Contract Allowance Approval not set:</div>
+            <div className="mb-4">Approve staking contract spending allowance.</div>
 
             {allowanceContractRead.isSuccess && (
               <AllowanceButton />
@@ -288,7 +288,7 @@ export default function Staking() {
         ) : (
           <div className="mb-10">
             <div className="mb-4">
-              {`NFTE Staking Contract Allowance set to ${+formatUnits(allowance?.toString() || '0') >= 1e9
+              {`NFTE staking contact allowance set to ${+formatUnits(allowance?.toString() || '0') >= 1e9
                 ? "Unlimited"
                 : formatUnits(allowance?.toString() || '0')}`}
             </div>
