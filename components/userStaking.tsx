@@ -1,6 +1,6 @@
 "use client";
 
-/*import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useAccount,
   useNetwork,
@@ -39,7 +39,7 @@ function ClaimAll({
     !nfteStakes[0].unclaimed.isZero()),
     address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
-    functionName: "claimSelfNfte" as const,
+    functionName: "claimSelfNfte",
   });
 
   const nfteClaimContractWrite = useContractWrite(
@@ -63,7 +63,7 @@ function ClaimAll({
 
   const earthlingPrepareContractWrite = usePrepareContractWrite({
     enabled: earthlingStakes && earthlingStakes.length > 0 && earthlingUnclaimed > 0,
-    address: stakingContractAddresses[chain?.id || 137],
+    address: stakingContractAddresses[chain?.id || 42161],
     abi: ABI,
     functionName: "claimSelfEARTHLING",
     args: args && ([args] as any),
@@ -441,4 +441,4 @@ export default function UserStaking() {
       </div>
     </>
   );
-}*/
+}

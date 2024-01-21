@@ -1,6 +1,6 @@
 "use client";
 
-/* import {
+import {
   useAccount,
   useContractRead,
   useContractWrite,
@@ -17,7 +17,7 @@ import { NfteTable, NftTable, Nfw3cTable } from "./tables";
 import useAllowance from "../hooks/useAllowance";
 import AllowanceButton from "./AllowanceButton";
 import { formatUnits } from "ethers/lib/utils.js";
-/* import UserStaking from "./userStaking";
+import UserStaking from "./userStaking";
 import useMounted from "../hooks/useMounted";
 import {CHAIN_ID, nfteContractAddresses, stakingContractAddresses} from "../constants";
 import ABI from "../abis/nfteToken";
@@ -49,7 +49,7 @@ export default function Staking() {
     args: [address as `0x${string}`, stakingContractAddresses[chain?.id || CHAIN_ID]],
   });
 
-  /*const { config: depositConfig } = usePrepareContractWrite({
+  const { config: depositConfig } = usePrepareContractWrite({
     enabled: isConnected && allowanceContractRead.isSuccess,
     address: stakingContractAddresses[chain?.id || CHAIN_ID],
     abi: StakingABI,
@@ -270,7 +270,7 @@ export default function Staking() {
 
   const options = earthlingOptions.concat(roboroverOptions);
 
-  /* return (
+  return (
     <div>
       <div>
         <UserStaking />
@@ -365,98 +365,4 @@ export default function Staking() {
       </div>
     </div>
   );
-/* return (
-    <div>
-      <div>
-        <UserStaking />
-      </div>
-
-      <div className="mt-10 overflow-scroll">
-        {allowance?.eq(0) ? (
-          <div className="mb-10">
-            <div className="mb-4">NFTE Staking Contract Allowance Approval not set:</div>
-
-            {allowanceContractRead.isSuccess && (
-              <AllowanceButton />
-            )}
-          </div>
-        ) : (
-          <div className="mb-10">
-            <div className="mb-4">
-              {`NFTE Staking Contract Allowance set to ${+formatUnits(allowance?.toString() || '0') >= 1e9
-                ? "Unlimited"
-                : formatUnits(allowance?.toString() || '0')}`}
-            </div>
-            {allowanceContractRead.isSuccess && (
-              <AllowanceButton />
-            )}
-          </div>
-        )}
-
-        {allowanceContractRead.isSuccess && (
-          <div className="mb-10">
-            <label>Amount: <input className="border px-2 dark:border-zinc-500 dark:bg-zinc-800" value={amount} onChange={handleSetAmount}/></label>
-            <button
-              className="ml-2 border px-3 py-2 hover:border-gray-500 disabled:text-gray-400 disabled:hover:cursor-not-allowed dark:border-slate-500 dark:bg-slate-800  dark:hover:border-slate-300"
-              disabled={depositContractWrite.isLoading || waitForDepositTransaction.isFetching || waitForDepositTransaction.isLoading}
-              onClick={handleDepositClick}
-            >
-              Stake NFTE
-            </button>
-          </div>
-        )}
-
-        <h2 className="text-4xl font-extrabold">NFTE Staking Pool</h2>
-        <NfteTable
-          nfteStakes={nfteStakes || []}
-          withdrawArgs={withdrawArgs}
-          claimArgs={claimArgs}
-          nftePrice={NftePrice}
-        />
-
-        <h2 className="mt-10 text-4xl font-extrabold">
-          Earthling Pool
-        </h2>
-
-        <NftTable
-          poolId={1}
-          tokenSymbol="EARTHLING"
-          poolStakes={earthlingStakes}
-          withdrawArgs={withdrawArgs}
-          claimArgs={claimArgs}
-          nftePrice={NftePrice}
-          withdrawFunctionID="24"
-          claimFunctionID="8"
-          depositFunctionID="12"
-        />
-
-        <h2 className="mt-10 text-4xl font-extrabold">
-          RoboRover Pool
-        </h2>
-
-        <NftTable
-          poolId={2}
-          tokenSymbol={"ROBOROVER"}
-          poolStakes={roboroverStakes || []}
-          withdrawArgs={withdrawArgs}
-          claimArgs={claimArgs}
-          nftePrice={NftePrice}
-          withdrawFunctionID="25"
-          claimFunctionID="9"
-          depositFunctionID="13"
-        />
-
-        <h2 className="mt-10 text-4xl font-extrabold">
-          Non-Fungible Web3 Citizen Pool
-        </h2>
-
-        <Nfw3cTable
-          poolStakes={nfw3cStakes || []}
-          withdrawArgs={withdrawNfw3cArgs}
-          claimArgs={claimNfw3cArgs}
-          nftePrice={NftePrice}
-          pairOptions={options}
-        />
-      </div>
-    </div>
-  ); */
+}

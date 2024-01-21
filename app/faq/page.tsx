@@ -49,6 +49,30 @@ const FaqPage = () => {
       ),
     },
     {
+      question: "Can I unstake or withdraw anytime?",
+      answer:
+        "Yes, there is no locking period for withdrawing staked NFTE or claiming rewards.",
+    },
+    {
+      question:
+        "If I stake into an NFT pool (Earthling, RoboRover, Non-Fungible Web3 Citizen) can I sell my NFT?",
+      answer:
+        "You should first withdraw all NFTE paired with the NFT or you will lose access to it.",
+    },
+    {
+      question: "What are the maximum limits for staking?",
+      answer: (
+        <>
+          <ul>
+            <li>NFTE pool: No limit</li>
+            <li>Earthling pool: 5000</li>
+            <li>RoboRover pool: 500</li>
+            <li>Non-Fungible Web3 Citizen pool: 250</li>
+          </ul>
+        </>
+      ),
+    },
+    {
       question: "Is this site safe?",
       answer: (
         <>
@@ -71,8 +95,8 @@ const FaqPage = () => {
       answer: (
         <>
           Send a tweet or DM{" "}
-          <a className="text-[#79A879FFffa8]" href="https://twitter.com/NFTEarth_L2">
-            NFTEarth_L2
+          <a className="text-[#79ffa8]" href="https://twitter.com/NFTEarth_L2">
+            @NFTEarth_L2
           </a>{" "}
           on Twitter and we will do our best to get you an answer!
         </>

@@ -13,8 +13,8 @@ export default function Error({ error }: { error: Error }) {
       <p className="mt-4">Something went wrong!</p>
       <p className="mt-4">
         Please try refreshing the page or contacting{" "}
-        <a className="text-[#A879FF]" href="https://twitter.com/NFTEarth_L2">
-          NFTEarth_L2
+        <a className="text-[#1da1f2]" href="https://twitter.com/NFTEarth_L2">
+          @NFTEarth_L2
         </a>{" "}
         on Twitter.
       </p>

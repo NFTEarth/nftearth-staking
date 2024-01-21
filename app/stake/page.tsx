@@ -1,4 +1,4 @@
-/*import Staking from "../../components/Staking";
+import Staking from "../../components/Staking";
 
 export default async function Page() {
   if (process.env.NEXT_PUBLIC_ENABLE_STAKE !== "TRUE") {
@@ -9,14 +9,14 @@ export default async function Page() {
             <h1 className="mb-4 flex items-center text-4xl font-bold ">
               NFTE Staking{" "}
             </h1>
-            <p className="mb-2 text-center">NFTEarth Staking Rewards</p> { 'Staking Rewards' }
+            <p className="mb-2">NFTEarth Staking Rewards</p>
           </div>
         </div>
 
         <p className="mt-2">
           Follow{" "}
-          <a className="text-[#A879FF]" href="https://twitter.com/NFTEarth_L2">
-            NFTEarth
+          <a className="text-[#79ffa8]" href="https://twitter.com/NFTEarth_L2">
+            @NFTEarth_L2
           </a>{" "}
           on Twitter for announcements.
         </p>
@@ -25,4 +25,4 @@ export default async function Page() {
   }
 
   return <Staking />;
-}*/
+}

@@ -7,6 +7,7 @@ export default function Header() {
     { name: "Home", pathname: "/" },
     { name: "Data", pathname: "/data" },
     { name: "Stake", pathname: "/stake" },
+    { name: "xNFTE", pathname: "/xnfte"},
     { name: "FAQ", pathname: "/faq" },
   ];
 
