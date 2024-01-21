@@ -34,11 +34,11 @@ const useAllStakes = (addressOrEns?: `0x${string}`) : useAllStakesReturn => {
 
   const { data: poolsContractReadData = [], error } = useContractRead<typeof StakingABI, 'getAllStakes', poolStakesData[]>({
     enabled: isNonEmpty,
-    address: stakingContractAddresses[chain?.id || 42161],
+    address: stakingContractAddresses[chain?.id || 137],
     abi: StakingABI,
     functionName: "getAllStakes",
     watch: true,
-    chainId: chain?.id || 42161,
+    chainId: chain?.id || 137,
     args: [address as `0x${string}`],
   });
 

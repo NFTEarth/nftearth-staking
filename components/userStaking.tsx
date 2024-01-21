@@ -37,7 +37,7 @@ function ClaimAll({
     enabled: (nfteStakes &&
     nfteStakes.length !== 0 &&
     !nfteStakes[0].unclaimed.isZero()),
-    address: stakingContractAddresses[chain?.id || 42161],
+    address: stakingContractAddresses[chain?.id || 137],
     abi: ABI,
     functionName: "claimSelfNfte",
   });
@@ -63,7 +63,7 @@ function ClaimAll({
 
   const earthlingPrepareContractWrite = usePrepareContractWrite({
     enabled: earthlingStakes && earthlingStakes.length > 0 && earthlingUnclaimed > 0,
-    address: stakingContractAddresses[chain?.id || 42161],
+    address: stakingContractAddresses[chain?.id || 137],
     abi: ABI,
     functionName: "claimSelfEARTHLING",
     args: args && ([args] as any),
@@ -83,7 +83,7 @@ function ClaimAll({
 
   const roboroverPrepareContractWrite = usePrepareContractWrite({
     enabled: roboroverStakes && roboroverStakes.length > 0,
-    address: stakingContractAddresses[chain?.id || 42161],
+    address: stakingContractAddresses[chain?.id || 137],
     abi: ABI,
     functionName: "claimSelfROBOROVER",
     args: [roboroverArgs as any],
@@ -125,7 +125,7 @@ function ClaimAll({
 
   const nfw3cPrepareContractWrite = usePrepareContractWrite({
     enabled: nfw3cEarthlingArgs.length > 0 || nfw3cEarthlingArgs.length > 0,
-    address: stakingContractAddresses[chain?.id || 42161],
+    address: stakingContractAddresses[chain?.id || 137],
     abi: ABI,
     functionName: "claimSelfNFW3C",
     args: [nfw3cEarthlingArgs, nfw3cRoboroverArgs],
@@ -166,7 +166,7 @@ function WithdrawAll({
 }) {
   const nfteWithdrawPrepareContractWrite = usePrepareContractWrite({
     enabled: !nfteStakes?.[0]?.deposited.isZero(),
-    address: stakingContractAddresses[chain?.id || 42161],
+    address: stakingContractAddresses[chain?.id || 137],
     abi: ABI,
     functionName: "withdrawSelfNfte",
     args: nfteStakes?.[0]?.deposited ? [nfteStakes[0].deposited] : undefined,
@@ -223,7 +223,7 @@ function WithdrawAll({
 
   const roboroverWithdrawPrepareContractWrite = usePrepareContractWrite({
     enabled: roboroverStakes && roboroverStakes.length > 0,
-    address: stakingContractAddresses[chain?.id || 42161],
+    address: stakingContractAddresses[chain?.id || 137],
     abi: ABI,
     functionName: "withdrawSelfROBOROVER",
     args: roboroverWithdrawArgs && ([roboroverWithdrawArgs] as any),
@@ -273,7 +273,7 @@ function WithdrawAll({
 
   const nfw3cPrepareContractWrite = usePrepareContractWrite({
     enabled: nfw3cEarthlingArgs.length > 0 || nfw3cRoboroverArgs.length > 0,
-    address: stakingContractAddresses[chain?.id || 42161],
+    address: stakingContractAddresses[chain?.id || 137],
     abi: ABI,
     functionName: "withdrawNFW3C",
     args: [nfw3cEarthlingArgs, nfw3cRoboroverArgs],

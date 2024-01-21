@@ -15,10 +15,10 @@ export default async function Page() {
 
         <p className="mt-2">
           Follow{" "}
-          <a className="text-[#79ffa8]" href="https://twitter.com/NFTEarth_L2">
-            @NFTEarth_L2
+          <a className="text-[#A879FF]" href="https://twitter.com/NFTEarth_L2">
+            NFTEarth_L2
           </a>{" "}
-          on Twitter for announcements.
+          on X for announcements.
         </p>
       </>
     );

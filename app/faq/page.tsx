@@ -42,7 +42,7 @@ const FaqPage = () => {
           <p className="mt-2">
             The official twitter account for NFTEarth is{" "}
             <a className="underline" href="https://twitter.com/NFTEarth_L2">
-              @NFTEarth_L2
+              NFTEarth
             </a>
           </p>
         </>
@@ -95,10 +95,10 @@ const FaqPage = () => {
       answer: (
         <>
           Send a tweet or DM{" "}
-          <a className="text-[#79ffa8]" href="https://twitter.com/NFTEarth_L2">
-            @NFTEarth_L2
+          <a className="text-[#A879FF]" href="https://twitter.com/NFTEarth_L2">
+            NFTEarth
           </a>{" "}
-          on Twitter and we will do our best to get you an answer!
+          on X and we will do our best to get you an answer!
         </>
       ),
     },

@@ -22,7 +22,7 @@ const ClaimNfte = () => {
   const { nfteStakes } : ReturnType<typeof  useAllStakes> = useAllStakes(address);
 
   const nftePrepareContractWrite = usePrepareContractWrite<typeof ABI, 'claimSelfNfte', any>({
-    address: stakingContractAddresses[chain?.id || 42161],
+    address: stakingContractAddresses[chain?.id || 137],
     abi: ABI,
     functionName: "claimSelfNfte",
   });
@@ -67,7 +67,7 @@ const ClaimEarthling = () => {
     });
 
   const { config: earthlingConfig } = usePrepareContractWrite({
-    address: stakingContractAddresses[chain?.id || 42161],
+    address: stakingContractAddresses[chain?.id || 137],
     abi: ABI,
     functionName: "claimSelfEARTHLING",
     args: [args as any],
@@ -113,7 +113,7 @@ const ClaimRoboRover = () => {
   });
 
   const { config: roboRoverConfig } = usePrepareContractWrite({
-    address: stakingContractAddresses[chain?.id || 42161],
+    address: stakingContractAddresses[chain?.id || 137],
     abi: ABI,
     functionName: "claimSelfROBOROVER",
     args: [roboroverStakes as any],

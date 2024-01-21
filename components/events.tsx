@@ -25,7 +25,7 @@ const DisplayStakeEvent: React.FC<{ event: EventData }> = ({ event }) => {
       target="_blank"
       rel="noreferrer"
       href={`https://${
-        chain?.id === 42161 ? "arbiscan.io" : "etherscan.io"
+        chain?.id === 137 ? "polygonscan.com" : "etherscan.io"
       }/tx/${event.hash}`}
     >
       <span className="font-medium text-zinc-900 dark:text-white">
@@ -54,7 +54,7 @@ const DisplayWithdrawEvent: React.FC<{ event: EventData }> = ({ event }) => {
       target="_blank"
       rel="noreferrer"
       href={`https://${
-        chain?.id === 42161 ? "arbiscan.io" : "etherscan.io"
+        chain?.id === 137 ? "arbiscan.io" : "etherscan.io"
       }/tx/${event.hash}`}
     >
       <span className="font-medium text-zinc-900 dark:text-white">
@@ -83,7 +83,7 @@ const DisplayClaimEvent: React.FC<{ event: EventData }> = ({ event }) => {
       target="_blank"
       rel="noreferrer"
       href={`https://${
-        chain?.id === 42161 ? "arbiscan.io" : "etherscan.io"
+        chain?.id === 137 ? "arbiscan.io" : "etherscan.io"
       }/tx/${event.hash}`}
     >
       <span className="font-medium text-zinc-900 dark:text-white">
@@ -119,7 +119,7 @@ const DisplayEvent: React.FC<{ event: EventData }> = ({ event }) => {
       target="_blank"
       rel="noreferrer"
       href={`https://${
-        chain?.id === 42161 ? "arbiscan.io" : "etherscan.io"
+        chain?.id === 137 ? "polygonscan.com" : "etherscan.io"
       }/tx/${event.hash}`}
     >
       <span className="font-medium text-zinc-900 dark:text-white">

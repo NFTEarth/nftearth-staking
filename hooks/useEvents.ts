@@ -59,7 +59,7 @@ const useEvents = () => {
         hash: "",
       });
     },
-    chainId: 42161,
+    chainId: 137,
   });
 
   useContractEvent<typeof  StakingABI, 'DepositNft'>({
@@ -75,7 +75,7 @@ const useEvents = () => {
         hash: "",
       });
     },
-    chainId: 42161,
+    chainId: 137,
   });
 
   useContractEvent<typeof  StakingABI, 'DepositPairNft'>({
@@ -91,7 +91,7 @@ const useEvents = () => {
         hash: "",
       });
     },
-    chainId: 42161,
+    chainId: 137,
   });
 
   useContractEvent<typeof  StakingABI, 'Withdraw'>({
@@ -107,7 +107,7 @@ const useEvents = () => {
         hash: "",
       });
     },
-    chainId: 42161,
+    chainId: 137,
   });
 
   useContractEvent<typeof  StakingABI, 'WithdrawNft'>({
@@ -123,7 +123,7 @@ const useEvents = () => {
         hash: "",
       });
     },
-    chainId: 42161,
+    chainId: 137,
   });
 
   useContractEvent<typeof  StakingABI, 'WithdrawPairNft'>({
@@ -139,7 +139,7 @@ const useEvents = () => {
         hash: "",
       });
     },
-    chainId: 42161,
+    chainId: 137,
   });
 
   useContractEvent<typeof  StakingABI, 'ClaimRewards'>({
@@ -155,7 +155,7 @@ const useEvents = () => {
         hash: "",
       });
     },
-    chainId: 42161,
+    chainId: 137,
   });
 
   useContractEvent<typeof StakingABI, 'ClaimRewardsNft'>({
@@ -171,7 +171,7 @@ const useEvents = () => {
         hash: "",
       });
     },
-    chainId:42161,
+    chainId:137,
   });
 
   useContractEvent<typeof  StakingABI, 'ClaimRewardsPairNft'>({
@@ -187,7 +187,7 @@ const useEvents = () => {
         hash: "",
       });
     },
-    chainId: 42161 ,
+    chainId: 137 ,
   });
 
   return events;

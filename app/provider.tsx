@@ -1,7 +1,7 @@
 "use client";
 
 import { WagmiConfig, createClient, configureChains } from "wagmi";
-import { arbitrum } from "wagmi/chains";
+import { polygon } from "wagmi/chains";
 
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
 import { alchemyProvider } from "wagmi/providers/alchemy";
@@ -15,12 +15,12 @@ import {InjectedConnector} from "@wagmi/connectors/injected";
 const ALCHEMY_RPC: Record<number, string> = {
   1: 'eth-mainnet',
   10: 'opt-mainnet',
-  147: 'polygon-mainnet',
+  137: 'polygon-mainnet',
   42161: 'arb-mainnet'
 }
 
 const { provider, chains } = configureChains(
-  [arbitrum],
+  [polygon],
   [
     publicProvider({ priority: 2 }),
     alchemyProvider({
@@ -49,7 +49,7 @@ const client = createClient(
       new WalletConnectConnector({
         chains,
         options: {
-          projectId: '5dd18f61f54044c53f0e1ea9d1829b08',
+          projectId: '43f64cebd8e57e82652232682308e822',
         },
       }),
       new InjectedConnector({

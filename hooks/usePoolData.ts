@@ -20,7 +20,7 @@ const usePoolData = () : {
     abi: StakingABI,
     functionName: "getPoolsUI",
     watch: true,
-    chainId: chain?.id || 42161,
+    chainId: chain?.id || 137,
   });
 
   const [initialLoad, setInitialLoad] = useState(false);

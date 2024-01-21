@@ -1,7 +1,7 @@
 export default function Head() {
   return (
     <>
-      <title>NFTEarth Staking</title>
+      <title>NFTEarth Staking Rewards</title>
       <link rel="icon" href="./teeth.png" />
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=0.5" />
@@ -18,7 +18,7 @@ export default function Head() {
       <meta property="og:url" content="https://staking.nftearth.exchange" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content="https://staking.nftearth.exchange/opengraph.png" />
-      <meta name="twitter:site" content="@NFTEarth_L2" />
+      <meta name="twitter:site" content="NFTEarth" />
       <meta name="twitter:title" content="NFTEarth" />
       <meta
         name="twitter:description"
